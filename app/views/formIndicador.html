@@ -1,0 +1,91 @@
+<div class="page-content d-flex align-items-stretch"> 
+  <div class="content-inner">
+  <!-- Breadcrumb-->
+    <div class="breadcrumb-holder container-fluid">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Indicadores</li>
+        <li class="breadcrumb-item active">Agregar</li>
+      </ul>
+    </div>
+      <!-- Forms Section-->
+      <section class="forms"> 
+        <div class="container-fluid">
+          <div class="row">
+            <!-- Horizontal Form-->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-close">
+                  <div class="dropdown">
+                    <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                    <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow">
+                      <a href="public/#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="public/#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-header d-flex align-items-center">
+                  <h3 class="h4">Crear Indicador</h3>
+                </div>
+                <div class="card-body">      
+                <form class="form-horizontal">
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Nombre</label>
+                    <div class="col-sm-9">
+                      <input id="idNombre" type="text" placeholder="Nombre" class="form-control form-control-success">
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Descripcion</label>
+                    <div class="col-sm-9">
+                      <input id="idDescripcion" type="text" placeholder="Descripcion" class="form-control form-control-success">
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Imagen</label>
+                <div class="col-sm-9">                            
+                  <input type="file" class="form-control-file" id="idImagen" accept="image/*">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 form-control-label">Padre</label>
+                  <div class="col-sm-9 select">
+                    <select name="account" class="form-control">
+                      <option>option 1</option>
+                      <option>option 2</option>
+                      <option>option 3</option>
+                      <option>option 4</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="line"></div>
+                <div class="form-group row">
+                  <label for="example-date-input" class="col-4 col-form-label">Inicio de Periodo*</label>
+                  <div class="col-6">
+                    <input class="form-control" type="date" value="2011-08-19" id="idInicioP">
+                  </div>
+                </div>
+                <div class="form-group row">
+                <label for="example-date-input" class="col-4 col-form-label">Final de Periodo*</label>
+                  <div class="col-6">
+                    <input class="form-control" type="date" value="2011-08-19" id="idFinalP">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 form-control-label">Metal</label>
+                  <div class="col-sm-9">
+                    <input id="idMetal" type="number" placeholder="Metal" class="form-control form-control-success">
+                  </div>
+                </div>
+                <div class="line"></div>                     
+                  <div class="form-group row">       
+                    <div class="col-sm-9 offset-sm-3">
+                      <input type="submit" value="Agregar" class="btn btn-primary">
+                      <button href="public/tableindicador.html" class="btn btn-secondary">Lista de indicadores</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
