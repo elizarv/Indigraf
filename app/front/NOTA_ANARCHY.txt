@@ -1,0 +1,4 @@
+"--Anarchy files" contiene los formularios y tablas básicas para cada entidad, 
+además sirve como referencia para robarse las rutas hasta los controladores.
+
+-Arciniegas.
