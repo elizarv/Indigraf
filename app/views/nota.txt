@@ -1,3 +1,0 @@
-Aqui iran las vistas
-Se debe plantear como se van a organizar, para crear mas carpetas y quede ordenado,
-de modo que todos podamos movernos por el proyecto sin ningun problema.
