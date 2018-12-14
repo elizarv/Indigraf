@@ -19,6 +19,12 @@ function validarForm(idForm){
 	return true;
 }
 
+function cargarVista(vista){
+    cargaContenido('remp','front/views/'+vista+".html");
+}
+
+
+
 ////////// ADMINISTRACION \\\\\\\\\\
 function preAdministracionInsert(idForm){
      //Haga aquí las validaciones necesarias antes de enviar el formulario.
