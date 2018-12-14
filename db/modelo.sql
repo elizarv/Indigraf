@@ -5,6 +5,10 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
+-- Schema arqui
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
 -- Table `Indicador`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Indicador` (
@@ -32,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `Periodo` (
   `meta` DOUBLE NOT NULL,
   `indicador` INT NOT NULL,
   `id` INT NOT NULL AUTO_INCREMENT,
+  `cantidad` INT NULL,
   INDEX `fk_Periodo_Indicador1_idx` (`indicador` ASC),
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_Periodo_Indicador1`
@@ -65,24 +70,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Entrada`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Entrada` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` MEDIUMTEXT NOT NULL,
-  `periodo` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_Entrada_Periodo1_idx` (`periodo` ASC),
-  CONSTRAINT `fk_Entrada_Periodo1`
-    FOREIGN KEY (`periodo`)
-    REFERENCES `Periodo` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Usuario` (
@@ -100,21 +87,21 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Archivo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(45) NOT NULL,
-  `entrada` INT NOT NULL,
   `subidoPor` VARCHAR(45) NOT NULL,
   `fechaSubida` DATETIME NOT NULL,
   `descripcion` VARCHAR(45) NULL,
+  `periodo` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Archivo_Entrada1_idx` (`entrada` ASC),
   INDEX `fk_Archivo_Usuario1_idx` (`subidoPor` ASC),
-  CONSTRAINT `fk_Archivo_Entrada1`
-    FOREIGN KEY (`entrada`)
-    REFERENCES `Entrada` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_Archivo_Periodo1_idx` (`periodo` ASC),
   CONSTRAINT `fk_Archivo_Usuario1`
     FOREIGN KEY (`subidoPor`)
     REFERENCES `Usuario` (`username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Archivo_Periodo1`
+    FOREIGN KEY (`periodo`)
+    REFERENCES `Periodo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
