@@ -5,28 +5,20 @@
               ------------------------
  */
 
-//    ¿Sabías que hay una vida afuera de tu cuarto?  \\
+//    Vine a Comala porque me dijeron que acá vivía mi padre, un tal Pedro Páramo.  \\
 include_once realpath('../../facade/IndicadorFacade.php');
 
 $list=IndicadorFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Indicador) {	
-	$rta.="{
- 	    \"id\":\"{$Indicador->getid()}\",
-	    \"nombre\":\"{$Indicador->getnombre()}\",
-	    \"descripción\":\"{$Indicador->getdescripción()}\",
-	    \"imagen\":\"{$Indicador->getimagen()}\",
-	    \"padre_id\":\"{$Indicador->getpadre()->getid()}\"
-	},";
+	$rta.="<tr>\n";
+	$rta.="<td>".$Indicador->getid()."</td>\n";
+	$rta.="<td>".$Indicador->getnombre()."</td>\n";
+	$rta.="<td>".$Indicador->getdescripcion()."</td>\n";
+	$rta.="<td>".$Indicador->getimagen()."</td>\n";
+	$rta.="<td>".$Indicador->getpadre()->getid()."</td>\n";
+	$rta.="</tr>\n";
 }
-
-if($rta!=""){
-	$rta = substr($rta, 0, -1);
-	$msg="{\"msg\":\"exito\"}";
-}else{
-	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
-	$rta="{\"result\":\"No se encontraron registros.\"}";	
-}
-echo "[{$msg},{$rta}]";
+echo $rta;
 
 //That´s all folks!

@@ -5,14 +5,14 @@
               ------------------------
  */
 
-//    Puedes sugerirnos frases nuevas, se nos están acabando ( u.u)  \\
+//    ¿Me ayudas con la tesis?  \\
 
 
 class Indicador {
 
   private $id;
   private $nombre;
-  private $descripción;
+  private $descripcion;
   private $imagen;
   private $padre;
 
@@ -52,19 +52,19 @@ class Indicador {
       $this->nombre = $nombre;
   }
     /**
-     * Devuelve el valor correspondiente a descripción
-     * @return descripción
+     * Devuelve el valor correspondiente a descripcion
+     * @return descripcion
      */
-  public function getDescripción(){
-      return $this->descripción;
+  public function getDescripcion(){
+      return $this->descripcion;
   }
 
     /**
-     * Modifica el valor correspondiente a descripción
-     * @param descripción
+     * Modifica el valor correspondiente a descripcion
+     * @param descripcion
      */
-  public function setDescripción($descripción){
-      $this->descripción = $descripción;
+  public function setDescripcion($descripcion){
+      $this->descripcion = $descripcion;
   }
     /**
      * Devuelve el valor correspondiente a imagen

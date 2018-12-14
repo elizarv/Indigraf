@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Por desgracia, mi epitafio será una frase insulsa y vacía  \\
+//    ¿No es más sencillo hacer todo en el Main?  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');
@@ -37,14 +37,16 @@ class PeriodoFacade {
    * @param meta
    * @param indicador
    * @param id
+   * @param cantidad
    */
-  public static function insert( $fecha_ini,  $fecha_fin,  $meta,  $indicador,  $id){
+  public static function insert( $fecha_ini,  $fecha_fin,  $meta,  $indicador,  $id,  $cantidad){
       $periodo = new Periodo();
       $periodo->setFecha_ini($fecha_ini); 
       $periodo->setFecha_fin($fecha_fin); 
       $periodo->setMeta($meta); 
       $periodo->setIndicador($indicador); 
       $periodo->setId($id); 
+      $periodo->setCantidad($cantidad); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
@@ -78,13 +80,15 @@ class PeriodoFacade {
    * @param meta
    * @param indicador
    * @param id
+   * @param cantidad
    */
-  public static function update($fecha_ini, $fecha_fin, $meta, $indicador, $id){
+  public static function update($fecha_ini, $fecha_fin, $meta, $indicador, $id, $cantidad){
       $periodo = self::select($id);
       $periodo->setFecha_ini($fecha_ini); 
       $periodo->setFecha_fin($fecha_fin); 
       $periodo->setMeta($meta); 
       $periodo->setIndicador($indicador); 
+      $periodo->setCantidad($cantidad); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());

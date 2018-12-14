@@ -5,11 +5,10 @@
               ------------------------
  */
 
-//    Por desgracia, mi epitafio será una frase insulsa y vacía  \\
+//    Nada mejor que el código hecho a mano.  \\
 
 include_once realpath('../../dao/entities/AdministracionDao.php');
 include_once realpath('../../dao/entities/ArchivoDao.php');
-include_once realpath('../../dao/entities/EntradaDao.php');
 include_once realpath('../../dao/entities/IndicadorDao.php');
 include_once realpath('../../dao/entities/PeriodoDao.php');
 include_once realpath('../../dao/entities/RelacionDao.php');
@@ -30,12 +29,6 @@ interface IFactoryDao {
      * @return instancia de ArchivoDao
      */
      public function getArchivoDao($dbName);
-     /**
-     * Devuelve una instancia de EntradaDao con una conexión que depende del gestor de base de datos
-     * @param dbName Nombre o identificador de la base de datos a conectar
-     * @return instancia de EntradaDao
-     */
-     public function getEntradaDao($dbName);
      /**
      * Devuelve una instancia de IndicadorDao con una conexión que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar

@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    404 Frase no encontrada  \\
+//    Nuestra empresa cuenta con una división sólo para las frases. Disfrútalas  \\
 
 include_once realpath('../../dao/interfaz/IIndicadorDao.php');
 include_once realpath('../../dto/Indicador.php');
@@ -31,13 +31,13 @@ private $cn;
   public function insert($indicador){
       $id=$indicador->getId();
 $nombre=$indicador->getNombre();
-$descripción=$indicador->getDescripción();
+$descripcion=$indicador->getDescripcion();
 $imagen=$indicador->getImagen();
 $padre=$indicador->getPadre()->getId();
 
       try {
-          $sql= "INSERT INTO `indicador`( `id`, `nombre`, `descripción`, `imagen`, `padre`)"
-          ."VALUES ('$id','$nombre','$descripción','$imagen','$padre')";
+          $sql= "INSERT INTO `indicador`( `id`, `nombre`, `descripcion`, `imagen`, `padre`)"
+          ."VALUES ('$id','$nombre','$descripcion','$imagen','$padre')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -54,14 +54,14 @@ $padre=$indicador->getPadre()->getId();
       $id=$indicador->getId();
 
       try {
-          $sql= "SELECT `id`, `nombre`, `descripción`, `imagen`, `padre`"
+          $sql= "SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`"
           ."FROM `indicador`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
           $indicador->setId($data[$i]['id']);
           $indicador->setNombre($data[$i]['nombre']);
-          $indicador->setDescripción($data[$i]['descripción']);
+          $indicador->setDescripcion($data[$i]['descripcion']);
           $indicador->setImagen($data[$i]['imagen']);
            $indicador = new Indicador();
            $indicador->setId($data[$i]['padre']);
@@ -83,12 +83,12 @@ $padre=$indicador->getPadre()->getId();
   public function update($indicador){
       $id=$indicador->getId();
 $nombre=$indicador->getNombre();
-$descripción=$indicador->getDescripción();
+$descripcion=$indicador->getDescripcion();
 $imagen=$indicador->getImagen();
 $padre=$indicador->getPadre()->getId();
 
       try {
-          $sql= "UPDATE `indicador` SET`id`='$id' ,`nombre`='$nombre' ,`descripción`='$descripción' ,`imagen`='$imagen' ,`padre`='$padre' WHERE `id`='$id' ";
+          $sql= "UPDATE `indicador` SET`id`='$id' ,`nombre`='$nombre' ,`descripcion`='$descripcion' ,`imagen`='$imagen' ,`padre`='$padre' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -120,7 +120,7 @@ $padre=$indicador->getPadre()->getId();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `nombre`, `descripción`, `imagen`, `padre`"
+          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`"
           ."FROM `indicador`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -128,7 +128,7 @@ $padre=$indicador->getPadre()->getId();
               $indicador= new Indicador();
           $indicador->setId($data[$i]['id']);
           $indicador->setNombre($data[$i]['nombre']);
-          $indicador->setDescripción($data[$i]['descripción']);
+          $indicador->setDescripcion($data[$i]['descripcion']);
           $indicador->setImagen($data[$i]['imagen']);
            $indicador = new Indicador();
            $indicador->setId($data[$i]['padre']);

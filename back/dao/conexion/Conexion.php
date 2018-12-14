@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Les traigo amor  \\
+//    Ya no la quiero, es cierto, pero tal vez la quiero. Es tan corto el amor, y es tan largo el olvido.  \\
 include_once realpath('../../dao/interfaz/IConexion.php');
 
 class Conexion implements IConexion{
@@ -41,7 +41,7 @@ class Conexion implements IConexion{
    public function obtener($dbName){
       if ($this->cnx == null) {
          try {
-             $ini_array = parse_ini_file(realpath('../../dao/properties/Properties.ini'),true);
+             $ini_array = parse_ini_file(realpath('../..').'\dao\properties\Properties.ini',true);
              $host = $ini_array[$dbName]['host'];
              $username = $ini_array[$dbName]['username'];
              $password = $ini_array[$dbName]['password'];

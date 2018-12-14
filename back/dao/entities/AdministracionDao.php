@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¡Vaya! ¡Al fin harás algo mejor que una calculadora!  \\
+//    Ya están los patrones implementados, ahora sí viene lo chido...  \\
 
 include_once realpath('../../dao/interfaz/IAdministracionDao.php');
 include_once realpath('../../dto/Administracion.php');

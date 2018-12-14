@@ -5,12 +5,12 @@
               ------------------------
  */
 
-//    Hecho en sólo 6 días  \\
+//    ¡Vaya! ¡Al fin harás algo mejor que una calculadora!  \\
 
 include_once realpath('../../dao/interfaz/IArchivoDao.php');
 include_once realpath('../../dto/Archivo.php');
-include_once realpath('../../dto/Entrada.php');
 include_once realpath('../../dto/Usuario.php');
+include_once realpath('../../dto/Periodo.php');
 
 class ArchivoDao implements IArchivoDao{
 
@@ -32,14 +32,14 @@ private $cn;
   public function insert($archivo){
       $id=$archivo->getId();
 $url=$archivo->getUrl();
-$entrada=$archivo->getEntrada()->getId();
 $subidoPor=$archivo->getSubidoPor()->getUsername();
 $fechaSubida=$archivo->getFechaSubida();
 $descripcion=$archivo->getDescripcion();
+$periodo=$archivo->getPeriodo()->getId();
 
       try {
-          $sql= "INSERT INTO `archivo`( `id`, `url`, `entrada`, `subidoPor`, `fechaSubida`, `descripcion`)"
-          ."VALUES ('$id','$url','$entrada','$subidoPor','$fechaSubida','$descripcion')";
+          $sql= "INSERT INTO `archivo`( `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`)"
+          ."VALUES ('$id','$url','$subidoPor','$fechaSubida','$descripcion','$periodo')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -56,21 +56,21 @@ $descripcion=$archivo->getDescripcion();
       $id=$archivo->getId();
 
       try {
-          $sql= "SELECT `id`, `url`, `entrada`, `subidoPor`, `fechaSubida`, `descripcion`"
+          $sql= "SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`"
           ."FROM `archivo`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
           $archivo->setId($data[$i]['id']);
           $archivo->setUrl($data[$i]['url']);
-           $entrada = new Entrada();
-           $entrada->setId($data[$i]['entrada']);
-           $archivo->setEntrada($entrada);
            $usuario = new Usuario();
            $usuario->setUsername($data[$i]['subidoPor']);
            $archivo->setSubidoPor($usuario);
           $archivo->setFechaSubida($data[$i]['fechaSubida']);
           $archivo->setDescripcion($data[$i]['descripcion']);
+           $periodo = new Periodo();
+           $periodo->setId($data[$i]['periodo']);
+           $archivo->setPeriodo($periodo);
 
           }
       return $archivo;      } catch (SQLException $e) {
@@ -88,13 +88,13 @@ $descripcion=$archivo->getDescripcion();
   public function update($archivo){
       $id=$archivo->getId();
 $url=$archivo->getUrl();
-$entrada=$archivo->getEntrada()->getId();
 $subidoPor=$archivo->getSubidoPor()->getUsername();
 $fechaSubida=$archivo->getFechaSubida();
 $descripcion=$archivo->getDescripcion();
+$periodo=$archivo->getPeriodo()->getId();
 
       try {
-          $sql= "UPDATE `archivo` SET`id`='$id' ,`url`='$url' ,`entrada`='$entrada' ,`subidoPor`='$subidoPor' ,`fechaSubida`='$fechaSubida' ,`descripcion`='$descripcion' WHERE `id`='$id' ";
+          $sql= "UPDATE `archivo` SET`id`='$id' ,`url`='$url' ,`subidoPor`='$subidoPor' ,`fechaSubida`='$fechaSubida' ,`descripcion`='$descripcion' ,`periodo`='$periodo' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -126,7 +126,7 @@ $descripcion=$archivo->getDescripcion();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `url`, `entrada`, `subidoPor`, `fechaSubida`, `descripcion`"
+          $sql ="SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`"
           ."FROM `archivo`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -134,44 +134,14 @@ $descripcion=$archivo->getDescripcion();
               $archivo= new Archivo();
           $archivo->setId($data[$i]['id']);
           $archivo->setUrl($data[$i]['url']);
-           $entrada = new Entrada();
-           $entrada->setId($data[$i]['entrada']);
-           $archivo->setEntrada($entrada);
            $usuario = new Usuario();
            $usuario->setUsername($data[$i]['subidoPor']);
            $archivo->setSubidoPor($usuario);
           $archivo->setFechaSubida($data[$i]['fechaSubida']);
           $archivo->setDescripcion($data[$i]['descripcion']);
-
-          array_push($lista,$archivo);
-          }
-      return $lista;
-      } catch (SQLException $e) {
-          throw new Exception('Primary key is null');
-      return null;
-      }
-  }
-
-  public function listByEntrada($entrada){
-      $lista = array();
-      $entradaID=$entrada->getId();
-      try {
-          $sql ="SELECT `id`, `url`, `entrada`, `subidoPor`, `fechaSubida`, `descripcion`"
-          ."FROM `archivo`"
-          ."WHERE `entrada` = $entradaID";
-          $data = $this->ejecutarConsulta($sql);
-          for ($i=0; $i < count($data) ; $i++) {
-              $archivo= new Archivo();
-          $archivo->setId($data[$i]['id']);
-          $archivo->setUrl($data[$i]['url']);
-           $entrada = new Entrada();
-           $entrada->setId($data[$i]['entrada']);
-           $archivo->setEntrada($entrada);
-           $usuario = new Usuario();
-           $usuario->setUsername($data[$i]['subidoPor']);
-           $archivo->setSubidoPor($usuario);
-          $archivo->setFechaSubida($data[$i]['fechaSubida']);
-          $archivo->setDescripcion($data[$i]['descripcion']);
+           $periodo = new Periodo();
+           $periodo->setId($data[$i]['periodo']);
+           $archivo->setPeriodo($periodo);
 
           array_push($lista,$archivo);
           }

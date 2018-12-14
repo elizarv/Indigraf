@@ -5,28 +5,21 @@
               ------------------------
  */
 
-//    ¿Generar buen código o poner frases graciosas? ¡La frase! ¡La frase!  \\
+//    No se fije en el corte de cabello, soy mucho muy rico  \\
 include_once realpath('../../facade/PeriodoFacade.php');
 
 $list=PeriodoFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Periodo) {	
-	$rta.="{
- 	    \"fecha_ini\":\"{$Periodo->getfecha_ini()}\",
-	    \"fecha_fin\":\"{$Periodo->getfecha_fin()}\",
-	    \"meta\":\"{$Periodo->getmeta()}\",
-	    \"indicador_id\":\"{$Periodo->getindicador()->getid()}\",
-	    \"id\":\"{$Periodo->getid()}\"
-	},";
+	$rta.="<tr>\n";
+	$rta.="<td>".$Periodo->getfecha_ini()."</td>\n";
+	$rta.="<td>".$Periodo->getfecha_fin()."</td>\n";
+	$rta.="<td>".$Periodo->getmeta()."</td>\n";
+	$rta.="<td>".$Periodo->getindicador()->getid()."</td>\n";
+	$rta.="<td>".$Periodo->getid()."</td>\n";
+	$rta.="<td>".$Periodo->getcantidad()."</td>\n";
+	$rta.="</tr>\n";
 }
-
-if($rta!=""){
-	$rta = substr($rta, 0, -1);
-	$msg="{\"msg\":\"exito\"}";
-}else{
-	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
-	$rta="{\"result\":\"No se encontraron registros.\"}";	
-}
-echo "[{$msg},{$rta}]";
+echo $rta;
 
 //That´s all folks!

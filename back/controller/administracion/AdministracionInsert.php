@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Traigo una pizza para ¿y se la creyó?  \\
+//    ¿En serio? ¿Tantos buenos frameworks y estás usando Anarchy?  \\
 include_once realpath('../../facade/AdministracionFacade.php');
 
 $id = $_POST['id'];

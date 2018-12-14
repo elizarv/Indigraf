@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    No hay de qué so no más de papa  \\
+//    ¿Cuantas frases como esta crees que puedo escribir?  \\
 include_once realpath('../../facade/RelacionFacade.php');
 
 $Indicador_id = $_POST['predecesor'];

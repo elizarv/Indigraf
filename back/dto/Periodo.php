@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Nada mejor que el código hecho a mano.  \\
+//    Traigo una pizza para ¿y se la creyó?  \\
 
 
 class Periodo {
@@ -15,6 +15,7 @@ class Periodo {
   private $meta;
   private $indicador;
   private $id;
+  private $cantidad;
 
     /**
      * Constructor de Periodo
@@ -95,6 +96,21 @@ class Periodo {
      */
   public function setId($id){
       $this->id = $id;
+  }
+    /**
+     * Devuelve el valor correspondiente a cantidad
+     * @return cantidad
+     */
+  public function getCantidad(){
+      return $this->cantidad;
+  }
+
+    /**
+     * Modifica el valor correspondiente a cantidad
+     * @param cantidad
+     */
+  public function setCantidad($cantidad){
+      $this->cantidad = $cantidad;
   }
 
 

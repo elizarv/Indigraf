@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Todos los animales son iguales, pero algunos animales son más iguales que otros  \\
+//    En lo que a mí respecta, señor Dix, lo imprevisto no existe  \\
 
 include_once realpath('../../dao/conexion/Conexion.php');
 include_once realpath('../../dao/interfaz/IFactoryDao.php');
@@ -37,14 +37,6 @@ class FactoryDao implements IFactoryDao{
      */
      public function getArchivoDao($dbName){
         return new ArchivoDao($this->conn->obtener($dbName));
-    }
-     /**
-     * Devuelve una instancia de EntradaDao con una conexión que depende del gestor de base de datos
-     * @param dbName Nombre o identificador de la base de datos a conectar
-     * @return instancia de EntradaDao
-     */
-     public function getEntradaDao($dbName){
-        return new EntradaDao($this->conn->obtener($dbName));
     }
      /**
      * Devuelve una instancia de IndicadorDao con una conexión que depende del gestor de base de datos

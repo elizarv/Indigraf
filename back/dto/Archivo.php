@@ -5,17 +5,17 @@
               ------------------------
  */
 
-//    Esta es una frase no referenciada  \\
+//    Para entender la recursividad, primero debes entender la recursividad  \\
 
 
 class Archivo {
 
   private $id;
   private $url;
-  private $entrada;
   private $subidoPor;
   private $fechaSubida;
   private $descripcion;
+  private $periodo;
 
     /**
      * Constructor de Archivo
@@ -51,21 +51,6 @@ class Archivo {
      */
   public function setUrl($url){
       $this->url = $url;
-  }
-    /**
-     * Devuelve el valor correspondiente a entrada
-     * @return entrada
-     */
-  public function getEntrada(){
-      return $this->entrada;
-  }
-
-    /**
-     * Modifica el valor correspondiente a entrada
-     * @param entrada
-     */
-  public function setEntrada($entrada){
-      $this->entrada = $entrada;
   }
     /**
      * Devuelve el valor correspondiente a subidoPor
@@ -111,6 +96,21 @@ class Archivo {
      */
   public function setDescripcion($descripcion){
       $this->descripcion = $descripcion;
+  }
+    /**
+     * Devuelve el valor correspondiente a periodo
+     * @return periodo
+     */
+  public function getPeriodo(){
+      return $this->periodo;
+  }
+
+    /**
+     * Modifica el valor correspondiente a periodo
+     * @param periodo
+     */
+  public function setPeriodo($periodo){
+      $this->periodo = $periodo;
   }
 
 

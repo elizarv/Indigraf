@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Antes que me hubiera apasionado por mujer alguna, jugué mi corazón al azar y me lo ganó la Violencia.  \\
+//    No dejes el código del futuro en manos humanas  \\
 include_once realpath('../../facade/UsuarioFacade.php');
 
 $username = $_POST['username'];

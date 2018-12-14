@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Yo <3 Cúcuta  \\
+//    Lo sé porque lo sabe Fredy  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');

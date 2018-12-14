@@ -5,20 +5,20 @@
               ------------------------
  */
 
-//    ¡¡Bienvenido al mundo del mañana!!  \\
+//    Cuando uses Anarchy, Georgie, tú también flotarás  \\
 include_once realpath('../../facade/ArchivoFacade.php');
 
 $id = $_POST['id'];
 $url = $_POST['url'];
-$Entrada_id = $_POST['entrada'];
-$entrada= new Entrada();
-$entrada->setId($Entrada_id);
 $Usuario_username = $_POST['subidoPor'];
 $usuario= new Usuario();
 $usuario->setUsername($Usuario_username);
 $fechaSubida = $_POST['fechaSubida'];
 $descripcion = $_POST['descripcion'];
-ArchivoFacade::insert($id, $url, $entrada, $usuario, $fechaSubida, $descripcion);
+$Periodo_id = $_POST['periodo'];
+$periodo= new Periodo();
+$periodo->setId($Periodo_id);
+ArchivoFacade::insert($id, $url, $usuario, $fechaSubida, $descripcion, $periodo);
 echo "true";
 
 //That´s all folks!

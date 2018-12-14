@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Tienes que considerar la posibilidad de que a Dios no le caes bien.  \\
+//    Bueno ¿y ahora qué?  \\
 
 
 interface IPeriodoDao {

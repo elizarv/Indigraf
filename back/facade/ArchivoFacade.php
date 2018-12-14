@@ -5,14 +5,14 @@
               ------------------------
  */
 
-//    Proletarios del mundo ¡Uníos!  \\
+//    Has encontrado la frase #1024 ¡Felicidades! Ahora tu proyecto funcionará a la primera  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');
 require_once realpath('../../dto/Archivo.php');
 require_once realpath('../../dao/interfaz/IArchivoDao.php');
-require_once realpath('../../dto/Entrada.php');
 require_once realpath('../../dto/Usuario.php');
+require_once realpath('../../dto/Periodo.php');
 
 class ArchivoFacade {
 
@@ -35,19 +35,19 @@ class ArchivoFacade {
    * Puede recibir NullPointerException desde los métodos del Dao
    * @param id
    * @param url
-   * @param entrada
    * @param subidoPor
    * @param fechaSubida
    * @param descripcion
+   * @param periodo
    */
-  public static function insert( $id,  $url,  $entrada,  $subidoPor,  $fechaSubida,  $descripcion){
+  public static function insert( $id,  $url,  $subidoPor,  $fechaSubida,  $descripcion,  $periodo){
       $archivo = new Archivo();
       $archivo->setId($id); 
       $archivo->setUrl($url); 
-      $archivo->setEntrada($entrada); 
       $archivo->setSubidoPor($subidoPor); 
       $archivo->setFechaSubida($fechaSubida); 
       $archivo->setDescripcion($descripcion); 
+      $archivo->setPeriodo($periodo); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
@@ -78,18 +78,18 @@ class ArchivoFacade {
    * Puede recibir NullPointerException desde los métodos del Dao
    * @param id
    * @param url
-   * @param entrada
    * @param subidoPor
    * @param fechaSubida
    * @param descripcion
+   * @param periodo
    */
-  public static function update($id, $url, $entrada, $subidoPor, $fechaSubida, $descripcion){
+  public static function update($id, $url, $subidoPor, $fechaSubida, $descripcion, $periodo){
       $archivo = self::select($id);
       $archivo->setUrl($url); 
-      $archivo->setEntrada($entrada); 
       $archivo->setSubidoPor($subidoPor); 
       $archivo->setFechaSubida($fechaSubida); 
       $archivo->setDescripcion($descripcion); 
+      $archivo->setPeriodo($periodo); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
@@ -124,18 +124,7 @@ class ArchivoFacade {
      $archivoDao->close();
      return $result;
   }
-/**
-   * Lista todos los objetos Archivo de la base de datos a partir del id de su entrada.
-   * Puede recibir NullPointerException desde los métodos del Dao
-   * @return $result Array con los objetos Archivo en base de datos o Null
-   */
-  public static function listByEntrada($entrada){
-     $FactoryDao=new FactoryDao(self::getGestorDefault());
-     $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
-     $result = $archivoDao->listByEntrada($entrada);
-     $archivoDao->close();
-     return $result;
-  }
+
 
 }
 //That´s all folks!

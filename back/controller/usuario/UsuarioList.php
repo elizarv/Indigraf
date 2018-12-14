@@ -5,27 +5,19 @@
               ------------------------
  */
 
-//    Vine a Comala porque me dijeron que acá vivía mi padre, un tal Pedro Páramo.  \\
+//    Soy la sonrisa burlona y vengativa de Jack  \\
 include_once realpath('../../facade/UsuarioFacade.php');
 
 $list=UsuarioFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Usuario) {	
-	$rta.="{
- 	    \"username\":\"{$Usuario->getusername()}\",
-	    \"password\":\"{$Usuario->getpassword()}\",
-	    \"nombre\":\"{$Usuario->getnombre()}\",
-	    \"tipo\":\"{$Usuario->gettipo()}\"
-	},";
+	$rta.="<tr>\n";
+	$rta.="<td>".$Usuario->getusername()."</td>\n";
+	$rta.="<td>".$Usuario->getpassword()."</td>\n";
+	$rta.="<td>".$Usuario->getnombre()."</td>\n";
+	$rta.="<td>".$Usuario->gettipo()."</td>\n";
+	$rta.="</tr>\n";
 }
-
-if($rta!=""){
-	$rta = substr($rta, 0, -1);
-	$msg="{\"msg\":\"exito\"}";
-}else{
-	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
-	$rta="{\"result\":\"No se encontraron registros.\"}";	
-}
-echo "[{$msg},{$rta}]";
+echo $rta;
 
 //That´s all folks!

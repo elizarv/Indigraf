@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Todo lo que alguna vez amaste te rechazará o morirá.  \\
+//    Mi satisfacción es hacerte un poco más vago  \\
 
 
 class Administracion {

@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Cuando eres Ingeniero en sistemas, pero tu vocación siempre fueron los memes  \\
+//    Estadistas informan que una linea de código equivale a un sorbo de café  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');
@@ -34,15 +34,15 @@ class IndicadorFacade {
    * Puede recibir NullPointerException desde los métodos del Dao
    * @param id
    * @param nombre
-   * @param descripción
+   * @param descripcion
    * @param imagen
    * @param padre
    */
-  public static function insert( $id,  $nombre,  $descripción,  $imagen,  $padre){
+  public static function insert( $id,  $nombre,  $descripcion,  $imagen,  $padre){
       $indicador = new Indicador();
       $indicador->setId($id); 
       $indicador->setNombre($nombre); 
-      $indicador->setDescripción($descripción); 
+      $indicador->setDescripcion($descripcion); 
       $indicador->setImagen($imagen); 
       $indicador->setPadre($padre); 
 
@@ -75,14 +75,14 @@ class IndicadorFacade {
    * Puede recibir NullPointerException desde los métodos del Dao
    * @param id
    * @param nombre
-   * @param descripción
+   * @param descripcion
    * @param imagen
    * @param padre
    */
-  public static function update($id, $nombre, $descripción, $imagen, $padre){
+  public static function update($id, $nombre, $descripcion, $imagen, $padre){
       $indicador = self::select($id);
       $indicador->setNombre($nombre); 
-      $indicador->setDescripción($descripción); 
+      $indicador->setDescripcion($descripcion); 
       $indicador->setImagen($imagen); 
       $indicador->setPadre($padre); 
 

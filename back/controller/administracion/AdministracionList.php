@@ -5,28 +5,20 @@
               ------------------------
  */
 
-//    Vine a Comala porque me dijeron que acá vivía mi padre, un tal Pedro Páramo.  \\
+//    ¡Alza el puño y ven! ¡En la hoguera hay de beber!  \\
 include_once realpath('../../facade/AdministracionFacade.php');
 
 $list=AdministracionFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Administracion) {	
-	$rta.="{
- 	    \"id\":\"{$Administracion->getid()}\",
-	    \"colorP\":\"{$Administracion->getcolorP()}\",
-	    \"colorS\":\"{$Administracion->getcolorS()}\",
-	    \"logo\":\"{$Administracion->getlogo()}\",
-	    \"nombre\":\"{$Administracion->getnombre()}\"
-	},";
+	$rta.="<tr>\n";
+	$rta.="<td>".$Administracion->getid()."</td>\n";
+	$rta.="<td>".$Administracion->getcolorP()."</td>\n";
+	$rta.="<td>".$Administracion->getcolorS()."</td>\n";
+	$rta.="<td>".$Administracion->getlogo()."</td>\n";
+	$rta.="<td>".$Administracion->getnombre()."</td>\n";
+	$rta.="</tr>\n";
 }
-
-if($rta!=""){
-	$rta = substr($rta, 0, -1);
-	$msg="{\"msg\":\"exito\"}";
-}else{
-	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
-	$rta="{\"result\":\"No se encontraron registros.\"}";	
-}
-echo "[{$msg},{$rta}]";
+echo $rta;
 
 //That´s all folks!

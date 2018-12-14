@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Cuando la gente cree que está muriendo, te escucha en lugar de esperar su turno para hablar.  \\
+//    En lo que a mí respecta, señor Dix, lo imprevisto no existe  \\
 
 
 class Relacion {

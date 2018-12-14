@@ -5,39 +5,39 @@
               ------------------------
  */
 
-//    Trabajo individual singifica ganancia individual  \\
+//    Lolita, luz de mi vida, fuego de mis entrañas. Pecado mío, alma mía.  \\
 
 
-interface IArchivoDao {
+interface IUsuarioDao {
 
     /**
-     * Guarda un objeto Archivo en la base de datos.
-     * @param archivo objeto a guardar
+     * Guarda un objeto Usuario en la base de datos.
+     * @param usuario objeto a guardar
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
-  public function insert($archivo);
+  public function insert($usuario);
     /**
-     * Modifica un objeto Archivo en la base de datos.
-     * @param archivo objeto con la información a modificar
+     * Modifica un objeto Usuario en la base de datos.
+     * @param usuario objeto con la información a modificar
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
-  public function update($archivo);
+  public function update($usuario);
     /**
-     * Elimina un objeto Archivo en la base de datos.
-     * @param archivo objeto con la(s) llave(s) primaria(s) para consultar
+     * Elimina un objeto Usuario en la base de datos.
+     * @param usuario objeto con la(s) llave(s) primaria(s) para consultar
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
-  public function delete($archivo);
+  public function delete($usuario);
     /**
-     * Busca un objeto Archivo en la base de datos.
-     * @param archivo objeto con la(s) llave(s) primaria(s) para consultar
+     * Busca un objeto Usuario en la base de datos.
+     * @param usuario objeto con la(s) llave(s) primaria(s) para consultar
      * @return El objeto consultado o null
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
-  public function select($archivo);
+  public function select($usuario);
     /**
-     * Lista todos los objetos Archivo en la base de datos.
-     * @return Array<Archivo> Puede contener los objetos consultados o estar vacío
+     * Lista todos los objetos Usuario en la base de datos.
+     * @return Array<Usuario> Puede contener los objetos consultados o estar vacío
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function listAll();

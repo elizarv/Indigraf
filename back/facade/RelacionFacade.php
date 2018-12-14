@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Era más fácil crear un framework que aprender a usar uno existente  \\
+//    Traigo una pizza para ¿y se la creyó?  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');

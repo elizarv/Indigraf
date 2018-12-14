@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Yo tengo un sueño. El sueño de que mis hijos vivan en un mundo con un único lenguaje de programación.  \\
+//    Era más fácil crear un framework que aprender a usar uno existente  \\
 
 
 interface IAdministracionDao {

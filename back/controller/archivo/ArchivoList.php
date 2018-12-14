@@ -5,29 +5,21 @@
               ------------------------
  */
 
-//    Muchos años después, frente al pelotón de fusilamiento, el coronel Aureliano Buendía había de recordar aquella tarde remota en que su padre lo llevó a conocer el hielo.   \\
+//    Oh gloria de las glorias, oh divino testamento de la eterna majestad de la creación de dios  \\
 include_once realpath('../../facade/ArchivoFacade.php');
 
 $list=ArchivoFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Archivo) {	
-	$rta.="{
- 	    \"id\":\"{$Archivo->getid()}\",
-	    \"url\":\"{$Archivo->geturl()}\",
-	    \"entrada_id\":\"{$Archivo->getentrada()->getid()}\",
-	    \"subidoPor_username\":\"{$Archivo->getsubidoPor()->getusername()}\",
-	    \"fechaSubida\":\"{$Archivo->getfechaSubida()}\",
-	    \"descripcion\":\"{$Archivo->getdescripcion()}\"
-	},";
+	$rta.="<tr>\n";
+	$rta.="<td>".$Archivo->getid()."</td>\n";
+	$rta.="<td>".$Archivo->geturl()."</td>\n";
+	$rta.="<td>".$Archivo->getsubidoPor()->getusername()."</td>\n";
+	$rta.="<td>".$Archivo->getfechaSubida()."</td>\n";
+	$rta.="<td>".$Archivo->getdescripcion()."</td>\n";
+	$rta.="<td>".$Archivo->getperiodo()->getid()."</td>\n";
+	$rta.="</tr>\n";
 }
-
-if($rta!=""){
-	$rta = substr($rta, 0, -1);
-	$msg="{\"msg\":\"exito\"}";
-}else{
-	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
-	$rta="{\"result\":\"No se encontraron registros.\"}";	
-}
-echo "[{$msg},{$rta}]";
+echo $rta;
 
 //That´s all folks!

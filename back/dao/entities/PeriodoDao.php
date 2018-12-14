@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    No quiero morir sin tener cicatrices.  \\
+//    Cuando uses Anarchy, Georgie, tú también flotarás  \\
 
 include_once realpath('../../dao/interfaz/IPeriodoDao.php');
 include_once realpath('../../dto/Periodo.php');
@@ -34,10 +34,11 @@ $fecha_fin=$periodo->getFecha_fin();
 $meta=$periodo->getMeta();
 $indicador=$periodo->getIndicador()->getId();
 $id=$periodo->getId();
+$cantidad=$periodo->getCantidad();
 
       try {
-          $sql= "INSERT INTO `periodo`( `fecha_ini`, `fecha_fin`, `meta`, `indicador`, `id`)"
-          ."VALUES ('$fecha_ini','$fecha_fin','$meta','$indicador','$id')";
+          $sql= "INSERT INTO `periodo`( `fecha_ini`, `fecha_fin`, `meta`, `indicador`, `id`, `cantidad`)"
+          ."VALUES ('$fecha_ini','$fecha_fin','$meta','$indicador','$id','$cantidad')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -54,7 +55,7 @@ $id=$periodo->getId();
       $id=$periodo->getId();
 
       try {
-          $sql= "SELECT `fecha_ini`, `fecha_fin`, `meta`, `indicador`, `id`"
+          $sql= "SELECT `fecha_ini`, `fecha_fin`, `meta`, `indicador`, `id`, `cantidad`"
           ."FROM `periodo`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
@@ -66,6 +67,7 @@ $id=$periodo->getId();
            $indicador->setId($data[$i]['indicador']);
            $periodo->setIndicador($indicador);
           $periodo->setId($data[$i]['id']);
+          $periodo->setCantidad($data[$i]['cantidad']);
 
           }
       return $periodo;      } catch (SQLException $e) {
@@ -86,9 +88,10 @@ $fecha_fin=$periodo->getFecha_fin();
 $meta=$periodo->getMeta();
 $indicador=$periodo->getIndicador()->getId();
 $id=$periodo->getId();
+$cantidad=$periodo->getCantidad();
 
       try {
-          $sql= "UPDATE `periodo` SET`fecha_ini`='$fecha_ini' ,`fecha_fin`='$fecha_fin' ,`meta`='$meta' ,`indicador`='$indicador' ,`id`='$id' WHERE `id`='$id' ";
+          $sql= "UPDATE `periodo` SET`fecha_ini`='$fecha_ini' ,`fecha_fin`='$fecha_fin' ,`meta`='$meta' ,`indicador`='$indicador' ,`id`='$id' ,`cantidad`='$cantidad' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -120,7 +123,7 @@ $id=$periodo->getId();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `fecha_ini`, `fecha_fin`, `meta`, `indicador`, `id`"
+          $sql ="SELECT `fecha_ini`, `fecha_fin`, `meta`, `indicador`, `id`, `cantidad`"
           ."FROM `periodo`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -133,6 +136,7 @@ $id=$periodo->getId();
            $indicador->setId($data[$i]['indicador']);
            $periodo->setIndicador($indicador);
           $periodo->setId($data[$i]['id']);
+          $periodo->setCantidad($data[$i]['cantidad']);
 
           array_push($lista,$periodo);
           }

@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¿Cuantas frases como esta crees que puedo escribir?  \\
+//    ¿Has escuchado hablar del grandioso señor Arciniegas?  \\
 
 include_once realpath('../../dao/interfaz/IUsuarioDao.php');
 include_once realpath('../../dto/Usuario.php');
@@ -128,36 +128,6 @@ $tipo=$usuario->getTipo();
           array_push($lista,$usuario);
           }
       return $lista;
-      } catch (SQLException $e) {
-          throw new Exception('Primary key is null');
-      return null;
-      }
-  }
-
-    /**
-     * Busca un objeto Usuario en la base de datos.
-     * @param usuario objeto con los atributos de inicio de sesión
-     * @return El objeto consultado o null
-     * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
-     */
-  public function login($usuario){
-      $username=$usuario->getUsername();
-$password=$usuario->getPassword();
-
-      $usuario = new Usuario();
-      try {
-          $sql= "SELECT `username`, `password`, `nombre`, `tipo`"
-          ."FROM `usuario`"
-          ."WHERE `username`='$username' AND`password`='$password'";
-          $data = $this->ejecutarConsulta($sql);
-          for ($i=0; $i < count($data) ; $i++) {
-          $usuario->setUsername($data[$i]['username']);
-          $usuario->setPassword($data[$i]['password']);
-          $usuario->setNombre($data[$i]['nombre']);
-          $usuario->setTipo($data[$i]['tipo']);
-
-      return $usuario;
-          }
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       return null;
