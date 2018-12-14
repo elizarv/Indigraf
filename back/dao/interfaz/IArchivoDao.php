@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Trabajo individual singifica ganancia individual  \\
+//    No hay de qué so no más de papa  \\
 
 
 interface IArchivoDao {

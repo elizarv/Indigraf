@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Lo sé porque lo sabe Fredy  \\
+//    gravitaban alrededor del astro de la noche, y por primera vez podía la vista penetrar todos sus misterios.  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');

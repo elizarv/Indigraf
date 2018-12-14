@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Para entender la recursividad, primero debes entender la recursividad  \\
+//    No te olvides de quitar mis comentarios  \\
 
 
 class Archivo {

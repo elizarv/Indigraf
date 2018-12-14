@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    En lo que a mí respecta, señor Dix, lo imprevisto no existe  \\
+//    La vie est composé de combien de fois nous rions avant de mourir  \\
 
 
 class Relacion {

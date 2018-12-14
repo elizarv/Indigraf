@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Ojitos de luz de luna  \\
+//    Para entender la recursividad, primero debes entender la recursividad  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');
@@ -111,6 +111,25 @@ class UsuarioFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $usuarioDao =$FactoryDao->getusuarioDao(self::getDataBaseDefault());
      $result = $usuarioDao->listAll();
+     $usuarioDao->close();
+     return $result;
+  }
+
+  /**
+   * Selecciona un objeto Usuario de la base de datos a partir de los atributos de inicio de sesión.
+   * Puede recibir NullPointerException desde los métodos del Dao
+   * @param username
+   * @param password
+   * @return El objeto en base de datos o Null
+   */
+  public static function login($username, $password){
+      $usuario = new Usuario();
+      $usuario->setUsername($username); 
+      $usuario->setPassword($password); 
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $usuarioDao =$FactoryDao->getusuarioDao(self::getDataBaseDefault());
+     $result = $usuarioDao->login($usuario);
      $usuarioDao->close();
      return $result;
   }

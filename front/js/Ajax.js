@@ -4,7 +4,7 @@
               ------------------------
  */
 
-//    La primera regla del proyecto es no hacer preguntas  \\
+//    No quiero morir sin tener cicatrices.  \\
         var READY_STATE_UNINITIALIZED=0; 
         var READY_STATE_LOADING=1; 
         var READY_STATE_LOADED=2;

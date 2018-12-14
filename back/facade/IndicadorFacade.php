@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Estadistas informan que una linea de código equivale a un sorbo de café  \\
+//    Era más fácil crear un framework que aprender a usar uno existente  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');

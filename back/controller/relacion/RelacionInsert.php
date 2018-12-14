@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¿Cuantas frases como esta crees que puedo escribir?  \\
+//    Bastará decir que soy Juan Pablo Castel, el pintor que mató a María Iribarne...  \\
 include_once realpath('../../facade/RelacionFacade.php');
 
 $Indicador_id = $_POST['predecesor'];

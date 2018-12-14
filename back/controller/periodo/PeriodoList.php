@@ -5,21 +5,29 @@
               ------------------------
  */
 
-//    No se fije en el corte de cabello, soy mucho muy rico  \\
+//    ¿Eres capaz de hackear mi Facebook?  \\
 include_once realpath('../../facade/PeriodoFacade.php');
 
 $list=PeriodoFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Periodo) {	
-	$rta.="<tr>\n";
-	$rta.="<td>".$Periodo->getfecha_ini()."</td>\n";
-	$rta.="<td>".$Periodo->getfecha_fin()."</td>\n";
-	$rta.="<td>".$Periodo->getmeta()."</td>\n";
-	$rta.="<td>".$Periodo->getindicador()->getid()."</td>\n";
-	$rta.="<td>".$Periodo->getid()."</td>\n";
-	$rta.="<td>".$Periodo->getcantidad()."</td>\n";
-	$rta.="</tr>\n";
+	$rta.="{
+ 	    \"fecha_ini\":\"{$Periodo->getfecha_ini()}\",
+	    \"fecha_fin\":\"{$Periodo->getfecha_fin()}\",
+	    \"meta\":\"{$Periodo->getmeta()}\",
+	    \"indicador_id\":\"{$Periodo->getindicador()->getid()}\",
+	    \"id\":\"{$Periodo->getid()}\",
+	    \"cantidad\":\"{$Periodo->getcantidad()}\"
+	},";
 }
-echo $rta;
+
+if($rta!=""){
+	$rta = substr($rta, 0, -1);
+	$msg="{\"msg\":\"exito\"}";
+}else{
+	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
+	$rta="{\"result\":\"No se encontraron registros.\"}";	
+}
+echo "[{$msg},{$rta}]";
 
 //That´s all folks!

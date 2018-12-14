@@ -5,19 +5,27 @@
               ------------------------
  */
 
-//    Soy la sonrisa burlona y vengativa de Jack  \\
+//    ¿Sabías que Anarchy se generó a sí mismo?  \\
 include_once realpath('../../facade/UsuarioFacade.php');
 
 $list=UsuarioFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Usuario) {	
-	$rta.="<tr>\n";
-	$rta.="<td>".$Usuario->getusername()."</td>\n";
-	$rta.="<td>".$Usuario->getpassword()."</td>\n";
-	$rta.="<td>".$Usuario->getnombre()."</td>\n";
-	$rta.="<td>".$Usuario->gettipo()."</td>\n";
-	$rta.="</tr>\n";
+	$rta.="{
+ 	    \"username\":\"{$Usuario->getusername()}\",
+	    \"password\":\"{$Usuario->getpassword()}\",
+	    \"nombre\":\"{$Usuario->getnombre()}\",
+	    \"tipo\":\"{$Usuario->gettipo()}\"
+	},";
 }
-echo $rta;
+
+if($rta!=""){
+	$rta = substr($rta, 0, -1);
+	$msg="{\"msg\":\"exito\"}";
+}else{
+	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
+	$rta="{\"result\":\"No se encontraron registros.\"}";	
+}
+echo "[{$msg},{$rta}]";
 
 //That´s all folks!

@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Ya están los patrones implementados, ahora sí viene lo chido...  \\
+//    Para entender la recursividad, primero debes entender la recursividad  \\
 
 include_once realpath('../../dao/interfaz/IAdministracionDao.php');
 include_once realpath('../../dto/Administracion.php');

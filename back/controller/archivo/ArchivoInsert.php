@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Cuando uses Anarchy, Georgie, tú también flotarás  \\
+//    Tranquilo, yo tampoco entiendo cómo funciona mi código  \\
 include_once realpath('../../facade/ArchivoFacade.php');
 
 $id = $_POST['id'];

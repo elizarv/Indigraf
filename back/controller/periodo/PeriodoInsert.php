@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¿Documentaqué?  \\
+//    ¿Generar buen código o poner frases graciosas? ¡La frase! ¡La frase!  \\
 include_once realpath('../../facade/PeriodoFacade.php');
 
 $fecha_ini = $_POST['fecha_ini'];

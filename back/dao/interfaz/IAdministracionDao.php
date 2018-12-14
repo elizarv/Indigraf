@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Era más fácil crear un framework que aprender a usar uno existente  \\
+//    Le he dedicado más tiempo a las frases que al software interno  \\
 
 
 interface IAdministracionDao {

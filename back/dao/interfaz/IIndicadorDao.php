@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¿Sabías que hay una vida afuera de tu cuarto?  \\
+//    No te olvides de quitar mis comentarios  \\
 
 
 interface IIndicadorDao {

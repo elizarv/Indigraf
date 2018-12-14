@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Lolita, luz de mi vida, fuego de mis entrañas. Pecado mío, alma mía.  \\
+//    No dejes el código del futuro en manos humanas  \\
 
 
 interface IUsuarioDao {
@@ -41,6 +41,13 @@ interface IUsuarioDao {
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function listAll();
+    /**
+     * Busca un objeto Usuario en la base de datos.
+     * @param usuario objeto con los atributos de inicio de sesión
+     * @return El objeto consultado o null
+     * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
+     */
+  public function login($usuario);
     /**
      * Cierra la conexión actual a la base de datos
      */

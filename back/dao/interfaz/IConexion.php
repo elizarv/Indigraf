@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Los animales, asombrados, pasaron su mirada del cerdo al hombre, y del hombre al cerdo; y, nuevamente, del cerdo al hombre; pero ya era imposible distinguir quién era uno y quién era otro.  \\
+//    Nuestra empresa cuenta con una división sólo para las frases. Disfrútalas  \\
 
 interface IConexion {
 

@@ -4,7 +4,7 @@
               ------------------------
  */
 
-//    Un generador de código no basta. Ahora debo inventar también un generador de frases tontas  \\
+//    La primera regla de Anarchy es no hablar de Anarchy  \\
 /** Valida los campos requeridos en un formulario
  * Returns flag Devuelve true si el form cuenta con los datos mínimos requeridos
  */
@@ -52,9 +52,20 @@ function preAdministracionList(container){
  function postAdministracionList(result,state){
      //Maneje aquí la respuesta del servidor.
      if(state=="success"){
-        document.getElementById("AdministracionList").innerHTML=result;
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+
+            for(var i=1; i < Object.keys(json).length; i++) {   
+                var Administracion = json[i];
+                //----------------- Para una tabla -----------------------
+                document.getElementById("AdministracionList").appendChild(createTR(Administracion));
+                //-------- Para otras opciones ver htmlBuilder.js ---------
+            }
+         }else{
+            alert(json[0].msg);
+         }
      }else{
- 		alert("Hubo un errror interno ( u.u)\n"+result);
+         alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
 
@@ -91,9 +102,20 @@ function preArchivoList(container){
  function postArchivoList(result,state){
      //Maneje aquí la respuesta del servidor.
      if(state=="success"){
-        document.getElementById("ArchivoList").innerHTML=result;
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+
+            for(var i=1; i < Object.keys(json).length; i++) {   
+                var Archivo = json[i];
+                //----------------- Para una tabla -----------------------
+                document.getElementById("ArchivoList").appendChild(createTR(Archivo));
+                //-------- Para otras opciones ver htmlBuilder.js ---------
+            }
+         }else{
+            alert(json[0].msg);
+         }
      }else{
- 		alert("Hubo un errror interno ( u.u)\n"+result);
+         alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
 
@@ -130,9 +152,20 @@ function preIndicadorList(container){
  function postIndicadorList(result,state){
      //Maneje aquí la respuesta del servidor.
      if(state=="success"){
-        document.getElementById("IndicadorList").innerHTML=result;
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+
+            for(var i=1; i < Object.keys(json).length; i++) {   
+                var Indicador = json[i];
+                //----------------- Para una tabla -----------------------
+                document.getElementById("IndicadorList").appendChild(createTR(Indicador));
+                //-------- Para otras opciones ver htmlBuilder.js ---------
+            }
+         }else{
+            alert(json[0].msg);
+         }
      }else{
- 		alert("Hubo un errror interno ( u.u)\n"+result);
+         alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
 
@@ -169,9 +202,20 @@ function prePeriodoList(container){
  function postPeriodoList(result,state){
      //Maneje aquí la respuesta del servidor.
      if(state=="success"){
-        document.getElementById("PeriodoList").innerHTML=result;
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+
+            for(var i=1; i < Object.keys(json).length; i++) {   
+                var Periodo = json[i];
+                //----------------- Para una tabla -----------------------
+                document.getElementById("PeriodoList").appendChild(createTR(Periodo));
+                //-------- Para otras opciones ver htmlBuilder.js ---------
+            }
+         }else{
+            alert(json[0].msg);
+         }
      }else{
- 		alert("Hubo un errror interno ( u.u)\n"+result);
+         alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
 
@@ -208,9 +252,20 @@ function preRelacionList(container){
  function postRelacionList(result,state){
      //Maneje aquí la respuesta del servidor.
      if(state=="success"){
-        document.getElementById("RelacionList").innerHTML=result;
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+
+            for(var i=1; i < Object.keys(json).length; i++) {   
+                var Relacion = json[i];
+                //----------------- Para una tabla -----------------------
+                document.getElementById("RelacionList").appendChild(createTR(Relacion));
+                //-------- Para otras opciones ver htmlBuilder.js ---------
+            }
+         }else{
+            alert(json[0].msg);
+         }
      }else{
- 		alert("Hubo un errror interno ( u.u)\n"+result);
+         alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
 
@@ -247,9 +302,20 @@ function preUsuarioList(container){
  function postUsuarioList(result,state){
      //Maneje aquí la respuesta del servidor.
      if(state=="success"){
-        document.getElementById("UsuarioList").innerHTML=result;
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+
+            for(var i=1; i < Object.keys(json).length; i++) {   
+                var Usuario = json[i];
+                //----------------- Para una tabla -----------------------
+                document.getElementById("UsuarioList").appendChild(createTR(Usuario));
+                //-------- Para otras opciones ver htmlBuilder.js ---------
+            }
+         }else{
+            alert(json[0].msg);
+         }
      }else{
- 		alert("Hubo un errror interno ( u.u)\n"+result);
+         alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
 

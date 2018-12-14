@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Nada mejor que el código hecho a mano.  \\
+//    Trabajo individual singifica ganancia individual  \\
 
 include_once realpath('../../dao/entities/AdministracionDao.php');
 include_once realpath('../../dao/entities/ArchivoDao.php');

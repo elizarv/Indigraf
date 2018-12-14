@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Cuando uses Anarchy, Georgie, tú también flotarás  \\
+//    Yo tengo un sueño. El sueño de que mis hijos vivan en un mundo con un único lenguaje de programación.  \\
 
 include_once realpath('../../dao/interfaz/IPeriodoDao.php');
 include_once realpath('../../dto/Periodo.php');

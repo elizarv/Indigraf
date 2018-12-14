@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¿Me ayudas con la tesis?  \\
+//    La gente siempre me pregunta si conozco a Tyler Durden.  \\
 
 
 class Indicador {

@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    En lo que a mí respecta, señor Dix, lo imprevisto no existe  \\
+//    Ahora tú puedes ser el tipo con el látigo  \\
 
 include_once realpath('../../dao/conexion/Conexion.php');
 include_once realpath('../../dao/interfaz/IFactoryDao.php');

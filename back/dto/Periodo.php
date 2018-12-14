@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Traigo una pizza para ¿y se la creyó?  \\
+//    ¿Sabías que hay una vida afuera de tu cuarto?  \\
 
 
 class Periodo {

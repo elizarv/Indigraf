@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¿No es más sencillo hacer todo en el Main?  \\
+//    Alguna vez Anarchy se llamó Molotov ( u.u) *Nostalgia  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');

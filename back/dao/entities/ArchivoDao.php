@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¡Vaya! ¡Al fin harás algo mejor que una calculadora!  \\
+//    Proletarios del mundo ¡Uníos!  \\
 
 include_once realpath('../../dao/interfaz/IArchivoDao.php');
 include_once realpath('../../dto/Archivo.php');

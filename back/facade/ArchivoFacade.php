@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Has encontrado la frase #1024 ¡Felicidades! Ahora tu proyecto funcionará a la primera  \\
+//    ¿Generar buen código o poner frases graciosas? ¡La frase! ¡La frase!  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');

@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    -¡UNO! -¡¡ +4 !!  \\
+//    ¡Oh! (°o° ) ¡es Fredy Arciniegas, el intelectualoide millonario!  \\
     require_once realpath('../../dao/factory/FactoryDao.php');
 
 /**
@@ -15,6 +15,6 @@
   /**
    * Para su comodidad, defina aquí el nombre de base de datos predilecto para su proyecto
    */    
-    define("DEFAULT_DBNAME", "DBName");
+    define("DEFAULT_DBNAME", "null");
 
 //That´s all folks!

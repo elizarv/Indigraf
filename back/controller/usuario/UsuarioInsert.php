@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    No dejes el código del futuro en manos humanas  \\
+//    ¡Muerte a todos los humanos!  \\
 include_once realpath('../../facade/UsuarioFacade.php');
 
 $username = $_POST['username'];

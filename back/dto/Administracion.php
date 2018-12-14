@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Mi satisfacción es hacerte un poco más vago  \\
+//    Esta es una frase no referenciada  \\
 
 
 class Administracion {

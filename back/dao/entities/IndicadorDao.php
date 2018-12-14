@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Nuestra empresa cuenta con una división sólo para las frases. Disfrútalas  \\
+//    ¡Oh! (°o° ) ¡es Fredy Arciniegas, el intelectualoide millonario!  \\
 
 include_once realpath('../../dao/interfaz/IIndicadorDao.php');
 include_once realpath('../../dto/Indicador.php');

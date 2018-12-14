@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Ella existió sólo en un sueño. Él es un poema que el poeta nunca escribió.  \\
+//    Pero el ruiseñor no respondió; yacía muerto sobre las altas hierbas, con el corazón traspasado de espinas.  \\
 include_once realpath('../../facade/IndicadorFacade.php');
 
 $id = $_POST['id'];

@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Ya no la quiero, es cierto, pero tal vez la quiero. Es tan corto el amor, y es tan largo el olvido.  \\
+//    Recuerda, cuando enciendas la molotov, debes arrojarla  \\
 include_once realpath('../../dao/interfaz/IConexion.php');
 
 class Conexion implements IConexion{

@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Bueno ¿y ahora qué?  \\
+//    No dejes el código del futuro en manos humanas  \\
 
 
 interface IPeriodoDao {

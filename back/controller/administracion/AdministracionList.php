@@ -5,20 +5,28 @@
               ------------------------
  */
 
-//    ¡Alza el puño y ven! ¡En la hoguera hay de beber!  \\
+//    ¿Cansado de escribir bugs? tranquilo, los escribimos por ti  \\
 include_once realpath('../../facade/AdministracionFacade.php');
 
 $list=AdministracionFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Administracion) {	
-	$rta.="<tr>\n";
-	$rta.="<td>".$Administracion->getid()."</td>\n";
-	$rta.="<td>".$Administracion->getcolorP()."</td>\n";
-	$rta.="<td>".$Administracion->getcolorS()."</td>\n";
-	$rta.="<td>".$Administracion->getlogo()."</td>\n";
-	$rta.="<td>".$Administracion->getnombre()."</td>\n";
-	$rta.="</tr>\n";
+	$rta.="{
+ 	    \"id\":\"{$Administracion->getid()}\",
+	    \"colorP\":\"{$Administracion->getcolorP()}\",
+	    \"colorS\":\"{$Administracion->getcolorS()}\",
+	    \"logo\":\"{$Administracion->getlogo()}\",
+	    \"nombre\":\"{$Administracion->getnombre()}\"
+	},";
 }
-echo $rta;
+
+if($rta!=""){
+	$rta = substr($rta, 0, -1);
+	$msg="{\"msg\":\"exito\"}";
+}else{
+	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
+	$rta="{\"result\":\"No se encontraron registros.\"}";	
+}
+echo "[{$msg},{$rta}]";
 
 //That´s all folks!

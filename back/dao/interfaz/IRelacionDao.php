@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¿Sabías que hay una vida afuera de tu cuarto?  \\
+//    ...y esta no es la única frase que encontrarás...  \\
 
 
 interface IRelacionDao {

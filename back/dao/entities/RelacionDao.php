@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Cuenta la leyenda que si gritas 'Soy programador' las nenas caerán a tus pies  \\
+//    ¡¡Bienvenido al mundo del mañana!!  \\
 
 include_once realpath('../../dao/interfaz/IRelacionDao.php');
 include_once realpath('../../dto/Relacion.php');

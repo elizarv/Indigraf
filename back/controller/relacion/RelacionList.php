@@ -5,17 +5,25 @@
               ------------------------
  */
 
-//    Bastará decir que soy Juan Pablo Castel, el pintor que mató a María Iribarne...  \\
+//    ¿Y si mejor estudias comunicación?  \\
 include_once realpath('../../facade/RelacionFacade.php');
 
 $list=RelacionFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Relacion) {	
-	$rta.="<tr>\n";
-	$rta.="<td>".$Relacion->getpredecesor()->getid()."</td>\n";
-	$rta.="<td>".$Relacion->getsucesor()->getid()."</td>\n";
-	$rta.="</tr>\n";
+	$rta.="{
+ 	    \"predecesor_id\":\"{$Relacion->getpredecesor()->getid()}\",
+	    \"sucesor_id\":\"{$Relacion->getsucesor()->getid()}\"
+	},";
 }
-echo $rta;
+
+if($rta!=""){
+	$rta = substr($rta, 0, -1);
+	$msg="{\"msg\":\"exito\"}";
+}else{
+	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
+	$rta="{\"result\":\"No se encontraron registros.\"}";	
+}
+echo "[{$msg},{$rta}]";
 
 //That´s all folks!

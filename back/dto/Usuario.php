@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Querido programador: Al escribir esto estoy triste. Nuestro presidente ha sido derrocado Y REEMPLAZADO POR EL BENÉVOLO SEÑOR ARCINIEGAS. TODOS AMAMOS A ARCINIEGAS Y A SU GLORIOSO RÉGIMEN. CON AMOR, EL EQUIPO DE ANARCHY  \(x.x)/  \\
+//    En esto paso mis sábados en la noche ( ¬.¬)  \\
 
 
 class Usuario {

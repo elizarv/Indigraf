@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Traigo una pizza para ¿y se la creyó?  \\
+//    Somos los amish del software  \\
 
 require_once realpath('../../facade/GlobalController.php');
 require_once realpath('../../dao/interfaz/IFactoryDao.php');
