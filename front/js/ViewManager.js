@@ -304,6 +304,9 @@ function preUsuarioList(){
      //Solicite información del servidor
      cargaContenido('remp','front/views/listarUsuarios.html'); 
  	enviar("",'back/controller/usuario/UsuarioList.php',postUsuarioList); 
+    var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
+    str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioList()">Usuarios</a></li>';
+    document.getElementById("breadc").innerHTML=str;
 }
 
  function postUsuarioList(result,state){
@@ -332,7 +335,7 @@ function preUsuarioList(){
                 str+="<td><a class='btn btn-warning btn-sm' data-toggle='tooltip' href='public/actualizarUsuario.html'";
                 str+="data-placement='top' title='Actualizar' id='actualizarUsuario'><i class='material-icons'>";
                 str+='create</i></a> <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar" id="eliminarUsuario" onclick="eliminarUsuario(\''+Usuario.username+'\')"><i class="material-icons">delete_sweep</i></button></td></tr>';
-                document.getElementById("UsuarioList").innerHTML+=str;
+                document.getElementById("UsuarioList").innerHTML+=str;                
             }
          }
      }else{
