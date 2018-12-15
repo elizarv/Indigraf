@@ -13,7 +13,7 @@ class Usuario {
   private $username;
   private $password;
   private $nombre;
-  private $tipo;
+  private $tipo;//1:Administrador 2:Academico 3:Externo
 
     /**
      * Constructor de Usuario

@@ -311,18 +311,29 @@ function preUsuarioList(){
      if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
-
             for(var i=1; i < Object.keys(json).length; i++) {   
                 var Usuario = json[i];
+                var tipoU;
+                switch(Usuario.tipo){
+                    case "1": 
+                        tipoU="Administrador";
+                        break;
+                    case "2":
+                        tipoU="Académico";
+                        break;
+                    case "3": 
+                        tipoU="Externo";
+                        break;
+                    default:
+                        break;
+                }
                 //----------------- Para una tabla -----------------------
-                str="<tr><td>"+i+"</td><td>"+Usuario.nombre+"</td><td>"+Usuario.tipo+"</td>";
+                str="<tr><td>"+i+"</td><td>"+Usuario.nombre+"</td><td>"+tipoU+"</td>";
                 str+="<td><a class='btn btn-warning btn-sm' data-toggle='tooltip' href='public/actualizarUsuario.html'";
                 str+="data-placement='top' title='Actualizar' id='actualizarUsuario'><i class='material-icons'>";
                 str+='create</i></a> <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar" id="eliminarUsuario" onclick="eliminarUsuario(\''+Usuario.username+'\')"><i class="material-icons">delete_sweep</i></button></td></tr>';
-                document.getElementById("UsuarioList").innerHTML=str;
+                document.getElementById("UsuarioList").innerHTML+=str;
             }
-         }else{
-            alert(json[0].msg);//sweetalert
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
