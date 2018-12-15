@@ -150,9 +150,7 @@ $padre=$indicador->getPadre()->getId();
   public function listAllByFather($padre){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`"
-          ."FROM `indicador`"
-          ."WHERE padre == $padre";
+          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre` FROM `indicador` WHERE padre=$padre";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $indicador= new Indicador();
@@ -160,10 +158,9 @@ $padre=$indicador->getPadre()->getId();
           $indicador->setNombre($data[$i]['nombre']);
           $indicador->setDescripcion($data[$i]['descripcion']);
           $indicador->setImagen($data[$i]['imagen']);
-           $indicador = new Indicador();
-           $indicador->setId($data[$i]['padre']);
-           $indicador->setPadre($indicador);
-
+           $padre = new Indicador();
+           $padre->setId($data[$i]['padre']);
+           $indicador->setPadre($padre);
           array_push($lista,$indicador);
           }
       return $lista;
