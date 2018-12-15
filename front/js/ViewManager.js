@@ -19,10 +19,6 @@ function validarForm(idForm){
 	return true;
 }
 
-function cargarVista(vista){
-    cargaContenido('remp','front/views/'+vista+".html");
-}
-
 
 
 ////////// ADMINISTRACION \\\\\\\\\\

@@ -24,10 +24,9 @@ function cargarIndicadores(){
  function postIndicadorListPadre(result,state){
      //Maneje aquí la respuesta del servidor.
      if(state=="success"){
-     	alert(result);
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
-
+         	document.getElementById("IndicadorList").innerHTML="";
             for(var i=1; i < Object.keys(json).length; i++) {   
                 var Indicador = json[i];
                 //----------------- Para una tabla -----------------------
@@ -38,7 +37,7 @@ function cargarIndicadores(){
                 str+='<a href="#" class="btn btn-primaryJ">Editar</a><a href="#" class="btn btn-primaryJ">Graficar</a>';
                 str+='<a href="#" class="btn btn-primaryJ">Eliminar</a></div></div></div></div></div></div>';
 
-                document.getElementById("IndicadorList").appendChild(createTR(Indicador));
+                document.getElementById("IndicadorList").innerHTML+=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
          }else{
