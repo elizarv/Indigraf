@@ -37,3 +37,20 @@ function preIndicadorListPadre(padre){
          alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
+
+function cargarFormIndicador(){
+	cargaContenido('remp','front/views/formIndicador.html'); 
+	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
+	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores()">Indicadores</a></li>';
+	str+='<li class="breadcrumb-item"><a href="javascript:cargarFormIndicador()">Agergar Indicador</a></li>';
+	document.getElementById("breadc").innerHTML=str;
+	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Agregar Indicador</h2>';
+}
+
+function cargarIndicadores(){
+	cargaContenido('remp','front/views/indicadores.html');
+	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
+	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores()">Indicadores</a></li>';
+	document.getElementById("breadc").innerHTML=str;
+	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Indicadores</h2>';
+}
