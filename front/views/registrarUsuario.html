@@ -8,24 +8,25 @@
                       <h3 class="h4">Registrar Usuario</h3>
                     </div>
                     <div class="card-body">
-                      <form>
-                        <div class="form-group">
-                          <label class="form-control-label">Nombre</label>
-                          <input name="nombreR" type="text" placeholder="Ingrese el nombre" class="form-control">
-                        </div>
+                      <form id="registrarUsuario" action="javascript:preUsuarioInsert('registrarUsuario')" method="post">
                         <div class="form-group">
                           <label class="form-control-label">Usuario</label>
-                          <input name="usuarioR" type="text" placeholder="Ingrese el usuario" class="form-control">
+                          <input name="username" type="text" placeholder="Ingrese el usuario" class="form-control">
                         </div>
                         <div class="form-group">       
                           <label class="form-control-label">Contraseña</label>
-                          <input name="contraseñaR" type="password" placeholder="Ingrese la contraseña" class="form-control">
+                          <input name="password" type="password" placeholder="Ingrese la contraseña" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label">Nombre</label>
+                          <input name="nombre" type="text" placeholder="Ingrese el nombre" class="form-control">
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Tipo Usuario</label>
-                            <select name="tipo_usuarioR" class="form-control mb-3">
-                              <option>Academico</option>
-                              <option>Administrador</option>
+                            <select name="tipo" class="form-control mb-3">
+                              <option value="2">Academico</option>
+                              <option value="1">Administrador</option>
+                              <option value="3">Externo</option>
                             </select>
                           </div>
                            <p>No dejar ningún campo vacío</p>
