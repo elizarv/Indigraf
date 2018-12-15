@@ -307,6 +307,7 @@ function preUsuarioList(){
     var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
     str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioList()">Usuarios</a></li>';
     document.getElementById("breadc").innerHTML=str;
+    document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Usuarios</h2>';
 }
 
  function postUsuarioList(result,state){
