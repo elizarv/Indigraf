@@ -1,5 +1,5 @@
 function cargarInicio(){
-	cargaContenido('remp','front/views/home.html'); 
+	cargaContenido('remp','front/views/home.html');
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Inicio</h2>';
 }
@@ -7,18 +7,12 @@ function cargarInicio(){
 function preIndicadorListPadre(padre){
      //Solicite información del servidor
      formData={'padre':padre};
-     cargaContenido('remp','front/views/indicadores.html'); 
+     cargaContenido('remp','front/views/indicadores.html');
      var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
 	str+='<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\'padre\')">Indicadores</a></li>';
- 	enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre); 
-}
-
-function cargarIndicadores(){
-	cargaContenido('remp','front/views/indicadores.html');
-	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
-	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores()">Indicadores</a></li>';
-	document.getElementById("breadc").innerHTML=str;
-	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Indicadores</h2>';
+    document.getElementById("breadc").innerHTML=str;
+    document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Indicadores</h2>';
+ 	enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
 }
 
  function postIndicadorListPadre(result,state){
@@ -26,8 +20,7 @@ function cargarIndicadores(){
      if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
-         	document.getElementById("IndicadorList").innerHTML="";
-            for(var i=1; i < Object.keys(json).length; i++) {   
+            for(var i=1; i < Object.keys(json).length; i++) {
                 var Indicador = json[i];
                 //----------------- Para una tabla -----------------------
                 str='<div class="col-sm-6"><div class="card"><div class="card-bodyJ">';
@@ -35,13 +28,14 @@ function cargarIndicadores(){
                 str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
                 str+='<div class="containerJ"><a href="#" class="btn btn-primaryJ">Detalles</a>';
                 str+='<a href="#" class="btn btn-primaryJ">Editar</a><a href="#" class="btn btn-primaryJ">Graficar</a>';
-                str+='<a href="#" class="btn btn-primaryJ">Eliminar</a></div></div></div></div></div></div>';
+                str+='<a href="javascript:eliminarIndicador(\''+Indicador.id+'\')" class="btn btn-primaryJ">Eliminar</a>';
+								str+='<a href="javascript:preIndicadorListPadre(\''+Indicador.id+'\')" class="btn btn-primaryJ">Ver más</a></div></div></div></div></div></div>';
 
                 document.getElementById("IndicadorList").innerHTML+=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
          }else{
-            alert(json[0].msg);
+            alert("no tiene subindicadores");
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
@@ -49,7 +43,7 @@ function cargarIndicadores(){
 }
 
 function cargarFormIndicador(){
-	cargaContenido('remp','front/views/formIndicador.html'); 
+	cargaContenido('remp','front/views/formIndicador.html');
 	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
 	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores()">Indicadores</a></li>';
 	str+='<li class="breadcrumb-item"><a href="javascript:cargarFormIndicador()">Agergar Indicador</a></li>';
@@ -57,3 +51,23 @@ function cargarFormIndicador(){
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Agregar Indicador</h2>';
 }
 
+function eliminarIndicador(id){
+    swal({
+  title: "Esta seguro?",
+  text: "se eliminará éste indicador",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+}).then((willDelete) => {
+    formData={'id':id};
+    enviar(formData,'back/controller/indicador/IndicadorDelete.php',exitoEliminarIndicador);
+});
+}
+
+
+function exitoEliminarIndicador(){
+    swal("El indicador se ha eliminado con exito!!", {
+      icon: "success",
+    });
+    preIndicadorListPadre(0);//modificar luego, dependiendo de la rama en la que se este
+  }

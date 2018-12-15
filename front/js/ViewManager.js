@@ -36,7 +36,7 @@ function preAdministracionInsert(idForm){
      //Maneje aquí la respuesta del servidor.
      //Consideramos buena práctica no manejar código HTML antes de este punto.
  		if(state=="success"){
-                     if(result=="true"){            
+                     if(result=="true"){
  			alert("Administracion registrado con éxito");
                      }else{
                         alert("Hubo un errror en la inserción ( u.u)\n"+result);
@@ -47,8 +47,8 @@ function preAdministracionInsert(idForm){
 
 function preAdministracionList(container){
      //Solicite información del servidor
-     cargaContenido(container,'AdministracionList.html'); 
- 	enviar("",'../back/controller/administracion/AdministracionList.php',postAdministracionList); 
+     cargaContenido(container,'AdministracionList.html');
+ 	enviar("",'../back/controller/administracion/AdministracionList.php',postAdministracionList);
 }
 
  function postAdministracionList(result,state){
@@ -57,7 +57,7 @@ function preAdministracionList(container){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
 
-            for(var i=1; i < Object.keys(json).length; i++) {   
+            for(var i=1; i < Object.keys(json).length; i++) {
                 var Administracion = json[i];
                 //----------------- Para una tabla -----------------------
                 document.getElementById("AdministracionList").appendChild(createTR(Administracion));
@@ -86,7 +86,7 @@ function preArchivoInsert(idForm){
      //Maneje aquí la respuesta del servidor.
      //Consideramos buena práctica no manejar código HTML antes de este punto.
  		if(state=="success"){
-                     if(result=="true"){            
+                     if(result=="true"){
  			alert("Archivo registrado con éxito");
                      }else{
                         alert("Hubo un errror en la inserción ( u.u)\n"+result);
@@ -97,8 +97,8 @@ function preArchivoInsert(idForm){
 
 function preArchivoList(container){
      //Solicite información del servidor
-     cargaContenido(container,'ArchivoList.html'); 
- 	enviar("",'../back/controller/archivo/ArchivoList.php',postArchivoList); 
+     cargaContenido(container,'ArchivoList.html');
+ 	enviar("",'../back/controller/archivo/ArchivoList.php',postArchivoList);
 }
 
  function postArchivoList(result,state){
@@ -107,7 +107,7 @@ function preArchivoList(container){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
 
-            for(var i=1; i < Object.keys(json).length; i++) {   
+            for(var i=1; i < Object.keys(json).length; i++) {
                 var Archivo = json[i];
                 //----------------- Para una tabla -----------------------
                 document.getElementById("ArchivoList").appendChild(createTR(Archivo));
@@ -136,7 +136,7 @@ function preIndicadorInsert(idForm){
      //Maneje aquí la respuesta del servidor.
      //Consideramos buena práctica no manejar código HTML antes de este punto.
  		if(state=="success"){
-                     if(result=="true"){            
+                     if(result=="true"){
  			alert("Indicador registrado con éxito");
                      }else{
                         alert("Hubo un errror en la inserción ( u.u)\n"+result);
@@ -147,8 +147,8 @@ function preIndicadorInsert(idForm){
 
 function preIndicadorList(container){
      //Solicite información del servidor
-     cargaContenido(container,'IndicadorList.html'); 
- 	enviar("",'../back/controller/indicador/IndicadorList.php',postIndicadorList); 
+     cargaContenido(container,'IndicadorList.html');
+ 	enviar("",'../back/controller/indicador/IndicadorList.php',postIndicadorList);
 }
 
  function postIndicadorList(result,state){
@@ -157,7 +157,7 @@ function preIndicadorList(container){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
 
-            for(var i=1; i < Object.keys(json).length; i++) {   
+            for(var i=1; i < Object.keys(json).length; i++) {
                 var Indicador = json[i];
                 //----------------- Para una tabla -----------------------
                 document.getElementById("IndicadorList").appendChild(createTR(Indicador));
@@ -186,7 +186,7 @@ function prePeriodoInsert(idForm){
      //Maneje aquí la respuesta del servidor.
      //Consideramos buena práctica no manejar código HTML antes de este punto.
  		if(state=="success"){
-                     if(result=="true"){            
+                     if(result=="true"){
  			alert("Periodo registrado con éxito");
                      }else{
                         alert("Hubo un errror en la inserción ( u.u)\n"+result);
@@ -197,8 +197,8 @@ function prePeriodoInsert(idForm){
 
 function prePeriodoList(container){
      //Solicite información del servidor
-     cargaContenido(container,'PeriodoList.html'); 
- 	enviar("",'../back/controller/periodo/PeriodoList.php',postPeriodoList); 
+     cargaContenido(container,'PeriodoList.html');
+ 	enviar("",'../back/controller/periodo/PeriodoList.php',postPeriodoList);
 }
 
  function postPeriodoList(result,state){
@@ -207,7 +207,7 @@ function prePeriodoList(container){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
 
-            for(var i=1; i < Object.keys(json).length; i++) {   
+            for(var i=1; i < Object.keys(json).length; i++) {
                 var Periodo = json[i];
                 //----------------- Para una tabla -----------------------
                 document.getElementById("PeriodoList").appendChild(createTR(Periodo));
@@ -236,7 +236,7 @@ function preRelacionInsert(idForm){
      //Maneje aquí la respuesta del servidor.
      //Consideramos buena práctica no manejar código HTML antes de este punto.
  		if(state=="success"){
-                     if(result=="true"){            
+                     if(result=="true"){
  			alert("Relacion registrado con éxito");
                      }else{
                         alert("Hubo un errror en la inserción ( u.u)\n"+result);
@@ -247,8 +247,8 @@ function preRelacionInsert(idForm){
 
 function preRelacionList(container){
      //Solicite información del servidor
-     cargaContenido(container,'RelacionList.html'); 
- 	enviar("",'../back/controller/relacion/RelacionList.php',postRelacionList); 
+     cargaContenido(container,'RelacionList.html');
+ 	enviar("",'../back/controller/relacion/RelacionList.php',postRelacionList);
 }
 
  function postRelacionList(result,state){
@@ -257,7 +257,7 @@ function preRelacionList(container){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
 
-            for(var i=1; i < Object.keys(json).length; i++) {   
+            for(var i=1; i < Object.keys(json).length; i++) {
                 var Relacion = json[i];
                 //----------------- Para una tabla -----------------------
                 document.getElementById("RelacionList").appendChild(createTR(Relacion));
@@ -287,7 +287,7 @@ function preUsuarioInsert(idForm){
      //Maneje aquí la respuesta del servidor.
      //Consideramos buena práctica no manejar código HTML antes de este punto.
  		if(state=="success"){
-                     if(result=="true"){            
+                     if(result=="true"){
  			alert("Usuario registrado con éxito");
                      }else{
                         alert("Hubo un errror en la inserción ( u.u)\n"+result);
@@ -298,8 +298,8 @@ function preUsuarioInsert(idForm){
 
 function preUsuarioList(){
      //Solicite información del servidor
-     cargaContenido('remp','front/views/listarUsuarios.html'); 
- 	enviar("",'back/controller/usuario/UsuarioList.php',postUsuarioList); 
+     cargaContenido('remp','front/views/listarUsuarios.html');
+ 	enviar("",'back/controller/usuario/UsuarioList.php',postUsuarioList);
     var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
     str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioList()">Usuarios</a></li>';
     document.getElementById("breadc").innerHTML=str;
@@ -311,17 +311,17 @@ function preUsuarioList(){
      if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
-            for(var i=1; i < Object.keys(json).length; i++) {   
+            for(var i=1; i < Object.keys(json).length; i++) {
                 var Usuario = json[i];
                 var tipoU;
                 switch(Usuario.tipo){
-                    case "1": 
+                    case "1":
                         tipoU="Administrador";
                         break;
                     case "2":
                         tipoU="Académico";
                         break;
-                    case "3": 
+                    case "3":
                         tipoU="Externo";
                         break;
                     default:
@@ -332,7 +332,7 @@ function preUsuarioList(){
                 str+="<td><a class='btn btn-warning btn-sm' data-toggle='tooltip' href='public/actualizarUsuario.html'";
                 str+="data-placement='top' title='Actualizar' id='actualizarUsuario'><i class='material-icons'>";
                 str+='create</i></a> <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar" id="eliminarUsuario" onclick="eliminarUsuario(\''+Usuario.username+'\')"><i class="material-icons">delete_sweep</i></button></td></tr>';
-                document.getElementById("UsuarioList").innerHTML+=str;                
+                document.getElementById("UsuarioList").innerHTML+=str;
             }
          }
      }else{
@@ -349,7 +349,6 @@ function eliminarUsuario(id){
   dangerMode: true,
 }).then((willDelete) => {
     formData={'id':id};
-    console.log(id);
     enviar(formData,'back/controller/usuario/UsuarioDelete.php',exito);
 });
 $('#actualizarUsuario').tooltip();
@@ -362,7 +361,7 @@ function exito(){
       icon: "success",
     });
     preUsuarioList();
-  } 
+  }
 
 
 //That´s all folks!

@@ -25,7 +25,7 @@ private $cn;
     /**
      * Guarda un objeto Indicador en la base de datos.
      * @param indicador objeto a guardar
-     * @return  Valor asignado a la llave primaria 
+     * @return  Valor asignado a la llave primaria
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($indicador){
@@ -81,7 +81,7 @@ if($padre!=null){
     /**
      * Modifica un objeto Indicador en la base de datos.
      * @param indicador objeto con la información a modificar
-     * @return  Valor de la llave primaria 
+     * @return  Valor de la llave primaria
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function update($indicador){
@@ -173,14 +173,14 @@ $padre=$indicador->getPadre()->getId();
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
-          $sentencia->execute(); 
+          $sentencia->execute();
           $sentencia = null;
           return $this->cn->lastInsertId();
     }
       public function ejecutarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
-          $sentencia->execute(); 
+          $sentencia->execute();
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
