@@ -33,7 +33,11 @@ private $cn;
 $nombre=$indicador->getNombre();
 $descripcion=$indicador->getDescripcion();
 $imagen=$indicador->getImagen();
-$padre=$indicador->getPadre()->getId();
+$padre=$indicador->getPadre();
+if($padre!=null){
+  $padre=$padre->getId();
+}
+
 
       try {
           $sql= "INSERT INTO `indicador`( `id`, `nombre`, `descripcion`, `imagen`, `padre`)"

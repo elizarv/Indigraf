@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `Indicador` (
   `nombre` VARCHAR(45) NOT NULL,
   `descripción` MEDIUMTEXT NULL,
   `imagen` VARCHAR(45) NULL,
-  `padre` INT NOT NULL,
+  `padre` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Indicador_Indicador_idx` (`padre` ASC),
   CONSTRAINT `fk_Indicador_Indicador`
