@@ -143,6 +143,32 @@ $padre=$indicador->getPadre()->getId();
       }
   }
 
+  public function listAllByFather($padre){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`"
+          ."FROM `indicador`"
+          ."WHERE padre == $padre";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $indicador= new Indicador();
+          $indicador->setId($data[$i]['id']);
+          $indicador->setNombre($data[$i]['nombre']);
+          $indicador->setDescripcion($data[$i]['descripcion']);
+          $indicador->setImagen($data[$i]['imagen']);
+           $indicador = new Indicador();
+           $indicador->setId($data[$i]['padre']);
+           $indicador->setPadre($indicador);
+
+          array_push($lista,$indicador);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);

@@ -120,6 +120,19 @@ class IndicadorFacade {
      return $result;
   }
 
+  /**
+   * Lista los objetos Indicador de la base de datos que tengan como padre el parametro indicado.
+   * Puede recibir NullPointerException desde los métodos del Dao
+   * @return $result Array con los objetos Indicador en base de datos o Null
+   */
+  public static function listAllByFather($padre){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
+     $result = $indicadorDao->listAllByFather($padre);
+     $indicadorDao->close();
+     return $result;
+  }
+
 
 }
 //That´s all folks!
