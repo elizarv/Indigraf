@@ -286,6 +286,7 @@ function preUsuarioInsert(idForm){
  	}
 }
 
+
  function postUsuarioInsert(result,state){
      //Maneje aquí la respuesta del servidor.
      //Consideramos buena práctica no manejar código HTML antes de este punto.
@@ -299,10 +300,10 @@ function preUsuarioInsert(idForm){
  		}
 }
 
-function preUsuarioList(container){
+function preUsuarioList(){
      //Solicite información del servidor
-     cargaContenido(container,'UsuarioList.html'); 
- 	enviar("",'../back/controller/usuario/UsuarioList.php',postUsuarioList); 
+     cargaContenido('remp','front/views/listarUsuarios.html'); 
+ 	enviar("",'back/controller/usuario/UsuarioList.php',postUsuarioList); 
 }
 
  function postUsuarioList(result,state){
@@ -314,15 +315,43 @@ function preUsuarioList(container){
             for(var i=1; i < Object.keys(json).length; i++) {   
                 var Usuario = json[i];
                 //----------------- Para una tabla -----------------------
-                document.getElementById("UsuarioList").appendChild(createTR(Usuario));
-                //-------- Para otras opciones ver htmlBuilder.js ---------
+                str="<tr><td>"+i+"</td><td>"+Usuario.nombre+"</td><td>"+Usuario.tipo+"</td>";
+                str+="<td><a class='btn btn-warning btn-sm' data-toggle='tooltip' href='public/actualizarUsuario.html'";
+                str+="data-placement='top' title='Actualizar' id='actualizarUsuario'><i class='material-icons'>";
+                str+='create</i></a> <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar" id="eliminarUsuario" onclick="eliminarUsuario(\''+Usuario.username+'\')"><i class="material-icons">delete_sweep</i></button></td></tr>';
+                document.getElementById("UsuarioList").innerHTML=str;
             }
          }else{
-            alert(json[0].msg);
+            alert(json[0].msg);//sweetalert
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
+
+function eliminarUsuario(id){
+    swal({
+  title: "Esta seguro?",
+  text: "se eliminara el usuario",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+}).then((willDelete) => {
+    formData={'id':id};
+    console.log(id);
+    enviar(formData,'back/controller/usuario/UsuarioDelete.php',exito);
+});
+$('#actualizarUsuario').tooltip();
+$('#eliminarUsuario').tooltip();
+}
+
+
+function exito(){
+    swal("Usuario eliminado con exito!!", {
+      icon: "success",
+    });
+    preUsuarioList();
+  } 
+
 
 //That´s all folks!

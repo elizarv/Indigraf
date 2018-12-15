@@ -11,10 +11,10 @@
 /**
    * Para su comodidad, defina aquí el gestor de conexión predilecto para su proyecto
    */
-    define("DEFAULT_GESTOR", FactoryDao::$NULL_GESTOR);
+    define("DEFAULT_GESTOR", FactoryDao::$MYSQL_FACTORY);
   /**
    * Para su comodidad, defina aquí el nombre de base de datos predilecto para su proyecto
    */    
-    define("DEFAULT_DBNAME", "null");
+    define("DEFAULT_DBNAME", "indigraf");
 
 //That´s all folks!
