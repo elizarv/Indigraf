@@ -87,3 +87,8 @@ function exitoEliminarIndicador(){
     });
     preIndicadorListPadre(0);//modificar luego, dependiendo de la rama en la que se este
   }
+
+
+function cargarMapa(){
+	cargaContenido('remp','front/views/mapa.html');
+}
