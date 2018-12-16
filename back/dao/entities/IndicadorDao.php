@@ -136,9 +136,9 @@ $esPadre=$indicador->getEsPadre();
           $indicador->setNombre($data[$i]['nombre']);
           $indicador->setDescripcion($data[$i]['descripcion']);
           $indicador->setImagen($data[$i]['imagen']);
-           $indicador = new Indicador();
-           $indicador->setId($data[$i]['padre']);
-           $indicador->setPadre($indicador);
+           $padre = new Indicador();
+           $padre->setId($data[$i]['padre']);
+           $indicador->setPadre($padre);
            $indicador->setEsPadre($data[$i]['esPadre']);
 
           array_push($lista,$indicador);
