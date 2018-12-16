@@ -15,6 +15,7 @@ class Indicador {
   private $descripcion;
   private $imagen;
   private $padre;
+  private $esPadre;
 
     /**
      * Constructor de Indicador
@@ -96,6 +97,24 @@ class Indicador {
   public function setPadre($padre){
       $this->padre = $padre;
   }
+
+
+
+/**
+ * Devuelve el valor correspondiente a esPadre
+ * @return esPadre
+ */
+public function getEsPadre(){
+  return $this->esPadre;
+}
+
+/**
+ * Modifica el valor correspondiente a esPadre
+ * @param esPadre
+ */
+public function setEsPadre($padre){
+  $this->esPadre = $padre;
+}
 
 
 }

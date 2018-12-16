@@ -37,11 +37,12 @@ $padre=$indicador->getPadre();
 if($padre!=null){
   $padre=$padre->getId();
 }
+$esPadre=$indicador->getEsPadre();
 
 
       try {
-          $sql= "INSERT INTO `indicador`( `id`, `nombre`, `descripcion`, `imagen`, `padre`)"
-          ."VALUES ('$id','$nombre','$descripcion','$imagen','$padre')";
+          $sql= "INSERT INTO `indicador`( `id`, `nombre`, `descripcion`, `imagen`, `padre`,`esPadre`)"
+          ."VALUES ('$id','$nombre','$descripcion','$imagen','$padre','$esPadre')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -58,7 +59,7 @@ if($padre!=null){
       $id=$indicador->getId();
 
       try {
-          $sql= "SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`"
+          $sql= "SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`,`esPadre`"
           ."FROM `indicador`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
@@ -70,6 +71,7 @@ if($padre!=null){
            $indicador = new Indicador();
            $indicador->setId($data[$i]['padre']);
            $indicador->setPadre($indicador);
+           $indicador->setEsPadre($data[$i]['espadre']);
 
           }
       return $indicador;      } catch (SQLException $e) {
@@ -90,9 +92,10 @@ $nombre=$indicador->getNombre();
 $descripcion=$indicador->getDescripcion();
 $imagen=$indicador->getImagen();
 $padre=$indicador->getPadre()->getId();
+$esPadre=$indicador->getEsPadre();
 
       try {
-          $sql= "UPDATE `indicador` SET`id`='$id' ,`nombre`='$nombre' ,`descripcion`='$descripcion' ,`imagen`='$imagen' ,`padre`='$padre' WHERE `id`='$id' ";
+          $sql= "UPDATE `indicador` SET`id`='$id' ,`nombre`='$nombre' ,`descripcion`='$descripcion' ,`imagen`='$imagen' ,`padre`='$padre',`esPadre`='$esPadre' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -107,7 +110,6 @@ $padre=$indicador->getPadre()->getId();
      */
   public function delete($indicador){
       $id=$indicador->getId();
-
       try {
           $sql ="DELETE FROM `indicador` WHERE `id`='$id'";
           return $this->insertarConsulta($sql);
@@ -124,7 +126,7 @@ $padre=$indicador->getPadre()->getId();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`"
+          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre`"
           ."FROM `indicador`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -137,6 +139,7 @@ $padre=$indicador->getPadre()->getId();
            $indicador = new Indicador();
            $indicador->setId($data[$i]['padre']);
            $indicador->setPadre($indicador);
+           $indicador->setEsPadre($data[$i]['esPadre']);
 
           array_push($lista,$indicador);
           }
@@ -150,7 +153,7 @@ $padre=$indicador->getPadre()->getId();
   public function listAllByFather($padre){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre` FROM `indicador` WHERE padre=$padre";
+          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre` FROM `indicador` WHERE padre=$padre";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $indicador= new Indicador();
@@ -161,6 +164,7 @@ $padre=$indicador->getPadre()->getId();
            $padre = new Indicador();
            $padre->setId($data[$i]['padre']);
            $indicador->setPadre($padre);
+           $indicador->setEsPadre($data[$i]['esPadre']);
           array_push($lista,$indicador);
           }
       return $lista;

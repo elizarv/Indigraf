@@ -1,5 +1,7 @@
+
 function cargarInicio(){
 	cargaContenido('remp','front/views/home.html');
+	document.getElementById("cuenta").value=10000;
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Inicio</h2>';
 }
@@ -8,10 +10,15 @@ function preIndicadorListPadre(padre){
      //Solicite información del servidor
      formData={'padre':padre};
      cargaContenido('remp','front/views/indicadores.html');
-     var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
-	str+='<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\'padre\')">Indicadores</a></li>';
-    document.getElementById("breadc").innerHTML=str;
-    document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Indicadores</h2>';
+		 if(document.getElementById("cuenta").value==10000){
+			 $("#breadc").append('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\''+padre+'\')">Indicadores</a></li>');
+	 	}else if(document.getElementById("cuenta").value!=padre){
+			 $("#breadc").append('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\''+padre+'\')">Indicadores'+padre+'</a></li>');
+		 }
+		 document.getElementById("cuenta").value=padre;
+    //document.getElementById("breadc").innerHTML=str;
+ 		var str='<h2 class="no-margin-bottom">Indicadores</h2>';
+     document.getElementById("seccname").innerHTML=str;
  	enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
 }
 
@@ -29,9 +36,12 @@ function preIndicadorListPadre(padre){
                 str+='<div class="containerJ"><a href="#" class="btn btn-primaryJ">Detalles</a>';
                 str+='<a href="#" class="btn btn-primaryJ">Editar</a><a href="#" class="btn btn-primaryJ">Graficar</a>';
                 str+='<a href="javascript:eliminarIndicador(\''+Indicador.id+'\')" class="btn btn-primaryJ">Eliminar</a>';
+								if(Indicador.esPadre==1){
 								str+='<a href="javascript:preIndicadorListPadre(\''+Indicador.id+'\')" class="btn btn-primaryJ">Ver más</a></div></div></div></div></div></div>';
-
+								}
                 document.getElementById("IndicadorList").innerHTML+=str;
+								var str='<h2 class="no-margin-bottom">'+Indicador.nombre+'</h2>';
+						     document.getElementById("seccname").innerHTML=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
          }else{
