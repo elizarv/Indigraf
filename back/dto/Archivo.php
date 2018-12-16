@@ -16,6 +16,7 @@ class Archivo {
   private $fechaSubida;
   private $descripcion;
   private $periodo;
+  private $estado;
 
     /**
      * Constructor de Archivo
@@ -112,6 +113,21 @@ class Archivo {
   public function setPeriodo($periodo){
       $this->periodo = $periodo;
   }
+  /**
+   * Devuelve el valor correspondiente a estado
+   * @return estado
+   */
+public function getEstado(){
+    return $this->estado;
+}
+
+  /**
+   * Modifica el valor correspondiente a estado
+   * @param estado
+   */
+public function setEstado($estado){
+    $this->estado = $estado;
+}
 
 
 }

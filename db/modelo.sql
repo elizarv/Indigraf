@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2018 a las 20:07:02
+-- Tiempo de generación: 16-12-2018 a las 20:23:13
 -- Versión del servidor: 10.1.9-MariaDB
 -- Versión de PHP: 5.6.15
 
@@ -46,7 +46,8 @@ CREATE TABLE `archivo` (
   `subidoPor` varchar(45) NOT NULL,
   `fechaSubida` datetime NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
-  `periodo` int(11) NOT NULL
+  `periodo` int(11) NOT NULL,
+  `estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

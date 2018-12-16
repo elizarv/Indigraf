@@ -26,7 +26,7 @@ private $cn;
     /**
      * Guarda un objeto Archivo en la base de datos.
      * @param archivo objeto a guardar
-     * @return  Valor asignado a la llave primaria 
+     * @return  Valor asignado a la llave primaria
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($archivo){
@@ -36,10 +36,11 @@ $subidoPor=$archivo->getSubidoPor()->getUsername();
 $fechaSubida=$archivo->getFechaSubida();
 $descripcion=$archivo->getDescripcion();
 $periodo=$archivo->getPeriodo()->getId();
+$estado=$archivo->getEstado();
 
       try {
-          $sql= "INSERT INTO `archivo`( `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`)"
-          ."VALUES ('$id','$url','$subidoPor','$fechaSubida','$descripcion','$periodo')";
+          $sql= "INSERT INTO `archivo`( `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`)"
+          ."VALUES ('$id','$url','$subidoPor','$fechaSubida','$descripcion','$periodo','$estado')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -56,7 +57,7 @@ $periodo=$archivo->getPeriodo()->getId();
       $id=$archivo->getId();
 
       try {
-          $sql= "SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`"
+          $sql= "SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`"
           ."FROM `archivo`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
@@ -71,6 +72,7 @@ $periodo=$archivo->getPeriodo()->getId();
            $periodo = new Periodo();
            $periodo->setId($data[$i]['periodo']);
            $archivo->setPeriodo($periodo);
+           $archivo->setEstado($data[$i]['estado']);
 
           }
       return $archivo;      } catch (SQLException $e) {
@@ -82,7 +84,7 @@ $periodo=$archivo->getPeriodo()->getId();
     /**
      * Modifica un objeto Archivo en la base de datos.
      * @param archivo objeto con la información a modificar
-     * @return  Valor de la llave primaria 
+     * @return  Valor de la llave primaria
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function update($archivo){
@@ -92,9 +94,10 @@ $subidoPor=$archivo->getSubidoPor()->getUsername();
 $fechaSubida=$archivo->getFechaSubida();
 $descripcion=$archivo->getDescripcion();
 $periodo=$archivo->getPeriodo()->getId();
+$estado=$archivo->getEstado();
 
       try {
-          $sql= "UPDATE `archivo` SET`id`='$id' ,`url`='$url' ,`subidoPor`='$subidoPor' ,`fechaSubida`='$fechaSubida' ,`descripcion`='$descripcion' ,`periodo`='$periodo' WHERE `id`='$id' ";
+          $sql= "UPDATE `archivo` SET`id`='$id' ,`url`='$url' ,`subidoPor`='$subidoPor' ,`fechaSubida`='$fechaSubida' ,`descripcion`='$descripcion' ,`periodo`='$periodo',`estado`='$estado' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -126,7 +129,7 @@ $periodo=$archivo->getPeriodo()->getId();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`"
+          $sql ="SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`"
           ."FROM `archivo`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -142,6 +145,7 @@ $periodo=$archivo->getPeriodo()->getId();
            $periodo = new Periodo();
            $periodo->setId($data[$i]['periodo']);
            $archivo->setPeriodo($periodo);
+           $archivo->setEstado($data[$id]['estado']);
 
           array_push($lista,$archivo);
           }
@@ -155,14 +159,14 @@ $periodo=$archivo->getPeriodo()->getId();
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
-          $sentencia->execute(); 
+          $sentencia->execute();
           $sentencia = null;
           return $this->cn->lastInsertId();
     }
       public function ejecutarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
-          $sentencia->execute(); 
+          $sentencia->execute();
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
