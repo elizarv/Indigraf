@@ -1,5 +1,4 @@
-
-        <section class="forms " > 
+<section class="forms " >
             <div class="container-fluid" >
                 <div class="row">
                     <!-- Basic Form-->
@@ -14,23 +13,20 @@
                                 <p>Formulario para subir archivos</p>
                                 <form class="form-horizontal">
                                     <div class="text-center">
-                                        <label for="fileInput" >Descripcion</label>
+                                        <p> Descripcion</p>
                                         <div>
-                                            <textarea name="textarea" rows="10" cols="40">
+                                            <textarea name="descripcion" id="descripcion" rows="10" cols="50" class="form-control form-control-success">
                                             </textarea>
                                         </div>
-
                                     </div>
                                     <div class="text-center">
-                                        <label for="fileInput" class="col-sm-7 form-control-label">Seleccione Archivo</label>
-                                        <div class="text-center">
-                                            <input name="Archivo" type="file" id="fileInput" class=" text-center" multiple accept="image/jpeg, application/pdf" >
-                                        </div>
+                                        <label for="fileInput" class="col-sm-7 form-control-label ">Seleccione Archivo</label>
+                                        <input name="archivo" id="archivo" type="file" class="form-control form-control-file   " multiple accept="image/jpeg, application/pdf" >
                                     </div>
                                     <div class="text-center ">
 
                                         <input type="submit" value="Subir" class="btn btn-primary " >
-                                        <input type="submit" value="Entrada " class="btn btn-primary " >
+                                        <input type="submit" value="Entrada " class="form-file btn btn-primary form-control-success" >
 
                                     </div>
                                 </form>

@@ -48,6 +48,8 @@ function preIndicadorListPadre(padre){
 		 			      document.getElementById("seccname").innerHTML=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
+						var papa=document.getElementById("cuenta").value;
+						document.getElementById("agregarIndi").innerHTML='<a href="javascript:cargarFormIndicador(\''+papa+'\')"><img id="plus" src="front/public/icons-reference/plus.png" alt="Card image"></a>';
          }else{
             alert("no tiene subindicadores");
          }
@@ -56,11 +58,11 @@ function preIndicadorListPadre(padre){
      }
 }
 
-function cargarFormIndicador(){
+function cargarFormIndicador(padre){
 	cargaContenido('remp','front/views/formIndicador.html');
 	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
-	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores()">Indicadores</a></li>';
-	str+='<li class="breadcrumb-item"><a href="javascript:cargarFormIndicador()">Agergar Indicador</a></li>';
+	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores(padre)">Indicadores</a></li>';
+	str+='<li class="breadcrumb-item"><a href="javascript:cargarFormIndicador(padre)">Agergar Indicador</a></li>';
 	document.getElementById("breadc").innerHTML=str;
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Agregar Indicador</h2>';
 }
@@ -85,3 +87,8 @@ function exitoEliminarIndicador(){
     });
     preIndicadorListPadre(0);//modificar luego, dependiendo de la rama en la que se este
   }
+
+
+	function prePeticionesList(){
+		cargaContenido('remp','front/views/peticiones.html');
+	}

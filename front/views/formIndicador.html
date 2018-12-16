@@ -1,81 +1,120 @@
-      <!-- Forms Section-->
-      <section class="forms"> 
-        <div class="container-fluid">
-          <div class="row">
-            <!-- Horizontal Form-->
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-close">
-                  <div class="dropdown">
-                    <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                    <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow">
-                      <a href="public/#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="public/#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-header d-flex align-items-center">
-                  <h3 class="h4">Crear Indicador</h3>
-                </div>
-                <div class="card-body">      
-                <form class="form-horizontal">
-                <div class="form-group row">
-                  <label class="col-sm-3 form-control-label">Nombre</label>
-                    <div class="col-sm-9">
-                      <input id="idNombre" type="text" placeholder="Nombre" class="form-control form-control-success">
-                    </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-3 form-control-label">Descripcion</label>
-                    <div class="col-sm-9">
-                      <input id="idDescripcion" type="text" placeholder="Descripcion" class="form-control form-control-success">
-                    </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-3 form-control-label">Imagen</label>
-                <div class="col-sm-9">                            
-                  <input type="file" class="form-control-file" id="idImagen" accept="image/*">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 form-control-label">Padre</label>
-                  <div class="col-sm-9 select">
-                    <select name="account" class="form-control">
-                      <option>option 1</option>
-                      <option>option 2</option>
-                      <option>option 3</option>
-                      <option>option 4</option>
-                    </select>
-                  </div>
-              </div>
-              <div class="line"></div>
-                <div class="form-group row">
-                  <label for="example-date-input" class="col-4 col-form-label">Inicio de Periodo*</label>
-                  <div class="col-6">
-                    <input class="form-control" type="date" value="2011-08-19" id="idInicioP">
-                  </div>
-                </div>
-                <div class="form-group row">
-                <label for="example-date-input" class="col-4 col-form-label">Final de Periodo*</label>
-                  <div class="col-6">
-                    <input class="form-control" type="date" value="2011-08-19" id="idFinalP">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-3 form-control-label">Metal</label>
-                  <div class="col-sm-9">
-                    <input id="idMetal" type="number" placeholder="Metal" class="form-control form-control-success">
-                  </div>
-                </div>
-                <div class="line"></div>                     
-                  <div class="form-group row">       
-                    <div class="col-sm-9 offset-sm-3">
-                      <input type="submit" value="Agregar" class="btn btn-primary">
-                      <button href="public/tableindicador.html" class="btn btn-secondary">Lista de indicadores</button>
-                    </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </section>
+<!-- Forms Section-->
+         <section class="forms">
+           <div class="container-fluid">
+             <div class="row">
+
+
+               <!-- Horizontal Form-->
+               <div class="col-lg-6">
+                 <div class="card">
+                   <div class="card-close">
+                     <div class="dropdown">
+                       <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                       <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                     </div>
+                   </div>
+                   <div class="card-header d-flex align-items-center">
+                     <h3 class="h4">Crear Indicador</h3>
+                   </div>
+                   <div class="card-body">
+
+                     <form class="form-horizontal">
+
+                       <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Nombre</label>
+                         <div class="col-sm-9">
+                           <input id="idNombre" type="text" placeholder="Nombre" class="form-control form-control-success">
+                         </div>
+                       </div>
+
+                       <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Descripcion</label>
+                         <div class="col-sm-9">
+                           <input id="idDescripcion" type="text" placeholder="Descripcion" class="form-control form-control-success">
+                         </div>
+                       </div>
+
+                       <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Imagen</label>
+                         <div class="col-sm-9">
+                           <input type="file" class="form-control" id="idImagen" accept="image/*">
+                         </div>
+                       </div>
+
+                       <div class="line"></div>
+
+                       <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Meta</label>
+                         <div class="col-sm-9">
+                           <input id="idMeta" type="number" placeholder="Meta" class="form-control form-control-success">
+                         </div>
+                       </div>
+
+                     <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Unidad de Medida</label>
+                         <div class="col-sm-9">
+                           <input id="UMedida" type="text" placeholder="Unidad de Medida" class="form-control form-control-success">
+                         </div>
+                       </div>
+
+                       <div class="form-group row">
+                         <label for="example-date-input" class="col-4 col-form-label">Inicio de Periodo*</label>
+                         <div class="col-6">
+                           <input class="form-control" type="date" id="idInicioP">
+                         </div>
+                       </div>
+
+                       <div class="form-group row">
+                         <label for="example-date-input" class="col-4 col-form-label">Final de Periodo*</label>
+                         <div class="col-6">
+                           <input class="form-control" type="date" id="idFinalP">
+                         </div>
+                       </div>
+
+
+                       <div class="line"></div>
+
+
+                       <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Rojo</label>
+                         <div class="col-sm-9">
+                           <input id="idRojo" type="number" placeholder="0" class="form-control form-control-success">
+                         </div>
+
+                         <label class="col-sm-3 form-control-label">Amarillo</label>
+                         <div class="col-sm-9">
+                           <input id="idAmarillo" type="number" placeholder="0" class="form-control form-control-success">
+                         </div>
+
+                         <label class="col-sm-3 form-control-label">Verde</label>
+                         <div class="col-sm-9">
+                           <input id="idVerde" type="number" placeholder="0" class="form-control form-control-success">
+                         </div>
+                       </div>
+
+                       <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Cantidad</label>
+                         <div class="col-sm-9">
+                           <input id="idCantidad" type="number" placeholder="0" class="form-control form-control-success">
+                         </div>
+                       </div>
+
+
+                       <div class="line"></div>
+
+                       <div class="form-group row">
+                         <div class="col-sm-9 offset-sm-3">
+                           <input type="submit" value="Agregar" class="btn btn-primary">
+                           <button href="tableindicador.html" class="btn btn-secondary">Lista de indicadores</button>
+                         </div>
+
+                     </form>
+                   </div>
+                 </div>
+               </div>
+
+
+
+             </div>
+           </div>
+         </section>
