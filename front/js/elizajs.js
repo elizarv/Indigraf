@@ -87,8 +87,3 @@ function exitoEliminarIndicador(){
     });
     preIndicadorListPadre(0);//modificar luego, dependiendo de la rama en la que se este
   }
-
-
-	function prePeticionesList(){
-		cargaContenido('remp','front/views/peticiones.html');
-	}
