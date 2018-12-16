@@ -124,6 +124,13 @@ class PeriodoFacade {
      return $result;
   }
 
+  public static function listByIndicador($indicador){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
+     $result = $periodoDao->listByIndicador($indicador);
+     $periodoDao->close();
+     return $result;
+  }
 
 }
 //That´s all folks!

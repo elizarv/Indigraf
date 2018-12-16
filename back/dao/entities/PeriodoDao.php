@@ -155,6 +155,36 @@ $cantidad=$periodo->getCantidad();
       }
   }
 
+  public function listByIndicador($indicador){
+    $id=$indicador->getId();
+      $lista = array();
+      try {
+          $sql ="SELECT `fecha_ini`, `fecha_fin`, `verde`, `amarillo`, `rojo`, `indicador`, `id`, `cantidad`"
+          ."FROM `periodo`"
+          ."WHERE `indicador` = '$id'";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $periodo= new Periodo();
+          $periodo->setFecha_ini($data[$i]['fecha_ini']);
+          $periodo->setFecha_fin($data[$i]['fecha_fin']);
+          $periodo->setVerde($data[$i]['verde']);
+          $periodo->setAmarillo($data[$i]['amarillo']);
+          $periodo->setRojo($data[$i]['rojo']);
+           $indicador = new Indicador();
+           $indicador->setId($data[$i]['indicador']);
+           $periodo->setIndicador($indicador);
+          $periodo->setId($data[$i]['id']);
+          $periodo->setCantidad($data[$i]['cantidad']);
+
+          array_push($lista,$periodo);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
