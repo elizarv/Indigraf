@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2018 a las 20:23:13
--- Versión del servidor: 10.1.9-MariaDB
--- Versión de PHP: 5.6.15
+-- Tiempo de generación: 16-12-2018 a las 22:43:16
+-- Versión del servidor: 10.1.30-MariaDB
+-- Versión de PHP: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -85,10 +87,12 @@ INSERT INTO `indicador` (`id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPa
 CREATE TABLE `periodo` (
   `fecha_ini` datetime NOT NULL,
   `fecha_fin` datetime NOT NULL,
-  `meta` double NOT NULL,
+  `verde` double NOT NULL,
   `indicador` int(11) NOT NULL,
   `id` int(11) NOT NULL,
-  `cantidad` int(11) DEFAULT NULL
+  `cantidad` double NOT NULL,
+  `amarillo` double NOT NULL,
+  `rojo` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -178,16 +182,19 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `archivo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `indicador`
 --
 ALTER TABLE `indicador`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `periodo`
 --
 ALTER TABLE `periodo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -217,6 +224,7 @@ ALTER TABLE `periodo`
 ALTER TABLE `relacion`
   ADD CONSTRAINT `fk_Relacion_Indicador1` FOREIGN KEY (`sucesor`) REFERENCES `indicador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Relacion_Indicador2` FOREIGN KEY (`predecesor`) REFERENCES `indicador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
