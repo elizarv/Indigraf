@@ -92,3 +92,10 @@ function exitoEliminarIndicador(){
 function cargarMapa(){
 	cargaContenido('remp','front/views/mapa.html');
 }
+
+function cargarPersonalizar(){
+	cargaContenido('remp','front/views/personalizar.html');
+	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
+	str+='<li class="breadcrumb-item">Personalizar</li>';
+	document.getElementById("breadc").innerHTML=str;
+}
