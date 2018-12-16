@@ -329,9 +329,9 @@ function preUsuarioList(){
                 }
                 //----------------- Para una tabla -----------------------
                 str="<tr><td>"+i+"</td><td>"+Usuario.nombre+"</td><td>"+tipoU+"</td>";
-                str+="<td><a class='btn btn-warning btn-sm' data-toggle='tooltip' href='#'";
+                str+="<td><button class='btn btn-warning btn-sm' data-toggle='tooltip' onclick='preUsuarioSelect(\""+Usuario.username+"\")'";
                 str+="data-placement='top' title='Actualizar' id='actualizarUsuario'><i class='material-icons'>";
-                str+='create</i></a> <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top"';
+                str+='create</i></button> <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top"';
 								str+=' title="Eliminar" id="eliminarUsuario" onclick="eliminarUsuario(\''+Usuario.username+'\')">';
 								str+='<i class="material-icons">delete_sweep</i></button></td></tr>';
                 document.getElementById("UsuarioList").innerHTML+=str;
