@@ -11,7 +11,7 @@ function cargarActualzacionUsuarios(){
 	cargaContenido('remp','front/views/ActualizarUsuario.html');
 	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
 	str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioList()">Usuarios</a></li>';
-	str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioInsert()">Argregar Usuario</a></li>';
+	str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioInsert()">Arctualizar Usuario</a></li>';
 	document.getElementById("breadc").innerHTML=str;
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Agregar Usuario</h2>';
 }
@@ -62,7 +62,7 @@ function postUsuarioSelect(result,state){
             var json=JSON.parse(result);
                     if(json[0].msg=="exito"){
                         console.log(result);
-                       
+
                        document.getElementById('username').value = json[1].username;
                        document.getElementById('password').value = json[1].password;
                        document.getElementById('nombre').value = json[1].nombre;
