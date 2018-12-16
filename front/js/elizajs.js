@@ -18,8 +18,8 @@ function preIndicadorListPadre(padre){
 		 document.getElementById("cuenta").value=padre;
     //document.getElementById("breadc").innerHTML=str;
  		var str='<h2 class="no-margin-bottom">Indicadores</h2>';
-     document.getElementById("seccname").innerHTML=str;
- 	enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
+    document.getElementById("seccname").innerHTML=str;
+ 		enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
 }
 
  function postIndicadorListPadre(result,state){
@@ -32,16 +32,20 @@ function preIndicadorListPadre(padre){
                 //----------------- Para una tabla -----------------------
                 str='<div class="col-sm-6"><div class="card"><div class="card-bodyJ">';
                 str+='<h4 class="card-title">'+Indicador.nombre+'</h4><div class="row "><div class="col-sm-6">';
-                str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
-                str+='<div class="containerJ"><a href="#" class="btn btn-primaryJ">Detalles</a>';
-                str+='<a href="#" class="btn btn-primaryJ">Editar</a><a href="#" class="btn btn-primaryJ">Graficar</a>';
-                str+='<a href="javascript:eliminarIndicador(\''+Indicador.id+'\')" class="btn btn-primaryJ">Eliminar</a>';
 								if(Indicador.esPadre==1){
-								str+='<a href="javascript:preIndicadorListPadre(\''+Indicador.id+'\')" class="btn btn-primaryJ">Ver más</a></div></div></div></div></div></div>';
+									str+='<a title="Ver más" href="javascript:preIndicadorListPadre(\''+Indicador.id+'\')"><img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6"></a>';
+								}else{
+									str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
 								}
+                str+='<div class="containerJ">';
+								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="#" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
+								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="#" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
+								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="#" data-placement="top" title="Graficar"><i class="material-icons">assessment</i></a>';
+								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:eliminarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Eliminar"><i class="material-icons">delete</i></a>';
+
                 document.getElementById("IndicadorList").innerHTML+=str;
 								var str='<h2 class="no-margin-bottom">'+Indicador.nombre+'</h2>';
-						     document.getElementById("seccname").innerHTML=str;
+		 			      document.getElementById("seccname").innerHTML=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
          }else{

@@ -347,11 +347,16 @@ function eliminarUsuario(id){
   title: "Esta seguro?",
   text: "se eliminara el usuario",
   icon: "warning",
-  buttons: true,
+	buttons: true,
+  showCancelButton: true,
   dangerMode: true,
+	confirmButtonTetx: "OK",
+	cancelButtonText: 'No, cancel!',
 }).then((willDelete) => {
+	if(result.value){
     formData={'id':id};
     enviar(formData,'back/controller/usuario/UsuarioDelete.php',exito);
+	}
 });
 $('#actualizarUsuario').tooltip();
 $('#eliminarUsuario').tooltip();
