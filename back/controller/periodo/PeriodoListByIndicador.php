@@ -9,8 +9,8 @@
 include_once realpath('../../facade/PeriodoFacade.php');
 
 $id=$_POST['id'];
-$inidicador = new Indicador();
-$inidicador->setId($id);
+$indicador = new Indicador();
+$indicador->setId($id);
 $list=PeriodoFacade::listByIndicador($indicador);
 $rta="";
 foreach ($list as $obj => $Periodo) {	
@@ -30,7 +30,8 @@ if($rta!=""){
 	$rta = substr($rta, 0, -1);
 	$msg="{\"msg\":\"exito\"}";
 }else{
-	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
+	$msg="{\"msg\":\"exito\"}";
+	//$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
 	$rta="{\"result\":\"No se encontraron registros.\"}";	
 }
 echo "[{$msg},{$rta}]";
