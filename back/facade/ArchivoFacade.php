@@ -133,5 +133,23 @@ class ArchivoFacade {
     return $result;
   }
 
+  public static function listIn($id){
+    $FactoryDao=new FactoryDao(self::getGestorDefault());
+    $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
+    $result = $archivoDao->listIn($id);
+    $archivoDao->close();
+    return $result;
+  }
+
+  public static function aprove($id){
+    $archivo = new Archivo();
+    $archivo->setId($id); 
+
+   $FactoryDao=new FactoryDao(self::getGestorDefault());
+   $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
+   $archivoDao->aprove($archivo);
+   $archivoDao->close();
+}
+
 }
 //That´s all folks!
