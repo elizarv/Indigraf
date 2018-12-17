@@ -115,6 +115,9 @@ function postUsuarioUpdate(result,state){
 function prePeticionesList(){
     //Solicite información del servidor
     cargaContenido('remp','front/views/peticiones.html');
+		str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
+		str+='<li class="breadcrumb-item">Lista de peticiones</li>'
+		document.getElementById("breadc").innerHTML=str;
     enviar("",'back/controller/indicador/IndicadorList.php',postPeticionesList);
 }
 
