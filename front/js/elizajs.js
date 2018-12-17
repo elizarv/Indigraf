@@ -25,7 +25,7 @@ function preIndicadorListPadre(padre,nombre){
 		 }
 		 document.getElementById("papa").value=padre;
     //document.getElementById("breadc").innerHTML=str;
- 		var str='<h2 class="no-margin-bottom">Indicadores</h2>';
+ 		var str='<h2 class="no-margin-bottom">'+nombre+'</h2>';
     document.getElementById("seccname").innerHTML=str;
  		enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
 }
@@ -79,8 +79,6 @@ function pintarMenus(nombres,ids){
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:eliminarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Eliminar"><i class="material-icons">delete</i></a>';
 
                 document.getElementById("IndicadorList").innerHTML+=str;
-								var str='<h2 class="no-margin-bottom">'+Indicador.nombre+'</h2>';
-		 			      document.getElementById("seccname").innerHTML=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
 						var papa=document.getElementById("papa").value;
