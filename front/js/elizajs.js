@@ -3,6 +3,7 @@ var cuenta=0;
 var papa=0;
 var arrayNombres=[];
 var arrayIds=[];
+var nombreIndicador;
 
 function cargarInicio(){
 	cargaContenido('remp','front/views/home.html');
@@ -16,11 +17,9 @@ function preIndicadorListPadre(padre,nombre){
      //Solicite información del servidor
      formData={'padre':padre};
      cargaContenido('remp','front/views/indicadores.html');
-
 		 document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
-
 		 cargarMenus(padre,cuenta);
-		 if(padre==0 || padre>papa){
+		 if(padre==0 || padre>papa || papa==10000){
 			 document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>"+nombre+"</li>");
 			 arrayNombres[cuenta]=nombre;
 			 arrayIds[cuenta]=padre;
@@ -28,8 +27,10 @@ function preIndicadorListPadre(padre,nombre){
 		 }
 		 papa=padre;
  		var str='<h2 class="no-margin-bottom">'+nombre+'</h2>';
+		nombreIndicador=nombre;
     document.getElementById("seccname").innerHTML=str;
- 		enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
+		enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
+
 }
 
 function cargarMenus(padre,c){
@@ -84,8 +85,7 @@ function pintarMenus(nombres,ids){
                 document.getElementById("IndicadorList").innerHTML+=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
-
-						document.getElementById("agregarIndi").innerHTML='<a href="javascript:cargarFormIndicador(\''+papa+'\')"><img id="plus" src="front/public/icons-reference/plus.png" alt="Card image"></a>';
+						document.getElementById("agregarIndi").innerHTML='<a href="javascript:cargarFormIndicador(\''+papa+'\',\''+nombreIndicador+'\')"><img id="plus" src="front/public/icons-reference/plus.png" alt="Card image"></a>';
          }else{
             alert("no tiene subindicadores");
          }
@@ -94,14 +94,6 @@ function pintarMenus(nombres,ids){
      }
 }
 
-function cargarFormIndicador(padre){
-	cargaContenido('remp','front/views/formIndicador.html');
-	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
-	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores(padre)">Indicadores</a></li>';
-	str+='<li class="breadcrumb-item">Agergar Indicador</a></li>';
-	document.getElementById("breadc").innerHTML=str;
-	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Agregar Indicador</h2>';
-}
 
 function eliminarIndicador(id){
     swal({
@@ -151,6 +143,17 @@ function postCargarDetalles(result,state){
 		 	 	var Indicador = json[1];
 				cargarMenus(Indicador.padre,cuenta);
 				document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Detalles '+Indicador.nombre+'</li>';
+				cuenta++;
+				papa=10000;
 			}
  	}
+}
+
+
+function cargarFormIndicador(padre,nombre){
+	cargaContenido('remp','front/views/formIndicador.html');
+	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+	cargarMenus(padre,cuenta);
+	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\''+padre+'\',\''+nombre+'\')">'+nombre+'</a></li>';
+	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Agregar Indicador</li>';
 }
