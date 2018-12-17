@@ -21,9 +21,11 @@ function preIndicadorListPadre(padre,nombre){
 		 cargarMenus(padre,cuenta);
 		 if(padre==0 || padre>papa || papa==10000){
 			 document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>"+nombre+"</li>");
-			 arrayNombres[cuenta]=nombre;
-			 arrayIds[cuenta]=padre;
-			 cuenta+=1;
+			 if(papa!=10000){
+				 arrayNombres[cuenta]=nombre;
+				 arrayIds[cuenta]=padre;
+				 cuenta+=1;
+		 	}
 		 }
 		 papa=padre;
  		var str='<h2 class="no-margin-bottom">'+nombre+'</h2>';
@@ -53,11 +55,11 @@ function pintarMenus(nombres,ids){
 	cuenta=nombres.length-1;
 	arrayNombres=[];
 	arrayIds=[];
-	for (var i = 1; i < nombres.length; i++) {
-		nombre=nombres.pop();
-		id=ids.pop();
-		arrayNombres.push(nombre);
-		arrayIds.push(id);
+	for (var i = 0; i <= nombres.length; i++) {
+		nombre=nombres[i];
+		id=ids[i];
+		arrayNombres[i]=nombre;
+		arrayIds[i]=id;
 	}
 }
 
@@ -143,7 +145,6 @@ function postCargarDetalles(result,state){
 		 	 	var Indicador = json[1];
 				cargarMenus(Indicador.padre,cuenta);
 				document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Detalles '+Indicador.nombre+'</li>';
-				cuenta++;
 				papa=10000;
 			}
  	}
@@ -154,6 +155,10 @@ function cargarFormIndicador(padre,nombre){
 	cargaContenido('remp','front/views/formIndicador.html');
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
 	cargarMenus(padre,cuenta);
-	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\''+padre+'\',\''+nombre+'\')">'+nombre+'</a></li>';
+	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre('+padre+',\''+nombre+'\')">'+nombre+'</a></li>';
+	arrayNombres[cuenta]=nombre;
+	arrayIds[cuenta]=padre;
+	cuenta+=1;
+	papa=10000;
 	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Agregar Indicador</li>';
 }
