@@ -1,12 +1,13 @@
 
 var cuenta=0;
 var papa=0;
+var arrayNombres=[];
+var arrayIds=[];
 
 function cargarInicio(){
 	cargaContenido('remp','front/views/home.html');
 	cuenta=0;
 	papa=0;
-	document.getElementById("menus").innerHTML="";
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><i class="material-icons">home</i></li>';
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Inicio</h2>';
 }
@@ -21,12 +22,11 @@ function preIndicadorListPadre(padre,nombre){
 		 cargarMenus(padre,cuenta,'1');
 		 if(padre==0 || padre>papa){
 			 document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>"+nombre+"</li>");
-			 document.getElementById("menus").innerHTML+=("<input type='hidden' id='MENU"+cuenta+"' value='"+nombre+"'>");
-			 document.getElementById("menus").innerHTML+=("<input type='hidden' id='PADRE"+cuenta+"' value='"+padre+"'>");
+			 arrayNombres[cuenta]=nombre;
+			 arrayIds[cuenta]=padre;
 			 cuenta+=1;
 		 }
 		 papa=padre;
-    //document.getElementById("breadc").innerHTML=str;
  		var str='<h2 class="no-margin-bottom">'+nombre+'</h2>';
     document.getElementById("seccname").innerHTML=str;
  		enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
@@ -36,8 +36,8 @@ function cargarMenus(padre,c,tipo){
 	var nombres=[];
 	var ids=[];
 		for (var i = 0; i < c; i++) {
-			nombre=document.getElementById("MENU"+i).value;
-			id=document.getElementById("PADRE"+i).value;
+			nombre=arrayNombres[i];
+			id=arrayIds[i];
 			nombres.push(nombre);
 			ids.push(id);
 			if(id==padre && tipo==1){
@@ -50,12 +50,13 @@ function cargarMenus(padre,c,tipo){
 
 function pintarMenus(nombres,ids){
 	cuenta=nombres.length-1;
-	document.getElementById("menus").innerHTML="";
+	arrayNombres=[];
+	arrayIds=[];
 	for (var i = 1; i < nombres.length; i++) {
 		nombre=nombres.pop();
 		id=ids.pop();
-		document.getElementById("menus").innerHTML+=("<input type='hidden' id='MENU"+i+"' value='"+nombre+"'>");
-		document.getElementById("menus").innerHTML+=("<input type='hidden' id='PADRE"+i+"' value='"+id+"'>");
+		arrayNombres.push(nombre);
+		arrayIds.push(id);
 	}
 }
 
