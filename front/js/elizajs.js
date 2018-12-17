@@ -98,7 +98,7 @@ function cargarFormIndicador(padre){
 	cargaContenido('remp','front/views/formIndicador.html');
 	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
 	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores(padre)">Indicadores</a></li>';
-	str+='<li class="breadcrumb-item"><a href="javascript:cargarFormIndicador(padre)">Agergar Indicador</a></li>';
+	str+='<li class="breadcrumb-item">Agergar Indicador</a></li>';
 	document.getElementById("breadc").innerHTML=str;
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Agregar Indicador</h2>';
 }
