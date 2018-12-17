@@ -29,7 +29,6 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($indicador){
-      $id=$indicador->getId();
 $nombre=$indicador->getNombre();
 $descripcion=$indicador->getDescripcion();
 $imagen=$indicador->getImagen();
@@ -41,7 +40,7 @@ $esPadre=$indicador->getEsPadre();
 
 
       try {
-          $sql= "INSERT INTO `indicador`( `id`, `nombre`, `descripcion`, `imagen`, `padre`,`esPadre`)"
+          $sql= "INSERT INTO `indicador`(`nombre`, `descripcion`, `imagen`, `padre`,`esPadre`)"
           ."VALUES ('$id','$nombre','$descripcion','$imagen','$padre','$esPadre')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {

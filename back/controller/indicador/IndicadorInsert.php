@@ -8,14 +8,13 @@
 //    Pero el ruiseñor no respondió; yacía muerto sobre las altas hierbas, con el corazón traspasado de espinas.  \\
 include_once realpath('../../facade/IndicadorFacade.php');
 
-$id = $_POST['id'];
-$nombre = $_POST['nombre'];
-$descripcion = $_POST['descripcion'];
-$imagen = $_POST['imagen'];
-$Indicador_id = $_POST['padre'];
+$nombre = $_POST['idNombre'];
+$descripcion = $_POST['idDescripcion'];
+$imagen = $_POST['idImagen'];
+$padre = $_POST['idPadre'];
 $indicador= new Indicador();
-$indicador->setId($Indicador_id);
-IndicadorFacade::insert($id, $nombre, $descripcion, $imagen, $indicador);
+$indicador->setId($padre);
+IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador);
 echo "true";
 
 //That´s all folks!

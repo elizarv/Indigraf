@@ -38,13 +38,13 @@ class IndicadorFacade {
    * @param imagen
    * @param padre
    */
-  public static function insert( $id,  $nombre,  $descripcion,  $imagen,  $padre){
+  public static function insert( $nombre,  $descripcion,  $imagen,  $padre){
       $indicador = new Indicador();
-      $indicador->setId($id); 
-      $indicador->setNombre($nombre); 
-      $indicador->setDescripcion($descripcion); 
-      $indicador->setImagen($imagen); 
-      $indicador->setPadre($padre); 
+      $indicador->setNombre($nombre);
+      $indicador->setDescripcion($descripcion);
+      $indicador->setImagen($imagen);
+      $indicador->setPadre($padre);
+      $indicador->setEsPadre(0);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
@@ -61,7 +61,7 @@ class IndicadorFacade {
    */
   public static function select($id){
       $indicador = new Indicador();
-      $indicador->setId($id); 
+      $indicador->setId($id);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
@@ -81,10 +81,10 @@ class IndicadorFacade {
    */
   public static function update($id, $nombre, $descripcion, $imagen, $padre){
       $indicador = self::select($id);
-      $indicador->setNombre($nombre); 
-      $indicador->setDescripcion($descripcion); 
-      $indicador->setImagen($imagen); 
-      $indicador->setPadre($padre); 
+      $indicador->setNombre($nombre);
+      $indicador->setDescripcion($descripcion);
+      $indicador->setImagen($imagen);
+      $indicador->setPadre($padre);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
@@ -99,7 +99,7 @@ class IndicadorFacade {
    */
   public static function delete($id){
       $indicador = new Indicador();
-      $indicador->setId($id); 
+      $indicador->setId($id);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
