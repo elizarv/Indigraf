@@ -19,7 +19,7 @@ function preIndicadorListPadre(padre,nombre){
 
 		 document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
 
-		 cargarMenus(padre,cuenta,'1');
+		 cargarMenus(padre,cuenta);
 		 if(padre==0 || padre>papa){
 			 document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>"+nombre+"</li>");
 			 arrayNombres[cuenta]=nombre;
@@ -32,7 +32,7 @@ function preIndicadorListPadre(padre,nombre){
  		enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
 }
 
-function cargarMenus(padre,c,tipo){
+function cargarMenus(padre,c){
 	var nombres=[];
 	var ids=[];
 		for (var i = 0; i < c; i++) {
@@ -40,7 +40,7 @@ function cargarMenus(padre,c,tipo){
 			id=arrayIds[i];
 			nombres.push(nombre);
 			ids.push(id);
-			if(id==padre && tipo==1){
+			if(id==padre){
 				pintarMenus(nombres,ids);
 				break;
 			}
@@ -76,7 +76,7 @@ function pintarMenus(nombres,ids){
 									str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
 								}
                 str+='<div class="containerJ">';
-								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles()" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
+								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="#" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:graficar(\''+Indicador.id+'\')" data-placement="top" title="Graficar"><i class="material-icons">assessment</i></a>';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:eliminarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Eliminar"><i class="material-icons">delete</i></a>';
@@ -137,13 +137,20 @@ function cargarPersonalizar(){
 }
 
 
-function preCargarDetalles(){
+function preCargarDetalles(id){
 	cargaContenido('remp','front/views/infoIndicador.html');
-	c=cuenta;
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
-	enviar(formData,'back/controller/indicador/IndicadorDelete.php',postCargarDetalles);
+	formData={'id':id};
+	enviar(formData,'back/controller/indicador/Indicadorselect.php',postCargarDetalles);
 }
 
-function postCargarDetalles(){
-
+function postCargarDetalles(result,state){
+	if(state=="success"){
+			var json=JSON.parse(result);
+			if(json[0].msg=="exito"){
+		 	 	var Indicador = json[1];
+				cargarMenus(Indicador.padre,cuenta);
+				document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Detalles '+Indicador.nombre+'</li>';
+			}
+ 	}
 }
