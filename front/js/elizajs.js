@@ -1,26 +1,60 @@
 
 function cargarInicio(){
 	cargaContenido('remp','front/views/home.html');
-	document.getElementById("cuenta").value=10000;
+	document.getElementById("papa").value=0;
+	document.getElementById("cuenta").value=0;
+	document.getElementById("menus").innerHTML="";
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><i class="material-icons">home</i></li>';
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Inicio</h2>';
 }
 
-function preIndicadorListPadre(padre){
+function preIndicadorListPadre(padre,nombre){
      //Solicite información del servidor
      formData={'padre':padre};
      cargaContenido('remp','front/views/indicadores.html');
+
 		 document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
-		/* if(document.getElementById("cuenta").value==10000){
-			 $("#breadc").append('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\''+padre+'\')">Indicadores</a></li>');
-	 	}else if(document.getElementById("cuenta").value!=padre){
-			 $("#breadc").append('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\''+padre+'\')">Indicadores'+padre+'</a></li>');
-		 }*/
-		 document.getElementById("cuenta").value=padre;
+		 var c=document.getElementById("cuenta").value;
+		 cargarMenus(padre,c);
+		 if(padre==0 || padre>document.getElementById("papa").value){
+			 c=document.getElementById("cuenta").value;
+			 document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>"+nombre+"</li>");
+			 document.getElementById("menus").innerHTML+=("<input type='hidden' id='MENU"+c+"' value='"+nombre+"'>");
+			 document.getElementById("menus").innerHTML+=("<input type='hidden' id='PADRE"+c+"' value='"+padre+"'>");
+			 document.getElementById("cuenta").value=parseInt(c)+1;
+		 }
+		 document.getElementById("papa").value=padre;
     //document.getElementById("breadc").innerHTML=str;
  		var str='<h2 class="no-margin-bottom">Indicadores</h2>';
     document.getElementById("seccname").innerHTML=str;
  		enviar(formData,'back/controller/indicador/IndicadorListPadre.php',postIndicadorListPadre);
+}
+
+function cargarMenus(padre,c){
+	var nombres=[];
+	var ids=[];
+		for (var i = 0; i < c; i++) {
+			nombre=document.getElementById("MENU"+i).value;
+			id=document.getElementById("PADRE"+i).value;
+			nombres.push(nombre);
+			ids.push(id);
+			if(id==padre){
+				pintarMenus(nombres,ids);
+				break;
+			}
+			document.getElementById("breadc").innerHTML+=('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre('+id+',\''+nombre+'\')">'+nombre+'</a></li>');
+		}
+}
+
+function pintarMenus(nombres,ids){
+	document.getElementById("cuenta").value=nombres.length-1;
+	document.getElementById("menus").innerHTML="";
+	for (var i = 1; i < nombres.length; i++) {
+		nombre=nombres.pop();
+		id=ids.pop();
+		document.getElementById("menus").innerHTML+=("<input type='hidden' id='MENU"+i+"' value='"+nombre+"'>");
+		document.getElementById("menus").innerHTML+=("<input type='hidden' id='PADRE"+i+"' value='"+id+"'>");
+	}
 }
 
  function postIndicadorListPadre(result,state){
@@ -34,7 +68,7 @@ function preIndicadorListPadre(padre){
                 str='<div class="col-sm-6"><div class="card"><div class="card-bodyJ">';
                 str+='<h4 class="card-title">'+Indicador.nombre+'</h4><div class="row "><div class="col-sm-6">';
 								if(Indicador.esPadre==1){
-									str+='<a title="Ver más" href="javascript:preIndicadorListPadre(\''+Indicador.id+'\')"><img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6"></a>';
+									str+='<a title="Ver más" href="javascript:preIndicadorListPadre(\''+Indicador.id+'\',\''+Indicador.nombre+'\')"><img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6"></a>';
 								}else{
 									str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
 								}
@@ -49,7 +83,7 @@ function preIndicadorListPadre(padre){
 		 			      document.getElementById("seccname").innerHTML=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------
             }
-						var papa=document.getElementById("cuenta").value;
+						var papa=document.getElementById("papa").value;
 						document.getElementById("agregarIndi").innerHTML='<a href="javascript:cargarFormIndicador(\''+papa+'\')"><img id="plus" src="front/public/icons-reference/plus.png" alt="Card image"></a>';
          }else{
             alert("no tiene subindicadores");
@@ -86,7 +120,7 @@ function exitoEliminarIndicador(){
     swal("El indicador se ha eliminado con exito!!", {
       icon: "success",
     });
-    preIndicadorListPadre(0);//modificar luego, dependiendo de la rama en la que se este
+    preIndicadorListPadre(0,'Indicadores');//modificar luego, dependiendo de la rama en la que se este
   }
 
 
