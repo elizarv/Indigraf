@@ -177,6 +177,43 @@ $estado=$archivo->getEstado();
     }
 }
 
+public function listIn($id){
+    $lista = array();
+    try {
+        $sql ="SELECT archivo.* FROM `archivo`, periodo WHERE archivo.estado = '1' and archivo.periodo = periodo.id and indicador = '$id' ";
+        $data = $this->ejecutarConsulta($sql);
+        for ($i=0; $i < count($data) ; $i++) {
+            $archivo= new Archivo();
+        $archivo->setId($data[$i]['id']);
+        $archivo->setUrl($data[$i]['url']);
+         $usuario = new Usuario();
+         $usuario->setUsername($data[$i]['subidoPor']);
+         $archivo->setSubidoPor($usuario);
+        $archivo->setFechaSubida($data[$i]['fechaSubida']);
+        $archivo->setDescripcion($data[$i]['descripcion']);
+         $periodo = new Periodo();
+         $periodo->setId($data[$i]['periodo']);
+         $archivo->setPeriodo($periodo);
+        array_push($lista,$archivo);
+        }
+    return $lista;
+    } catch (SQLException $e) {
+        throw new Exception('Primary key is null');
+    return null;
+    }
+}
+
+public function aprove($archivo){
+    $id=$archivo->getId();
+
+    try {
+        $sql ="UPDATE `archivo` SET `estado` = 0 WHERE id = '$id'";
+        return $this->insertarConsulta($sql);
+    } catch (SQLException $e) {
+        throw new Exception('Primary key is null');
+    }
+}
+
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);

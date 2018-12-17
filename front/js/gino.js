@@ -1,6 +1,7 @@
 var cantidadI="";
 var contador=1;
 var cantidades= [];
+var idIndicador="";
 function cargarRegistroUsuarios(){
 	cargaContenido('remp','front/views/registrarUsuario.html');
 	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>'
@@ -154,7 +155,7 @@ function postPeticionesCant(result,state){
         var json=JSON.parse(result);
         if(json[0].msg=="exito"){
             for(var i=1; i < Object.keys(json).length; i++) {
-              document.getElementById(json[i].indi).innerHTML = "<a href='#'>"+json[i].cant+"</a>";
+              document.getElementById(json[i].indi).innerHTML = "<a href='javascript:cargarVistaAprobar("+json[i].indi+")'>"+json[i].cant+"</a>";
 
             }
         }
@@ -162,3 +163,66 @@ function postPeticionesCant(result,state){
         alert("Hubo un errror interno ( u.u)\n"+result);
     }
 }
+
+function cargarVistaAprobar(id){
+    idIndicador=id;
+    cargaContenido('remp','front/views/aprobarArchivos.html');
+    formData={'id':id};
+    enviar(formData,'back/controller/archivo/ArchivoListIn.php',postAprobarList);
+}
+
+function postAprobarList(result,state){
+    //Maneje aquí la respuesta del servidor.
+    if(state=="success"){
+        console.log(result);
+        var json=JSON.parse(result);
+        if(json[0].msg=="exito"){
+            for(var i=1; i < Object.keys(json).length; i++) {
+              
+                str="<tr><td>"+i+"</td><td>"+json[i].subidoPor_username+"</td><td><a href='"+json[i].url+"'>Ver mas</a></td><td><button onclick='aprobarArchivo("+json[i].id+")' class='btn btn-warning btn-sm' data-toggle='tooltip' data-placement='top' title='Aprobar' id='aprobarArchivo'><i class='material-icons'>thumb_up_alt</i></button> <button  onclick='eliminarArchivo("+json[i].id+")' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='top' title='Eliminar' id='eliminarArchivo'><i class='material-icons'>delete_sweep</i></button></td></tr>";
+                document.getElementById("archivos").innerHTML+=str;
+            }
+        }
+    }else{
+        alert("Hubo un errror interno ( u.u)\n"+result);
+    }
+}
+
+function eliminarArchivo(id){
+    swal({
+        title: "Esta seguro?",
+        text: "se eliminara el archivo",
+        icon: "warning",
+          buttons: true,
+        dangerMode: true,
+          confirmButtonTetx: "OK",
+      }).then((willDelete) => {
+          if(willDelete){
+          formData={'id':id};
+          enviar(formData,'back/controller/archivo/ArchivoDelete.php',exito);
+          }
+      });
+}
+
+function aprobarArchivo(id){
+    swal({
+        title: "Esta seguro?",
+        text: "se aprobara el archivo",
+        icon: "warning",
+          buttons: true,
+        dangerMode: true,
+          confirmButtonTetx: "OK",
+      }).then((willDelete) => {
+          if(willDelete){
+          formData={'id':id};
+          enviar(formData,'back/controller/archivo/ArchivoAprove.php',exito);
+          }
+      });
+}
+
+function exito(){
+    swal("La transaccion se realizco con exito!!", {
+      icon: "success",
+    });
+    cargarVistaAprobar(idIndicador);
+  }
