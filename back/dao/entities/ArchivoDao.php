@@ -156,6 +156,27 @@ $estado=$archivo->getEstado();
       }
   }
 
+  public function listByIn(){
+    $lista = array();
+    $indicadores = array();
+    try {
+        $sql ="SELECT COUNT(*) , indicador FROM `archivo`, periodo WHERE archivo.estado = '1' and archivo.periodo = periodo.id group by indicador ";
+        $data = $this->ejecutarConsulta($sql);
+        for ($i=0; $i < count($data) ; $i++) {
+            array_push($indicadores,$data[$i]['COUNT(*)']);
+            array_push($indicadores,$data[$i]['indicador']);
+            array_push($lista,$indicadores);
+            unset($indicadores);
+            $indicadores = array();
+        }
+        
+        return $lista;
+    } catch (SQLException $e) {
+        throw new Exception('Primary key is null');
+    return null;
+    }
+}
+
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);

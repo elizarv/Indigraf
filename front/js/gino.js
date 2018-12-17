@@ -1,3 +1,6 @@
+var cantidadI="";
+var contador=1;
+var cantidades= [];
 function cargarRegistroUsuarios(){
 	cargaContenido('remp','front/views/registrarUsuario.html');
 	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
@@ -107,3 +110,53 @@ function postUsuarioUpdate(result,state){
             alert("Hubo un errror interno ( u.u)\n"+result);
             }
 }
+
+// Peticiones
+function prePeticionesList(){
+    //Solicite información del servidor
+    cargaContenido('remp','front/views/peticiones.html');
+    enviar("",'back/controller/indicador/IndicadorList.php',postPeticionesList);
+}
+
+
+function postPeticionesList(result,state){
+    //Maneje aquí la respuesta del servidor.
+    if(state=="success"){
+        var json=JSON.parse(result);
+        var cantidad = Object.keys(json).length;
+        cantidadI= cantidad;
+        if(json[0].msg=="exito"){
+           for(var i=1; i < Object.keys(json).length; i++) {
+              
+               //----------------- Para una tabla -----------------------
+               
+               
+               str="<tr><td>"+i+"</td><td>"+json[i].nombre+"</td><td id="+json[i].id+"></td></tr>";
+               document.getElementById("peticionesList").innerHTML+=str;
+               document.getElementById("cantidadI").value= cantidad
+               
+           }
+           enviar("",'back/controller/archivo/ArchivoCantByIn.php',postPeticionesCant);
+           
+        }
+    }else{
+        alert("Hubo un errror interno ( u.u)\n"+result);
+    }
+}
+
+function postPeticionesCant(result,state){
+    //Maneje aquí la respuesta del servidor.
+    if(state=="success"){
+        console.log(result);
+        var json=JSON.parse(result);
+        if(json[0].msg=="exito"){
+            for(var i=1; i < Object.keys(json).length; i++) {
+              document.getElementById(json[i].indi).innerHTML = "<a href='#'>"+json[i].cant+"</a>";
+                
+            }
+        }
+    }else{
+        alert("Hubo un errror interno ( u.u)\n"+result);
+    }
+}
+
