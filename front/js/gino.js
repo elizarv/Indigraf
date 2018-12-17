@@ -3,7 +3,7 @@ var contador=1;
 var cantidades= [];
 function cargarRegistroUsuarios(){
 	cargaContenido('remp','front/views/registrarUsuario.html');
-	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
+	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>'
 	str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioList()">Usuarios</a></li>';
 	str+='<li class="breadcrumb-item">Argregar Usuario</li>';
 	document.getElementById("breadc").innerHTML=str;
@@ -12,7 +12,7 @@ function cargarRegistroUsuarios(){
 
 function cargarActualzacionUsuarios(){
 	cargaContenido('remp','front/views/ActualizarUsuario.html');
-	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
+	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>'
 	str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioList()">Usuarios</a></li>';
 	str+='<li class="breadcrumb-item">Arctualizar Usuario</li>';
 	document.getElementById("breadc").innerHTML=str;
@@ -115,7 +115,7 @@ function postUsuarioUpdate(result,state){
 function prePeticionesList(){
     //Solicite información del servidor
     cargaContenido('remp','front/views/peticiones.html');
-		str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
+		str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
 		str+='<li class="breadcrumb-item">Lista de peticiones</li>'
 		document.getElementById("breadc").innerHTML=str;
     enviar("",'back/controller/indicador/IndicadorList.php',postPeticionesList);

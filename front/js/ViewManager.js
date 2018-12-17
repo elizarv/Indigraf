@@ -300,7 +300,7 @@ function preUsuarioList(){
      //Solicite información del servidor
     cargaContenido('remp','front/views/listarUsuarios.html');
  		enviar("",'back/controller/usuario/UsuarioList.php',postUsuarioList);
-    var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
+    var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>'
     str+='<li class="breadcrumb-item">Usuarios</li>';
     document.getElementById("breadc").innerHTML=str;
     document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Usuarios</h2>';

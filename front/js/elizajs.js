@@ -2,7 +2,7 @@
 function cargarInicio(){
 	cargaContenido('remp','front/views/home.html');
 	document.getElementById("cuenta").value=10000;
-	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
+	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><i class="material-icons">home</i></li>';
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Inicio</h2>';
 }
 
@@ -10,11 +10,12 @@ function preIndicadorListPadre(padre){
      //Solicite información del servidor
      formData={'padre':padre};
      cargaContenido('remp','front/views/indicadores.html');
-		 if(document.getElementById("cuenta").value==10000){
+		 document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+		/* if(document.getElementById("cuenta").value==10000){
 			 $("#breadc").append('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\''+padre+'\')">Indicadores</a></li>');
 	 	}else if(document.getElementById("cuenta").value!=padre){
 			 $("#breadc").append('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre(\''+padre+'\')">Indicadores'+padre+'</a></li>');
-		 }
+		 }*/
 		 document.getElementById("cuenta").value=padre;
     //document.getElementById("breadc").innerHTML=str;
  		var str='<h2 class="no-margin-bottom">Indicadores</h2>';
@@ -60,7 +61,7 @@ function preIndicadorListPadre(padre){
 
 function cargarFormIndicador(padre){
 	cargaContenido('remp','front/views/formIndicador.html');
-	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
+	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
 	str+='<li class="breadcrumb-item"><a href="javascript:cargarIndicadores(padre)">Indicadores</a></li>';
 	str+='<li class="breadcrumb-item"><a href="javascript:cargarFormIndicador(padre)">Agergar Indicador</a></li>';
 	document.getElementById("breadc").innerHTML=str;
@@ -95,7 +96,7 @@ function cargarMapa(){
 
 function cargarPersonalizar(){
 	cargaContenido('remp','front/views/personalizar.html');
-	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>';
+	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
 	str+='<li class="breadcrumb-item">Personalizar</li>';
 	document.getElementById("breadc").innerHTML=str;
 }
