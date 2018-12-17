@@ -125,6 +125,13 @@ class ArchivoFacade {
      return $result;
   }
 
+  public static function listByIn(){
+    $FactoryDao=new FactoryDao(self::getGestorDefault());
+    $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
+    $result = $archivoDao->listByIn();
+    $archivoDao->close();
+    return $result;
+  }
 
 }
 //That´s all folks!

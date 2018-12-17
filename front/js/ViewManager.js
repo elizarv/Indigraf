@@ -301,7 +301,7 @@ function preUsuarioList(){
     cargaContenido('remp','front/views/listarUsuarios.html');
  		enviar("",'back/controller/usuario/UsuarioList.php',postUsuarioList);
     var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()">Inicio</a></li>'
-    str+='<li class="breadcrumb-item"><a href="javascript:preUsuarioList()">Usuarios</a></li>';
+    str+='<li class="breadcrumb-item">Usuarios</li>';
     document.getElementById("breadc").innerHTML=str;
     document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Usuarios</h2>';
 }
