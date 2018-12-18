@@ -11,9 +11,7 @@ include_once realpath('../../facade/IndicadorFacade.php');
 $nombre = $_POST['idNombre'];
 $descripcion = $_POST['idDescripcion'];
 $unidadMedida = $_POST['UMedida'];
-$padre = $_POST['idPadre'];
-$indicador= new Indicador();
-$indicador->setId($padre);
+$id = $_POST['idPadre'];
 
 //capturar imagen cargada
 //capturamos los datos del fichero subido
@@ -40,10 +38,11 @@ $verde=$_POST['idVerde'];
 $amarillo=$_POST['idMeta'];
 $rojo=$_POST['idRojo'];
 $cantidad=$_POST['idCantidad'];
+$id=$_POST['idPadre'];
 
-$result= IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador,$unidadMedida);
+IndicadorFacade::update($id,$nombre, $descripcion, $imagen, $unidadMedida);
 $rta="{
-    \"id\":\"{$result}\",
+    \"id\":\"{$id}\",
     \"fecha_ini\":\"{$fecha_ini}\",
     \"fecha_fin\":\"{$fecha_fin}\",
     \"verde\":\"{$verde}\",
@@ -54,7 +53,7 @@ $rta="{
 
 
 $msg="{\"msg\":\"exito\"}";
-$tipo="{\"tipo\":\"insert\"}";
+$tipo="{\"tipo\":\"update\"}";
 echo "[{$msg},{$rta},{$tipo}]";
 
 //That´s all folks!

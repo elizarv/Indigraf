@@ -145,9 +145,6 @@ function postCargarDetalles(result,state){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){
 		 	 	var Indicador = json[1];
-				cargarMenus(Indicador.padre,cuenta);
-				document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Detalles '+Indicador.nombre+'</li>';
-				papa=10000;
 			}
  	}
 }
@@ -155,27 +152,27 @@ function postCargarDetalles(result,state){
 
 function cargarFormIndicador(padre,nombre){
 	cargaContenido('remp','front/views/formIndicador.html');
-	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
-	cargarMenus(padre,cuenta);
-	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre('+padre+',\''+nombre+'\')">'+nombre+'</a></li>';
-	arrayNombres[cuenta]=nombre;
-	arrayIds[cuenta]=padre;
-	cuenta+=1;
-	papa=10000;
-	idPadre=padre;
-	ultimoNombre=nombre;
 	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Agregar Indicador</li>';
 }
 
-function preIndicadorInsert(idForm){
+function preIndicadorInsert(idForm, tipo){
 		document.getElementById("idPadre").value=idPadre;
+		var rutaIndi;
+		var rutaPer;
+		if(tipo=='insert'){
+			rutaIndi='back/controller/indicador/IndicadorInsert.php';
+			rutaPer='back/controller/periodo/PeriodoInsert.php';
+		}else{
+			rutaIndi='back/controller/indicador/IndicadorUpdate.php';
+			rutaPer='back/controller/periodo/PeriodoUpdate.php';
+		}
     //Haga aquí las validaciones necesarias antes de enviar el formulario.
    if(validarForm(idForm)){
 		 var form = $("#"+idForm)[0];
 		 var formData=new FormData(form);
 		$.ajax({
                     type: "POST",
-                    url: "back/controller/indicador/IndicadorInsert.php",
+                    url: rutaIndi,
                     data: formData,
                     enctype: 'multipart/form-data',
                     contentType: false,
@@ -187,7 +184,8 @@ function preIndicadorInsert(idForm){
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo
 															 alert(json[1]);
-															 enviar(json[1],'back/controller/periodo/PeriodoInsert.php',postIndicadorInsert);
+															 if(json[2].tipo=="insert")enviar(json[1],rutaPer,postIndicadorInsert);
+															 else enviar(json[1],rutaPer,postIndicadorUpdate);
 													}else{
 														alert("que putas");
 														 alert("Hubo un errror en la inserción ( u.u)\n");
@@ -206,7 +204,7 @@ function preIndicadorInsert(idForm){
 function postIndicadorInsert(result, state){
 	if(state=="success"){
 							if(result=="true"){
-								swal("Indicador registrado con exito!!", {
+								swal("El indicador se ha agregado exitosamente", {
 										icon: "success",
 									});
 									//preIndicadorListPadre(idPadre,ultimoNombre);
@@ -220,10 +218,45 @@ function postIndicadorInsert(result, state){
 
 }
 
-function editarIndicador(idIndicador){
-	cargaContenido('remp','front/views/formIndicador.html');
-	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
-	cargarMenus(padre,cuenta);
-	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre('+padre+',\''+nombre+'\')">'+nombre+'</a></li>';
+function postIndicadorUpdate(result, state){
+	if(state=="success"){
+							if(result=="true"){
+								swal("El indicador se ha actualizado exitosamente", {
+										icon: "success",
+									});
+									//preIndicadorListPadre(idPadre,ultimoNombre);
+							}else{
+								 alert("Hubo un errror en la inserción ( u.u)\n"+result);
+							}
 
+ }else{
+			alert("Hubo un errror interno ( u.u)\n"+result);
+			}
+
+}
+
+
+function editarIndicador(id){
+	cargaContenido('remp','front/views/actualizarIndicador.html');
+	idPadre=id;
+	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Editar Indicador</li>';
+	enviar(formData,'back/controller/indicador/IndicadorSelect.php',llenarDatosIndicador);
+	enviar(formData,'back/controller/indicador/PediodoSelect.php',llenarDatosPeriodo);
+}
+
+function llenarDatosIndicador(result,state){
+	if(state=="success"){
+			var json=JSON.parse(result);
+							if(json[0].msg=="exito"){
+								 document.getElementById('idDescripcion').value = json[1].descripcion;
+								 document.getElementById('idNombre').value = json[1].nombre;
+								 tipo = json[1].tipo;
+								 $("#tipo").val(tipo);
+							}else{
+								 alert("Hubo un errror en la busqueda ( u.u)\n"+result);
+							}
+
+ }else{
+			alert("Hubo un errror interno ( u.u)\n"+result);
+			}
 }

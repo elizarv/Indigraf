@@ -8,6 +8,7 @@ $rta="";
 	$rta.="{
  	    \"id\":\"{$Indicador->getid()}\",
 	    \"nombre\":\"{$Indicador->getnombre()}\",
+	    \"descripcion\":\"{$Indicador->getdescripcion()}\",
 	    \"imagen\":\"{$Indicador->getimagen()}\",
 	    \"padre_id\":\"{$Indicador->getpadre()->getid()}\",
 			\"esPadre\":\"{$Indicador->getEsPadre()}\"

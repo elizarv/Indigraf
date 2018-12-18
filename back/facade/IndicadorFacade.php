@@ -79,12 +79,12 @@ class IndicadorFacade {
    * @param imagen
    * @param padre
    */
-  public static function update($id, $nombre, $descripcion, $imagen, $padre){
+  public static function update($id,$nombre, $descripcion, $imagen,$unidadMedida){
       $indicador = self::select($id);
       $indicador->setNombre($nombre);
       $indicador->setDescripcion($descripcion);
       $indicador->setImagen($imagen);
-      $indicador->setPadre($padre);
+      $indicador->setUnidadMedida($unidadMedida);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());

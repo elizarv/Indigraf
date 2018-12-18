@@ -88,14 +88,14 @@ $unidadMedida = $indicador->getUnidadMedida();
      */
   public function update($indicador){
       $id=$indicador->getId();
-$nombre=$indicador->getNombre();
-$descripcion=$indicador->getDescripcion();
-$imagen=$indicador->getImagen();
-$padre=$indicador->getPadre()->getId();
-$esPadre=$indicador->getEsPadre();
+      $nombre=$indicador->getNombre();
+      $descripcion=$indicador->getDescripcion();
+      $imagen=$indicador->getImagen();
+      $padre=$indicador->getPadre()->getId();
+      $esPadre=$indicador->getEsPadre();
 
       try {
-          $sql= "UPDATE `indicador` SET`id`='$id' ,`nombre`='$nombre' ,`descripcion`='$descripcion' ,`imagen`='$imagen' ,`padre`='$padre',`esPadre`='$esPadre' WHERE `id`='$id' ";
+          $sql= "UPDATE `indicador` SET`id`='$id' ,`nombre`='$nombre' ,`descripcion`='$descripcion' ,`imagen`='$imagen' ,`unidadMedida`='$unidadMedida' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

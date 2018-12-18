@@ -65,7 +65,6 @@ function postUsuarioSelect(result,state){
         if(state=="success"){
             var json=JSON.parse(result);
                     if(json[0].msg=="exito"){
-                        console.log(result);
 
                        document.getElementById('username').value = json[1].username;
                        document.getElementById('password').value = json[1].password;
