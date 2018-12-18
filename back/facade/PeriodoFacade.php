@@ -39,14 +39,14 @@ class PeriodoFacade {
    * @param id
    * @param cantidad
    */
-  public static function insert( $fecha_ini,  $fecha_fin,  $meta,  $indicador,  $id,  $cantidad){
+  public static function insert($fecha_ini,  $fecha_fin,  $verde,  $indicador,  $cantidad, $amarillo, $rojo){
       $periodo = new Periodo();
-      $periodo->setFecha_ini($fecha_ini); 
-      $periodo->setFecha_fin($fecha_fin); 
-      $periodo->setMeta($meta); 
-      $periodo->setIndicador($indicador); 
-      $periodo->setId($id); 
-      $periodo->setCantidad($cantidad); 
+      $periodo->setFecha_ini($fecha_ini);
+      $periodo->setFecha_fin($fecha_fin);
+      $periodo->setVerde($meta);
+      $periodo->setIndicador($indicador);
+      $periodo->setId($id);
+      $periodo->setCantidad($cantidad);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
@@ -63,7 +63,7 @@ class PeriodoFacade {
    */
   public static function select($id){
       $periodo = new Periodo();
-      $periodo->setId($id); 
+      $periodo->setId($id);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
@@ -84,11 +84,11 @@ class PeriodoFacade {
    */
   public static function update($fecha_ini, $fecha_fin, $meta, $indicador, $id, $cantidad){
       $periodo = self::select($id);
-      $periodo->setFecha_ini($fecha_ini); 
-      $periodo->setFecha_fin($fecha_fin); 
-      $periodo->setMeta($meta); 
-      $periodo->setIndicador($indicador); 
-      $periodo->setCantidad($cantidad); 
+      $periodo->setFecha_ini($fecha_ini);
+      $periodo->setFecha_fin($fecha_fin);
+      $periodo->setMeta($meta);
+      $periodo->setIndicador($indicador);
+      $periodo->setCantidad($cantidad);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
@@ -103,7 +103,7 @@ class PeriodoFacade {
    */
   public static function delete($id){
       $periodo = new Periodo();
-      $periodo->setId($id); 
+      $periodo->setId($id);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
