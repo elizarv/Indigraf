@@ -229,24 +229,39 @@ function exito(){
 
 function personalizar (idForm){
     if(validarForm(idForm)){
-        var formData=$('#'+idForm).serialize();
-        console.log(formData);
-        enviar(formData,'back/controller/administracion/AdministracionInsert.php',postPerzonalizar);
+        var form = $("#"+idForm)[0];
+		var formData=new FormData(form);
+        try{
+             var formData2={'id':0};
+            enviar(formData2,'back/controller/administracion/AdministracionDelete.php',"");
+        } catch(err) {
+            alert("ha ocurrido un error")
+        }
+        $.ajax({
+            type: "POST",
+            url: "back/controller/administracion/AdministracionInsert.php",
+            data: formData,
+            enctype: 'multipart/form-data',
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                console.log(data);
+                swal("La aplicación se personalizó con exito!!", {
+                    icon: "success",
+                  });
+                  enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+});
         }else{
             alert("Debe llenar los campos requeridos");
         }
 }
 
-function postPerzonalizar(){
-    var newTitle = document.getElementById('nombreEmpresa').value;
-    document.getElementById('nombreEmpresa').innerHTML = newTitle;
-    var colorP = document.getElementById('colorP').value;
-    var colorS = document.getElementById('colorS').value;
-    console.log(colorP,colorS);
-    swal("La aplicación se personalizó con exito!!", {
-      icon: "success",
-    });
-  }
+
 
   function window_onload(){
     enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
@@ -256,19 +271,24 @@ function postPerzonalizar(){
     //Maneje aquí la respuesta del servidor.
     if(state=="success"){
         var json=JSON.parse(result);
+        console.log(json);
         if(json[0].msg=="exito"){
             var nombre = json[Object.keys(json).length - 1].nombre;
             var colorP = json[Object.keys(json).length - 1].colorP;
             var colorS = json[Object.keys(json).length - 1].colorS;
+            var logo = json[Object.keys(json).length - 1].logo;
             document.getElementById("titulo").innerHTML = nombre;
             document.getElementById("navHeader").style.backgroundColor = colorP;
             document.getElementById("navFooter").style.backgroundColor = colorP;
+            //document.getElementById("logotipo").style.background.url = "../../../"+logo+"";
+            
             // insertar regla css
             if(colorP && colorS != ""){
                 var styleshe = document.styleSheets;
                 var csss = styleshe[Object.keys(styleshe).length - 1];
                 csss.insertRule(".btn-primary {background-color:"+colorS+"}", 0);
                 csss.insertRule(".material-icons {color:"+colorS+"}", 0);
+                csss.insertRule(".logotipo { width:50px; height:50px; display: inline-block; position: relative; background:url('../../../"+logo+"');}", 0);
             }
 
         }

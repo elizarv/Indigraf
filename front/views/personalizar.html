@@ -17,7 +17,7 @@
                             </div>
                             <div class="card-body ">
 
-                                <form class="form-horizontal" id="personalizar" action="javascript:personalizar('personalizar')" method="post">
+                                <form class="form-horizontal" enctype="multipart/form-data" id="personalizar" action="javascript:personalizar('personalizar')" method="post">
                                     <div class="col-sm-9">
 
                                         <label class="h4"  style="width: 100%; height: auto;" >Nombre:</label>
@@ -27,7 +27,7 @@
                                     <br>
                                     <div class="col-sm-9">
                                         <label  style="width: 100%; height: auto;" class="h4">Logo:  </label>
-                                                <input name="logo" id="logo" type="file" class="form-control form-control-file   "  style="width: 100%; height: auto;" multiple accept="image/jpeg, image/png" >
+                                                <input name="idLogo" id="idLogo" type="file" class="form-control form-control-file   "  style="width: 100%; height: auto;" accept="image/*">
                                     </div>
                                     <br>
                                       <div class="col-sm-9">
@@ -41,7 +41,7 @@
                                               <input type="color" id="colorS" name="colorS" >
                                           </div>
                                       </div>
-                                            <input type="hidden" id="id" name="id" value="">
+                                    <input type="hidden" id="id" name="id" value="0">
                                     <div class="text-center ">
 
                                         <input type="submit" value="Subir" class="btn btn-primary "  style="width: auto; height: auto;"  >
