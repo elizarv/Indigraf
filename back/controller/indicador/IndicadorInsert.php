@@ -10,7 +10,10 @@ include_once realpath('../../facade/IndicadorFacade.php');
 
 $nombre = $_POST['idNombre'];
 $descripcion = $_POST['idDescripcion'];
+$unidadMedida = $_POST['UMedida'];
 $padre = $_POST['idPadre'];
+$indicador= new Indicador();
+$indicador->setId($padre);
 
 //capturar imagen cargada
 //capturamos los datos del fichero subido
@@ -31,9 +34,10 @@ $array=explode('.',$nuevo_path);
 # Capturamos el último elemento del array anterior que vendría a ser la extensión
 $ext= end($array);
 $imagen="back/images/".$name;
-$indicador= new Indicador();
-$indicador->setId($padre);
-IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador);
-echo "true";
+
+$result= IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador,$unidadMedida);
+$rta="{\"id\":\"{$result}\"}";
+$msg="{\"msg\":\"exito\"}";
+echo "[{$msg},{$rta}]";
 
 //That´s all folks!

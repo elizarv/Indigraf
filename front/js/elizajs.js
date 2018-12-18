@@ -173,7 +173,6 @@ function preIndicadorInsert(idForm){
    if(validarForm(idForm)){
 		 var form = $("#"+idForm)[0];
 		 var formData=new FormData(form);
-    console.log(formData);
 		$.ajax({
                     type: "POST",
                     url: "back/controller/indicador/IndicadorInsert.php",
@@ -183,10 +182,12 @@ function preIndicadorInsert(idForm){
                     processData: false,
                     cache: false,
                     success: function (data) {
-                        if (data == "true") {
+											var json=JSON.parse(data);
+                        if (json[0].msg== "exito") {
 														 	 //insertar periodo
 															 enviar(formData,'back/controller/indicador/Indicadorselect.php',postIndicadorInsert);
 													}else{
+														alert("que putas");
 														 alert("Hubo un errror en la inserción ( u.u)\n");
 													}
                     },
@@ -201,12 +202,12 @@ function preIndicadorInsert(idForm){
 
 
 function postIndicadorInsert(result, state){
+	alert("hola");
 	if(state=="success"){
 							if(result=="true"){
 								swal("Indicador registrado con exito!!", {
 										icon: "success",
 									});
-
 									preIndicadorListPadre(idPadre,ultimoNombre);
 							}else{
 								 alert("Hubo un errror en la inserción ( u.u)\n"+result);
