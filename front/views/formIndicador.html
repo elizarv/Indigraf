@@ -40,17 +40,31 @@
                        <div class="line"></div>
 
                        <div class="form-group row">
+                           <label class="col-sm-3 form-control-label">Unidad de Medida</label>
+                           <div class="col-sm-9">
+                             <input id="UMedida" name="UMedida" type="text" placeholder="Unidad de Medida" class="form-control form-control-success" required>
+                           </div>
+                         </div>
+
+                       <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Meta</label>
                          <div class="col-sm-9">
                            <input id="idMeta" name="idMeta" type="number" step="any" placeholder="Meta" class="form-control form-control-success" required>
                          </div>
                        </div>
 
-                     <div class="form-group row">
-                         <label class="col-sm-3 form-control-label">Unidad de Medida</label>
+                       <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Valor Aceptable</label>
                          <div class="col-sm-9">
-                           <input id="UMedida" name="UMedida" type="text" placeholder="Unidad de Medida" class="form-control form-control-success" required>
+                           <input id="idRojo" name="idRojo" type="number" step="any" placeholder="0" class="form-control form-control-success" required>
                          </div>
+                      </div>
+                      <div class="form-group row">
+                         <label class="col-sm-3 form-control-label">Valor Límite</label>
+                         <div class="col-sm-9">
+                           <input id="idAmarillo" name="idAmarillo" type="number" step="any" placeholder="0" class="form-control form-control-success" required>
+                         </div>
+
                        </div>
 
                        <div class="form-group row">
@@ -69,20 +83,6 @@
 
 
                        <div class="line"></div>
-
-
-                       <div class="form-group row">
-                         <label class="col-sm-3 form-control-label">Límite Rojo</label>
-                         <div class="col-sm-9">
-                           <input id="idRojo" name="idRojo" type="number" step="any" placeholder="0" class="form-control form-control-success" required>
-                         </div>
-
-                         <label class="col-sm-3 form-control-label">Límite Amarillo</label>
-                         <div class="col-sm-9">
-                           <input id="idAmarillo" name="idAmarillo" type="number" step="any" placeholder="0" class="form-control form-control-success" required>
-                         </div>
-
-                       </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Cantidad</label>
