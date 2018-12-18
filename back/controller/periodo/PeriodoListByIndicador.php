@@ -13,10 +13,10 @@ $indicador = new Indicador();
 $indicador->setId($id);
 $list=PeriodoFacade::listByIndicador($indicador);
 $rta="";
-foreach ($list as $obj => $Periodo) {	
+foreach ($list as $obj => $Periodo) {		
 	$rta.="{
- 	    \"fecha_ini\":\"{$Periodo->getfecha_ini()}\",
-	    \"fecha_fin\":\"{$Periodo->getfecha_fin()}\",
+ 	    \"ini\":\"{$Periodo->getfecha_ini()}\",
+	    \"fin\":\"{$Periodo->getfecha_fin()}\",
 	    \"verde\":\"{$Periodo->getVerde()}\",
 	    \"amarillo\":\"{$Periodo->getAmarillo()}\",
 	    \"rojo\":\"{$Periodo->getRojo()}\",

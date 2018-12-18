@@ -30,13 +30,17 @@ function postGraficar(result,state){
          	if(json[1].result!="No se encontraron registros."){
                 periodos_Array=json;
                 cargarLasMaricadasDeGoogle();
-             	/*{
-    				Llenar el select con los periodos ini-fin >> value=id
-    				onChange cambiarGraficaPeriodo
-    			}
-             	*/             	
+                var mySelect=document.getElementById("selectGraficaPeriodos");
+                removeAllChildren(mySelect);
+             	for(var i=1; i < Object.keys(json).length; i++) {
+                    var p = json[i];
+                    var ini=p.ini.split(" ");
+                    var fin=p.fin.split(" ");
+                    var fecha = ini[0]+" - "+fin[0];
+                    mySelect.appendChild(createOPTION(p.id,fecha));
+                }
              	var length=Object.keys(json).length;            
-                periodoSeleccionado=json[length-1];                
+                periodoSeleccionado=json[length-1];
             }else{
                 //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
             }
@@ -48,17 +52,12 @@ function postGraficar(result,state){
      }	
 }
 
-function graficaBarras(){
-	var length=Object.keys(periodos_Array).length;
-	for(var i=1; i < length; i++) {
-        var periodo = periodos_Array[i];           				
-    }
-}
-
-function cambiarGraficaPeriodo(idPeriodo){
-	for(periodo in periodos_Array){
+function cambiarGraficaPeriodo(){
+    var idPeriodo= document.getElementById("selectGraficaPeriodos").value;        
+    for (var i = 1; i < periodos_Array.length; i++) {        
+        var periodo=periodos_Array[i];        
 		if(periodo.id==idPeriodo){
-			periodoSeleccionado=periodo;
+			periodoSeleccionado=periodo;            
             drawChartReloj();
 			return;
 		}
@@ -72,10 +71,14 @@ function cargarLasMaricadasDeGoogle(){
     google.charts.setOnLoadCallback(drawChartArea);
 }
 function drawChartReloj() {
-
+        var periodo = periodoSeleccionado;
+        var ini=periodo.ini.split(" ");
+        var fin=periodo.fin.split(" ");
+        var fecha = ini[0]+" - "+fin[0];
+        $("#tituloGraficaRedonda").text(fecha);
     var data = google.visualization.arrayToDataTable([
       ['Label', 'Value'],
-      ['', parseFloat(periodoSeleccionado.cantidad)],
+      ["", parseFloat(periodoSeleccionado.cantidad)],
     ]);
 
     var options = {
@@ -86,18 +89,26 @@ function drawChartReloj() {
       minorTicks: 5
     };
 
-console.log(options);
     var chart = new google.visualization.Gauge(document.getElementById('chart_div_reloj'));
     chart.draw(data, options);        
 }
+
 function drawChartArea() {
-    var data = google.visualization.arrayToDataTable([
-      ['Periodo', 'Cantidad', 'Meta'],
-      ['2013',  1000,      400],
-      ['2014',  1170,      460],
-      ['2015',  660,       1120],
-      ['2016',  1030,      540]
-    ]);
+    var array = [];
+    array.push(['Periodo', 'Cantidad', 'Meta']);
+    var length=Object.keys(periodos_Array).length;
+    for(var i=1; i < length; i++) {
+        var periodo = periodos_Array[i];
+        var meta=parseFloat(periodo.amarillo);
+        var cant=parseFloat(periodo.cantidad);
+        var ini=periodo.ini.split(" ");
+        var fin=periodo.fin.split(" ");
+        var fecha = ini[0]+" - "+fin[0];
+        array.push([fecha,cant,meta]);
+    }
+    var data = google.visualization.arrayToDataTable(
+        array        
+    );
 
     var options = {
       title: 'Historial del indicador:',
