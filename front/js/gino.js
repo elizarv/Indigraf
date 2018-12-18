@@ -271,7 +271,6 @@ function personalizar (idForm){
     //Maneje aquí la respuesta del servidor.
     if(state=="success"){
         var json=JSON.parse(result);
-        console.log(json);
         if(json[0].msg=="exito"){
             var nombre = json[Object.keys(json).length - 1].nombre;
             var colorP = json[Object.keys(json).length - 1].colorP;
@@ -281,7 +280,7 @@ function personalizar (idForm){
             document.getElementById("navHeader").style.backgroundColor = colorP;
             document.getElementById("navFooter").style.backgroundColor = colorP;
             //document.getElementById("logotipo").style.background.url = "../../../"+logo+"";
-            
+
             // insertar regla css
             if(colorP && colorS != ""){
                 var styleshe = document.styleSheets;

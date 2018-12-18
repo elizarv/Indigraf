@@ -82,7 +82,7 @@ function pintarMenus(nombres,ids){
 								//}
                 str+='<div class="containerJ">';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
-								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="#" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
+								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:editarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:graficar(\''+Indicador.id+'\')" data-placement="top" title="Graficar"><i class="material-icons">assessment</i></a>';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:eliminarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Eliminar"><i class="material-icons">delete</i></a>';
 
@@ -183,9 +183,11 @@ function preIndicadorInsert(idForm){
                     cache: false,
                     success: function (data) {
 											var json=JSON.parse(data);
+											alert(json[0].msg);
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo
-															 enviar(formData,'back/controller/indicador/Indicadorselect.php',postIndicadorInsert);
+															 alert(json[1]);
+															 enviar(json[1],'back/controller/periodo/PeriodoInsert.php',postIndicadorInsert);
 													}else{
 														alert("que putas");
 														 alert("Hubo un errror en la inserción ( u.u)\n");
@@ -202,13 +204,12 @@ function preIndicadorInsert(idForm){
 
 
 function postIndicadorInsert(result, state){
-	alert("hola");
 	if(state=="success"){
 							if(result=="true"){
 								swal("Indicador registrado con exito!!", {
 										icon: "success",
 									});
-									preIndicadorListPadre(idPadre,ultimoNombre);
+									//preIndicadorListPadre(idPadre,ultimoNombre);
 							}else{
 								 alert("Hubo un errror en la inserción ( u.u)\n"+result);
 							}
@@ -216,5 +217,13 @@ function postIndicadorInsert(result, state){
  }else{
 			alert("Hubo un errror interno ( u.u)\n"+result);
 			}
+
+}
+
+function editarIndicador(idIndicador){
+	cargaContenido('remp','front/views/formIndicador.html');
+	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+	cargarMenus(padre,cuenta);
+	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre('+padre+',\''+nombre+'\')">'+nombre+'</a></li>';
 
 }
