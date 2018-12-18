@@ -119,3 +119,43 @@ function drawChartArea() {
     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_area'));
     chart.draw(data, options);
 }
+
+var indicadoresParaElMapa;
+function postListarIndicaores(result,state){
+    if(state=="success"){
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+            if(json[1].result!="No se encontraron registros."){                                
+                indicadoresParaElMapa=json;                
+            }else{
+                //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
+            }
+         }else{
+            alert(json[0].msg);
+         }
+     }else{
+         alert("Hubo un errror interno ( u.u)\n"+result);
+     }     
+    enviar("",'back/controller/relacion/RelacionList.php',postListarRelaciones);
+}
+
+function postListarRelaciones(result,state){
+    if(state=="success"){
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+            if(json[1].result!="No se encontraron registros."){                                
+                relaciones=json;
+                createDiagram(indicadoresParaElMapa,relaciones);             
+            }else{
+                //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
+            }
+         }else{
+            alert(json[0].msg);
+         }
+     }else{
+         alert("Hubo un errror interno ( u.u)\n"+result);
+     }    
+}
+function saludar(name){
+    alert("Hola "+name);
+}

@@ -61,9 +61,14 @@ function localDataSource(options) {
     return result;
   }
   
-  function createDiagram() {
+  function createDiagram(indicadores, relaciones) {
+    var arrayInd=[];
+    for(var i=1; i < Object.keys(indicadores).length; i++) {
+      var indicador = indicadores[i];
+      arrayInd.push({"Id":indicador.id,"Indicador": indicador.nombre});
+    }
     var shapesDataSource = localDataSource({
-      data: [{
+      data:/* [{
         "Id": 1,
         "Indicador": "Indicador"
       }, {
@@ -78,7 +83,7 @@ function localDataSource(options) {
         "Id": 4,
         "Indicador": "Sub indicador 3",
         "Color": "#3399cc"
-      }],
+      }]*/ arrayInd,
       schema: {
         model: {
           id: "Id",
@@ -97,9 +102,13 @@ function localDataSource(options) {
         }
       }
     });
-  
+  var arrayRel=[];
+    for(var i=1; i < Object.keys(relaciones).length; i++) {
+      var relacion = relaciones[i];
+      arrayRel.push({"FromShapeId":relacion.predecesor_id,"ToShapeId":relacion.sucesor_id});
+    }
     var connectionsDataSource = localDataSource({
-      data: [{
+      data: /*[{
         "Id": 1,
         "FromShapeId": 1,
         "ToShapeId": 2
@@ -111,7 +120,7 @@ function localDataSource(options) {
         "Id": 3,
         "FromShapeId": 1,
         "ToShapeId": 4
-      }],
+      }]*/ arrayRel,
       schema: {
         model: {
           id: "Id",
@@ -182,8 +191,11 @@ function localDataSource(options) {
     });
   }
   
-  $(document).ready(createDiagram);
-  
+  $(document).ready(function(){
+    saludar("XXX");
+    enviar("",'../../back/controller/indicador/IndicadorList.php',postListarIndicadores);
+  });  
+
   function visualTemplate(options) {
     var dataviz = kendo.dataviz;
     var g = new dataviz.diagram.Group();
