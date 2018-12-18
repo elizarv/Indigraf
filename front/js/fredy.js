@@ -1,3 +1,20 @@
+/*
+function loadPage(){
+    alert("holi");
+    include("https://www.gstatic.com/charts/loader.js");
+    cargarLasMaricadasDeGoogle();
+    alert("holi x2");
+}
+function include(file_path){
+      var j = document.createElement("script");
+      j.type = "text/javascript";
+      j.src = file_path;
+      j.id="ElJoputaScript";
+      document.body.appendChild(j);      
+      console.log(j);
+    }
+*/
+
 var periodos_Array;
 var periodoSeleccionado;
 function graficar(idIndicador){
@@ -11,7 +28,8 @@ function postGraficar(result,state){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
          	if(json[1].result!="No se encontraron registros."){
-                periodos_Array=json;            
+                periodos_Array=json;
+                cargarLasMaricadasDeGoogle();
              	/*{
     				Llenar el select con los periodos ini-fin >> value=id
     				onChange cambiarGraficaPeriodo
