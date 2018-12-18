@@ -226,3 +226,56 @@ function exito(){
     });
     cargarVistaAprobar(idIndicador);
   }
+
+function personalizar (idForm){
+    if(validarForm(idForm)){
+        var formData=$('#'+idForm).serialize();
+        console.log(formData);
+        enviar(formData,'back/controller/administracion/AdministracionInsert.php',postPerzonalizar);
+        }else{
+            alert("Debe llenar los campos requeridos");
+        }
+}
+
+function postPerzonalizar(){
+    var newTitle = document.getElementById('nombreEmpresa').value;
+    document.getElementById('nombreEmpresa').innerHTML = newTitle;
+    var colorP = document.getElementById('colorP').value;
+    var colorS = document.getElementById('colorS').value;
+    console.log(colorP,colorS);
+    swal("La aplicación se personalizó con exito!!", {
+      icon: "success",
+    });
+  }
+
+  function window_onload(){
+    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
+  }
+
+  function postCarga(result,state){
+    //Maneje aquí la respuesta del servidor.
+    if(state=="success"){
+        console.log(result);
+        var json=JSON.parse(result);
+        if(json[0].msg=="exito"){
+            var nombre = json[Object.keys(json).length - 1].nombre;
+            var colorP = json[Object.keys(json).length - 1].colorP;
+            var colorS = json[Object.keys(json).length - 1].colorS;
+            document.getElementById("titulo").innerHTML = nombre;
+            document.getElementById("navHeader").style.backgroundColor = colorP;
+            document.getElementById("navFooter").style.backgroundColor = colorP;
+            // insertar regla css
+            if(colorP && colorS != ""){
+                var styleshe = document.styleSheets;
+                var csss = styleshe[Object.keys(styleshe).length - 1];
+                csss.insertRule(".btn-primary {background-color:"+colorS+"}", 0);
+                csss.insertRule(".material-icons {color:"+colorS+"}", 0);
+            }
+
+        }
+    }else{
+        alert("Hubo un errror interno ( u.u)\n"+result);
+    }
+}
+
+

@@ -17,31 +17,31 @@
                             </div>
                             <div class="card-body ">
 
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" id="personalizar" action="javascript:personalizar('personalizar')" method="post">
                                     <div class="col-sm-9">
 
                                         <label class="h4"  style="width: 100%; height: auto;" >Nombre:</label>
-                                        <input id="nombreEmpresa" name="nombreEmpresa" type="text" placeholder="Digite el Nombre"  class="form-control form-control-success">
+                                        <input id="nombre" name="nombre" type="text" placeholder="Digite el Nombre"  class="form-control form-control-success">
 
                                     </div>
                                     <br>
                                     <div class="col-sm-9">
                                         <label  style="width: 100%; height: auto;" class="h4">Logo:  </label>
-                                                <input name="archivo" id="archivo" type="file" class="form-control form-control-file   "  style="width: 100%; height: auto;" multiple accept="image/jpeg, image/png" >
+                                                <input name="logo" id="logo" type="file" class="form-control form-control-file   "  style="width: 100%; height: auto;" multiple accept="image/jpeg, image/png" >
                                     </div>
                                     <br>
                                       <div class="col-sm-9">
                                         <label  style="width: 100%; height: auto;" class="h4">Colores:  </label>
                                           <label >Color Primario:</label>
                                           <div>
-                                            <input type="color" name="colorSecundario" >
+                                            <input type="color" id="colorP" name="colorP" >
                                           </div>
                                           <label >Color Secundario:</label>
                                           <div>
-                                              <input type="color" name="colorSecundario" >
+                                              <input type="color" id="colorS" name="colorS" >
                                           </div>
                                       </div>
-
+                                            <input type="hidden" id="id" name="id" value="">
                                     <div class="text-center ">
 
                                         <input type="submit" value="Subir" class="btn btn-primary "  style="width: auto; height: auto;"  >
