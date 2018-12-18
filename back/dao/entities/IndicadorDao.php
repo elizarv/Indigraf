@@ -41,7 +41,7 @@ $esPadre=$indicador->getEsPadre();
 
       try {
           $sql= "INSERT INTO `indicador`(`nombre`, `descripcion`, `imagen`, `padre`,`esPadre`)"
-          ."VALUES ('$id','$nombre','$descripcion','$imagen','$padre','$esPadre')";
+          ."VALUES ('$nombre','$descripcion','$imagen','$padre','$esPadre')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

@@ -2,6 +2,7 @@
 var cuenta=0;
 var papa=0;
 var idPadre;
+var ultimoNombre;
 var arrayNombres=[];
 var arrayIds=[];
 var nombreIndicador;
@@ -162,6 +163,7 @@ function cargarFormIndicador(padre,nombre){
 	cuenta+=1;
 	papa=10000;
 	idPadre=padre;
+	ultimoNombre=nombre;
 	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Agregar Indicador</li>';
 }
 
@@ -169,22 +171,47 @@ function preIndicadorInsert(idForm){
 		document.getElementById("idPadre").value=idPadre;
     //Haga aquí las validaciones necesarias antes de enviar el formulario.
    if(validarForm(idForm)){
-    var formData=$('#'+idForm).serialize();
+		 var form = $("#"+idForm)[0];
+		 var formData=new FormData(form);
     console.log(formData);
-    enviar(formData,'back/controller/indicador/IndicadorInsert.php',postIndicadorInsert);
+		$.ajax({
+                    type: "POST",
+                    url: "back/controller/indicador/IndicadorInsert.php",
+                    data: formData,
+                    enctype: 'multipart/form-data',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        if (data == "true") {
+														 swal("Indicador registrado con exito!!", {
+																 icon: "success",
+															 });
+															 preIndicadorListPadre(idPadre,ultimoNombre);
+													}else{
+														 alert("Hubo un errror en la inserción ( u.u)\n");
+													}
+                    },
+                    error: function (data) {
+												alert("Hubo un errror interno ( u.u)\n");
+                    }
+});
     }else{
         alert("Debe llenar los campos requeridos");
     }
 }
+
+
+//eliminar
 function postIndicadorInsert(result,state){
     //Maneje aquí la respuesta del servidor.
     //Consideramos buena práctica no manejar código HTML antes de este punto.
         if(state=="success"){
                     if(result=="true"){
-                       swal("Usuario registrado con exito!!", {
+                       swal("Indicador registrado con exito!!", {
                            icon: "success",
                          });
-                         preUsuarioList();
+                         preIndicadorListPadre(idPadre,ultimoNombre);
                     }else{
                        alert("Hubo un errror en la inserción ( u.u)\n"+result);
                     }

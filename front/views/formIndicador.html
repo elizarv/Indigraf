@@ -19,21 +19,21 @@
                          <label class="col-sm-3 form-control-label">Nombre</label>
                          <div class="col-sm-9">
                            <input type="hidden" name="idPadre" id="idPadre" value="">
-                           <input id="idNombre" type="text" placeholder="Nombre" class="form-control form-control-success">
+                           <input id="idNombre" name="idNombre" type="text" placeholder="Nombre" class="form-control form-control-success">
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Descripcion</label>
                          <div class="col-sm-9">
-                           <input id="idDescripcion" type="text" placeholder="Descripcion" class="form-control form-control-success">
+                           <input id="idDescripcion" name="idDescripcion" type="text" placeholder="Descripcion" class="form-control form-control-success">
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Imagen</label>
                          <div class="col-sm-9">
-                           <input type="file" class="form-control" id="idImagen" accept="image/*">
+                           <input type="file" class="form-control" id="idImagen" name="idImagen" accept="image/*">
                          </div>
                        </div>
 
@@ -42,28 +42,28 @@
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Meta</label>
                          <div class="col-sm-9">
-                           <input id="idMeta" type="number" placeholder="Meta" class="form-control form-control-success">
+                           <input id="idMeta" name="idMeta" type="number" placeholder="Meta" class="form-control form-control-success">
                          </div>
                        </div>
 
                      <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Unidad de Medida</label>
                          <div class="col-sm-9">
-                           <input id="UMedida" type="text" placeholder="Unidad de Medida" class="form-control form-control-success">
+                           <input id="UMedida" name="UMedida" type="text" placeholder="Unidad de Medida" class="form-control form-control-success">
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label for="example-date-input" class="col-4 col-form-label">Inicio de Periodo*</label>
                          <div class="col-6">
-                           <input class="form-control" type="date" id="idInicioP">
+                           <input class="form-control" type="date" id="idInicioP" name="idInicioP">
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label for="example-date-input" class="col-4 col-form-label">Final de Periodo*</label>
                          <div class="col-6">
-                           <input class="form-control" type="date" id="idFinalP">
+                           <input class="form-control" type="date" id="idFinalP" name="idFinalP">
                          </div>
                        </div>
 
@@ -72,26 +72,22 @@
 
 
                        <div class="form-group row">
-                         <label class="col-sm-3 form-control-label">Rojo</label>
+                         <label class="col-sm-3 form-control-label">Límite Rojo</label>
                          <div class="col-sm-9">
-                           <input id="idRojo" type="number" placeholder="0" class="form-control form-control-success">
+                           <input id="idRojo" name="idRojo" type="number" placeholder="0" class="form-control form-control-success">
                          </div>
 
-                         <label class="col-sm-3 form-control-label">Amarillo</label>
+                         <label class="col-sm-3 form-control-label">Límite Amarillo</label>
                          <div class="col-sm-9">
-                           <input id="idAmarillo" type="number" placeholder="0" class="form-control form-control-success">
+                           <input id="idAmarillo" name="idAmarillo" type="number" placeholder="0" class="form-control form-control-success">
                          </div>
 
-                         <label class="col-sm-3 form-control-label">Verde</label>
-                         <div class="col-sm-9">
-                           <input id="idVerde" type="number" placeholder="0" class="form-control form-control-success">
-                         </div>
                        </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Cantidad</label>
                          <div class="col-sm-9">
-                           <input id="idCantidad" type="number" placeholder="0" class="form-control form-control-success">
+                           <input id="idCantidad" name="idCantidad" type="number" placeholder="0" class="form-control form-control-success">
                          </div>
                        </div>
 
@@ -101,7 +97,6 @@
                        <div class="form-group row">
                          <div class="col-sm-9 offset-sm-3">
                            <input type="submit" value="Agregar" class="btn btn-primary">
-                           <button href="tableindicador.html" class="btn btn-secondary">Lista de indicadores</button>
                          </div>
 
                      </form>
