@@ -75,18 +75,19 @@ function drawChartReloj() {
 
     var data = google.visualization.arrayToDataTable([
       ['Label', 'Value'],
-      ['', 80],
+      ['', parseFloat(periodoSeleccionado.cantidad)],
     ]);
 
     var options = {
-      width: 400, height: 120,
-      redFrom: 90, redTo: 100,
-      yellowFrom:75, yellowTo: 90,
+      width: 300, height: 300,
+      redFrom: 0, redTo: parseFloat(periodoSeleccionado.rojo),
+      yellowFrom:parseFloat(periodoSeleccionado.rojo)+1, yellowTo: parseFloat(periodoSeleccionado.verde),
+      greenFrom: parseFloat(periodoSeleccionado.verde)+1, greenTo: parseFloat(periodoSeleccionado.amarillo),
       minorTicks: 5
     };
 
+console.log(options);
     var chart = new google.visualization.Gauge(document.getElementById('chart_div_reloj'));
-
     chart.draw(data, options);        
 }
 function drawChartArea() {
