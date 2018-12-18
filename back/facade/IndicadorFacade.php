@@ -38,14 +38,14 @@ class IndicadorFacade {
    * @param imagen
    * @param padre
    */
-  public static function insert( $nombre,  $descripcion,  $imagen,  $padre){
+  public static function insert( $nombre,  $descripcion,  $imagen,  $padre,$unidadMedida){
       $indicador = new Indicador();
       $indicador->setNombre($nombre);
       $indicador->setDescripcion($descripcion);
       $indicador->setImagen($imagen);
       $indicador->setPadre($padre);
       $indicador->setEsPadre(0);
-
+      $indicador->getUnidadMedida($unidadMedida);
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
      $rtn = $indicadorDao->insert($indicador);

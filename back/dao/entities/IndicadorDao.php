@@ -38,10 +38,10 @@ if($padre!=null){
 }
 $esPadre=$indicador->getEsPadre();
 
-
+$unidadMedida = $indicador->getUnidadMedida();
       try {
-          $sql= "INSERT INTO `indicador`(`nombre`, `descripcion`, `imagen`, `padre`,`esPadre`)"
-          ."VALUES ('$nombre','$descripcion','$imagen','$padre','$esPadre')";
+          $sql= "INSERT INTO `indicador`(`nombre`, `descripcion`, `imagen`, `padre`,`esPadre`,`unidadMedida`)"
+          ."VALUES ('$nombre','$descripcion','$imagen','$padre','$esPadre','$unidadMedida')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -58,7 +58,7 @@ $esPadre=$indicador->getEsPadre();
       $id=$indicador->getId();
 
       try {
-          $sql= "SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`,`esPadre`"
+          $sql= "SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`,`esPadre`,"
           ."FROM `indicador`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
@@ -71,6 +71,7 @@ $esPadre=$indicador->getEsPadre();
            $padre->setId($data[$i]['padre']);
            $indicador->setPadre($padre);
            $indicador->setEsPadre($data[$i]['esPadre']);
+           $indicador->setUnidadMedida($data[$i]['']);
           }
       return $indicador;
     } catch (SQLException $e) {
@@ -125,7 +126,7 @@ $esPadre=$indicador->getEsPadre();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre`"
+          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre`,`unidadMedida`"
           ."FROM `indicador`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -139,7 +140,7 @@ $esPadre=$indicador->getEsPadre();
            $padre->setId($data[$i]['padre']);
            $indicador->setPadre($padre);
            $indicador->setEsPadre($data[$i]['esPadre']);
-
+           $indicador->setUnidadMedida($data[$i]['unidadMedida']);
           array_push($lista,$indicador);
           }
       return $lista;
@@ -152,7 +153,7 @@ $esPadre=$indicador->getEsPadre();
   public function listAllByFather($padre){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre` FROM `indicador` WHERE padre=$padre";
+          $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre`,`unidadMedida` FROM `indicador` WHERE padre=$padre";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $indicador= new Indicador();
@@ -164,6 +165,7 @@ $esPadre=$indicador->getEsPadre();
            $padre->setId($data[$i]['padre']);
            $indicador->setPadre($padre);
            $indicador->setEsPadre($data[$i]['esPadre']);
+           $indicador->setUnidadMedida($data[$i]['unidadMedida']);
           array_push($lista,$indicador);
           }
       return $lista;

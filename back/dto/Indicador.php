@@ -16,6 +16,7 @@ class Indicador {
   private $imagen;
   private $padre;
   private $esPadre;
+  private $unidadMedida;
 
     /**
      * Constructor de Indicador
@@ -116,6 +117,13 @@ public function setEsPadre($padre){
   $this->esPadre = $padre;
 }
 
+
+public function getUnidadMedida(){
+  return $this->unidadMedida;
+}
+public function setUnidadMedida($unidadMedida){
+  $this->unidadMedida = $unidadMedida;
+}
 
 }
 //That´s all folks!

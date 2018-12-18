@@ -1,6 +1,6 @@
 var periodos_Array;
 function graficar(idIndicador){
-	cargaContenido('remp','graficas.html');
+	cargaContenido('remp','front/views/graficas.html');
 	formData={"id":idIndicador};
  	enviar(formData,'back/controller/periodo/PeriodoListByIndicador.php',postGraficar);
 }
