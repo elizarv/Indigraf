@@ -1,4 +1,5 @@
 var periodos_Array;
+var periodoSeleccionado;
 function graficar(idIndicador){
 	cargaContenido('remp','front/views/graficas.html');
 	formData={"id":idIndicador};
@@ -15,10 +16,9 @@ function postGraficar(result,state){
     				Llenar el select con los periodos ini-fin >> value=id
     				onChange cambiarGraficaPeriodo
     			}
-             	*/
-             	graficaBarras();
+             	*/             	
              	var length=Object.keys(json).length;            
-                graficaRedonda(json[length-1]);
+                periodoSeleccionado=json[length-1];                
             }else{
                 //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
             }
@@ -33,20 +33,59 @@ function postGraficar(result,state){
 function graficaBarras(){
 	var length=Object.keys(periodos_Array).length;
 	for(var i=1; i < length; i++) {
-        var periodo = periodos_Array[i];                				
+        var periodo = periodos_Array[i];           				
     }
-    console.log(periodos_Array);
 }
 
 function cambiarGraficaPeriodo(idPeriodo){
 	for(periodo in periodos_Array){
 		if(periodo.id==idPeriodo){
-			graficaRedonda(periodo);
+			periodoSeleccionado=periodo;
+            drawChartReloj();
 			return;
 		}
 	}
 }
 
-function graficaRedonda(periodo){
+function cargarLasMaricadasDeGoogle(){
+    google.charts.load('current', {'packages':['gauge']});
+    google.charts.setOnLoadCallback(drawChartReloj);
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChartArea);
+}
+function drawChartReloj() {
 
+    var data = google.visualization.arrayToDataTable([
+      ['Label', 'Value'],
+      ['', 80],
+    ]);
+
+    var options = {
+      width: 400, height: 120,
+      redFrom: 90, redTo: 100,
+      yellowFrom:75, yellowTo: 90,
+      minorTicks: 5
+    };
+
+    var chart = new google.visualization.Gauge(document.getElementById('chart_div_reloj'));
+
+    chart.draw(data, options);        
+}
+function drawChartArea() {
+    var data = google.visualization.arrayToDataTable([
+      ['Periodo', 'Cantidad', 'Meta'],
+      ['2013',  1000,      400],
+      ['2014',  1170,      460],
+      ['2015',  660,       1120],
+      ['2016',  1030,      540]
+    ]);
+
+    var options = {
+      title: 'Historial del indicador:',
+      hAxis: {title: 'Periodo',  titleTextStyle: {color: '#333'}},
+      vAxis: {minValue: 0}
+    };
+
+    var chart = new google.visualization.AreaChart(document.getElementById('chart_div_area'));
+    chart.draw(data, options);
 }
