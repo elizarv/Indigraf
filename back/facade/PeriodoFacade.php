@@ -43,10 +43,11 @@ class PeriodoFacade {
       $periodo = new Periodo();
       $periodo->setFecha_ini($fecha_ini);
       $periodo->setFecha_fin($fecha_fin);
-      $periodo->setVerde($meta);
+      $periodo->setVerde($verde);
       $periodo->setIndicador($indicador);
-      $periodo->setId($id);
       $periodo->setCantidad($cantidad);
+      $periodo->setAmarillo($amarillo);
+      $periodo->setRojo($rojo);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
@@ -82,13 +83,14 @@ class PeriodoFacade {
    * @param id
    * @param cantidad
    */
-  public static function update($fecha_ini, $fecha_fin, $meta, $indicador, $id, $cantidad){
+  public static function update($id, $fecha_ini,  $fecha_fin,  $verde, $cantidad, $amarillo, $rojo){
       $periodo = self::select($id);
       $periodo->setFecha_ini($fecha_ini);
       $periodo->setFecha_fin($fecha_fin);
-      $periodo->setMeta($meta);
-      $periodo->setIndicador($indicador);
+      $periodo->setVerde($verde);
       $periodo->setCantidad($cantidad);
+      $periodo->setAmarillo($amarillo);
+      $periodo->setRojo($rojo);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
