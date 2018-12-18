@@ -21,7 +21,7 @@ if($rta!=""){
 	$rta = substr($rta, 0, -1);
 	$msg="{\"msg\":\"exito\"}";
 }else{
-	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
+	$msg="{\"msg\":\"exito\"}";
 	$rta="{\"result\":\"No se encontraron registros.\"}";	
 }
 echo "[{$msg},{$rta}]";

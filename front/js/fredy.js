@@ -120,13 +120,23 @@ function drawChartArea() {
     chart.draw(data, options);
 }
 
-var indicadoresParaElMapa;
-function postListarIndicaores(result,state){
+var indicadoresParaElMapa=[];
+var relacionesParaElMapa=[];
+function postListarIndicadores(result,state){
     if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
             if(json[1].result!="No se encontraron registros."){                                
-                indicadoresParaElMapa=json;                
+                //indicadoresParaElMapa=json;
+                for(var i=1; i < Object.keys(json).length; i++) {
+                    var ind = json[i];
+                    if(ind.id!=0){
+                        indicadoresParaElMapa.push(ind);
+                    }
+                    if(ind.padre_id!=0 && ind.padre_id != null && ind.padre_id!=""){
+                        relacionesParaElMapa.push({"predecesor_id":ind.padre_id,"sucesor_id":ind.id});                    
+                    }
+                }
             }else{
                 //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
             }
@@ -144,11 +154,20 @@ function postListarRelaciones(result,state){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
             if(json[1].result!="No se encontraron registros."){                                
-                relaciones=json;
-                createDiagram(indicadoresParaElMapa,relaciones);             
-            }else{
-                //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
+//                relaciones=json;
+                for(var i=1; i < Object.keys(json).length; i++) {
+                    var rel = json[i];
+                    if(rel.predecesor_id==0 || rel.sucesor_id==0){
+                        //Do Nothing
+                    }else{
+                        relacionesParaElMapa.push({"predecesor_id":rel.predecesor_id,"sucesor_id":rel.sucesor_id});                    
+                    }
+                }          
+                //console.log(indicadoresParaElMapa);
+                //console.log(relacionesParaElMapa);                
+            }else{                
             }
+            createDiagram(indicadoresParaElMapa,relacionesParaElMapa);
          }else{
             alert(json[0].msg);
          }

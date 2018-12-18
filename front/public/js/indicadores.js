@@ -63,7 +63,7 @@ function localDataSource(options) {
   
   function createDiagram(indicadores, relaciones) {
     var arrayInd=[];
-    for(var i=1; i < Object.keys(indicadores).length; i++) {
+    for(var i=0; i < Object.keys(indicadores).length; i++) {
       var indicador = indicadores[i];
       arrayInd.push({"Id":indicador.id,"Indicador": indicador.nombre});
     }
@@ -103,7 +103,7 @@ function localDataSource(options) {
       }
     });
   var arrayRel=[];
-    for(var i=1; i < Object.keys(relaciones).length; i++) {
+    for(var i=0; i < Object.keys(relaciones).length; i++) {
       var relacion = relaciones[i];
       arrayRel.push({"FromShapeId":relacion.predecesor_id,"ToShapeId":relacion.sucesor_id});
     }
@@ -192,8 +192,7 @@ function localDataSource(options) {
   }
   
   $(document).ready(function(){
-    saludar("XXX");
-    enviar("",'../../back/controller/indicador/IndicadorList.php',postListarIndicadores);
+    enviar("",'back/controller/indicador/IndicadorList.php',postListarIndicadores);
   });  
 
   function visualTemplate(options) {
