@@ -189,6 +189,7 @@ function preIndicadorInsert(idForm){
 															 });
 															 preIndicadorListPadre(idPadre,ultimoNombre);
 													}else{
+														alert(data);
 														 alert("Hubo un errror en la inserción ( u.u)\n");
 													}
                     },
