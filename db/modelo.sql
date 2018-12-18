@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-12-2018 a las 05:11:11
+-- Tiempo de generación: 18-12-2018 a las 13:57:31
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -64,19 +64,20 @@ CREATE TABLE `indicador` (
   `descripcion` mediumtext,
   `imagen` varchar(45) DEFAULT NULL,
   `padre` int(11) DEFAULT NULL,
-  `esPadre` int(11) NOT NULL
+  `esPadre` int(11) NOT NULL,
+  `unidadMedida` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `indicador`
 --
 
-INSERT INTO `indicador` (`id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre`) VALUES
-(0, 'cero', NULL, NULL, NULL, 0),
-(1, 'Movilidad', 'Movilidad', 'back/images/movilidad.png', 0, 1),
-(3, 'Conferencias', NULL, NULL, 0, 0),
-(4, 'Movilidad docente', 'Estadisticas de movilidad docente', NULL, 1, 0),
-(5, 'Movilidad estudiantil', 'Estadisticas de movilidad estudiantil', NULL, 1, 0);
+INSERT INTO `indicador` (`id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre`, `unidadMedida`) VALUES
+(0, 'cero', NULL, NULL, NULL, 0, ''),
+(1, 'Movilidad', 'Movilidad', 'back/images/movilidad.png', 0, 1, ''),
+(3, 'Conferencias', NULL, NULL, 0, 0, ''),
+(4, 'Movilidad docente', 'Estadisticas de movilidad docente', NULL, 1, 0, ''),
+(5, 'Movilidad estudiantil', 'Estadisticas de movilidad estudiantil', NULL, 1, 0, '');
 
 -- --------------------------------------------------------
 
