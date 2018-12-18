@@ -12,10 +12,12 @@ class Periodo {
 
   private $fecha_ini;
   private $fecha_fin;
-  private $meta;
+  private $verde;
   private $indicador;
   private $id;
   private $cantidad;
+  private $amarillo;
+  private $rojo;
 
     /**
      * Constructor de Periodo
@@ -53,19 +55,19 @@ class Periodo {
       $this->fecha_fin = $fecha_fin;
   }
     /**
-     * Devuelve el valor correspondiente a meta
-     * @return meta
+     * Devuelve el valor correspondiente a verde
+     * @return verde
      */
-  public function getMeta(){
-      return $this->meta;
+  public function getVerde(){
+      return $this->verde;
   }
 
     /**
-     * Modifica el valor correspondiente a meta
-     * @param meta
+     * Modifica el valor correspondiente a Verde
+     * @param Verde
      */
-  public function setMeta($meta){
-      $this->meta = $meta;
+  public function setVerde($verde){
+      $this->verde = $verde;
   }
     /**
      * Devuelve el valor correspondiente a indicador
@@ -112,7 +114,37 @@ class Periodo {
   public function setCantidad($cantidad){
       $this->cantidad = $cantidad;
   }
+  /**
+   * Devuelve el valor correspondiente a amarillo
+   * @return amarillo
+   */
+public function getAmarillo(){
+    return $this->amarillo;
+}
 
+  /**
+   * Modifica el valor correspondiente a amarillo
+   * @param amarillo
+   */
+  public function setAmarillo($amarillo){
+      $this->amarillo = $amarillo;
+  }
+
+  /**
+   * Devuelve el valor correspondiente a rojo
+   * @return rojo
+   */
+  public function getRojo(){
+      return $this->rojo;
+  }
+
+  /**
+   * Modifica el valor correspondiente a rojo
+   * @param rojo
+   */
+  public function setRojo($rojo){
+      $this->rojo = $rojo;
+  }
 
 }
 //That´s all folks!

@@ -75,11 +75,11 @@ function pintarMenus(nombres,ids){
                 //----------------- Para una tabla -----------------------
                 str='<div class="col-sm-6"><div class="card"><div class="card-bodyJ">';
                 str+='<h4 class="card-title">'+Indicador.nombre+'</h4><div class="row "><div class="col-sm-6">';
-								if(Indicador.esPadre==1){
+								//if(Indicador.esPadre==1){
 									str+='<a title="Ver más" href="javascript:preIndicadorListPadre(\''+Indicador.id+'\',\''+Indicador.nombre+'\')"><img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6"></a>';
-								}else{
-									str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
-								}
+								//}else{
+									//str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
+								//}
                 str+='<div class="containerJ">';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="#" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
@@ -91,7 +91,7 @@ function pintarMenus(nombres,ids){
             }
 						document.getElementById("agregarIndi").innerHTML='<a href="javascript:cargarFormIndicador(\''+papa+'\',\''+nombreIndicador+'\')"><img id="plus" src="front/public/icons-reference/plus.png" alt="Card image"></a>';
          }else{
-            alert("no tiene subindicadores");
+            document.getElementById("agregarIndi").innerHTML='<a href="javascript:cargarFormIndicador(\''+papa+'\',\''+nombreIndicador+'\')"><img id="plus" src="front/public/icons-reference/plus.png" alt="Card image"></a>';
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
