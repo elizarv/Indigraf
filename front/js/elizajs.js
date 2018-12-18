@@ -184,12 +184,9 @@ function preIndicadorInsert(idForm){
                     cache: false,
                     success: function (data) {
                         if (data == "true") {
-														 swal("Indicador registrado con exito!!", {
-																 icon: "success",
-															 });
-															 preIndicadorListPadre(idPadre,ultimoNombre);
+														 	 //insertar periodo
+															 enviar(formData,'back/controller/indicador/Indicadorselect.php',postIndicadorInsert);
 													}else{
-														alert(data);
 														 alert("Hubo un errror en la inserción ( u.u)\n");
 													}
                     },
@@ -203,21 +200,20 @@ function preIndicadorInsert(idForm){
 }
 
 
-//eliminar
-function postIndicadorInsert(result,state){
-    //Maneje aquí la respuesta del servidor.
-    //Consideramos buena práctica no manejar código HTML antes de este punto.
-        if(state=="success"){
-                    if(result=="true"){
-                       swal("Indicador registrado con exito!!", {
-                           icon: "success",
-                         });
-                         preIndicadorListPadre(idPadre,ultimoNombre);
-                    }else{
-                       alert("Hubo un errror en la inserción ( u.u)\n"+result);
-                    }
+function postIndicadorInsert(result, state){
+	if(state=="success"){
+							if(result=="true"){
+								swal("Indicador registrado con exito!!", {
+										icon: "success",
+									});
 
-       }else{
-            alert("Hubo un errror interno ( u.u)\n"+result);
-            }
+									preIndicadorListPadre(idPadre,ultimoNombre);
+							}else{
+								 alert("Hubo un errror en la inserción ( u.u)\n"+result);
+							}
+
+ }else{
+			alert("Hubo un errror interno ( u.u)\n"+result);
+			}
+
 }
