@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2018 a las 22:43:16
+-- Tiempo de generación: 18-12-2018 a las 05:11:11
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -94,6 +94,13 @@ CREATE TABLE `periodo` (
   `amarillo` double NOT NULL,
   `rojo` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `periodo`
+--
+
+INSERT INTO `periodo` (`fecha_ini`, `fecha_fin`, `verde`, `indicador`, `id`, `cantidad`, `amarillo`, `rojo`) VALUES
+('2018-12-04 00:00:00', '2018-12-28 00:00:00', 100, 1, 1, 56, 50, 30);
 
 -- --------------------------------------------------------
 
@@ -193,7 +200,7 @@ ALTER TABLE `indicador`
 -- AUTO_INCREMENT de la tabla `periodo`
 --
 ALTER TABLE `periodo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
