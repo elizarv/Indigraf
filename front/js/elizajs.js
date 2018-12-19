@@ -145,6 +145,13 @@ function postCargarDetalles(result,state){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){
 		 	 	var Indicador = json[1];
+				document.getElementById("descripcion").value=Indicador.descripcion;
+				var str = Indicador.descripcion.split("\n");
+				agg="";
+      	for (var i = 0; i < str.length; i++) {
+					agg += "<p>" + str[i] + "</p>";
+				}
+				$("#descripcion").append(agg);
 			}
  	}
 }
@@ -156,7 +163,8 @@ function cargarFormIndicador(padre,nombre){
 }
 
 function preIndicadorInsert(idForm, tipo){
-		document.getElementById("idPadre").value=idPadre;
+		document.getElementById("idPadre").value=papa;
+		alert(papa);
 		var rutaIndi;
 		var rutaPer;
 		if(tipo=='insert'){
@@ -238,7 +246,6 @@ function postIndicadorUpdate(result, state){
 
 function editarIndicador(id){
 	cargaContenido('remp','front/views/actualizarIndicador.html');
-	idPadre=id;
 	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Editar Indicador</li>';
 	formData={'id':id};
 	enviar(formData,'back/controller/indicador/IndicadorSelect.php',llenarDatosIndicador);
