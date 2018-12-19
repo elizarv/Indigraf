@@ -8,6 +8,7 @@ var arrayIds=[];
 var nombreIndicador;
 
 function cargarInicio(){
+
 	cargaContenido('remp','front/views/home.html');
 	cuenta=0;
 	papa=0;
@@ -76,8 +77,11 @@ function pintarMenus(nombres,ids){
                 //----------------- Para una tabla -----------------------
                 str='<div class="col-sm-6"><div class="card"><div class="card-bodyJ">';
                 str+='<h4 class="card-title">'+Indicador.nombre+'</h4><div class="row "><div class="col-sm-6">';
-								//if(Indicador.esPadre==1){
-									str+='<a title="Ver más" href="javascript:preIndicadorListPadre(\''+Indicador.id+'\',\''+Indicador.nombre+'\')"><img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6"></a>';
+								if(Indicador.esPadre==1){
+									if(userLogged.tipo==1){
+										str+='<a title="Ver más" href="javascript:preIndicadorListPadre(\''+Indicador.id+'\',\''+Indicador.nombre+'\')"><img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6"></a>';
+									}
+								}
 								//}else{
 									//str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
 								//}
@@ -97,6 +101,7 @@ function pintarMenus(nombres,ids){
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
      }
+     mostrarMergasOcultas();
 }
 
 
@@ -218,6 +223,7 @@ function preIndicadorInsert(idForm, tipo){
                     processData: false,
                     cache: false,
                     success: function (data) {
+                    	console.log(data);
 											var json=JSON.parse(data);
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo

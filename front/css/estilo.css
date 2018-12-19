@@ -1,6 +1,8 @@
 .usuarioAcad{
-	display: none;
+	/*display: none;*/
+	visibility: hidden;
 }
 .usuarioAdmin{
-	display: none;
+	/*display: none;*/
+	visibility: hidden;
 }
