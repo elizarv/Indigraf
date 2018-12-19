@@ -306,11 +306,7 @@ function postgetLogged(result,state){
           userLogged=json[1];
           var tipoU="";
           console.log(userLogged.tipo);
-          if(userLogged.tipo==2){tipoU="usuarioAcad";}
-          if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
-          var list = document.getElementsByClassName(tipoU);          
-          for(var i=0; i < list.length; i++) {                   
-            var item=list[i];          
+          if(userLogged.tipo==2){tipoU="usuarioAcad";}          
           if(userLogged.tipo==1){tipoU="usuarioAdmin";}
           var list = document.getElementsByClassName(tipoU);
           //console.log(list);
