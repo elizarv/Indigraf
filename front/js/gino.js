@@ -298,18 +298,21 @@ function personalizar (idForm){
     }
 }
 
-function postgetLogged(result,state){
-  console.log(result);
+function postgetLogged(result,state){  
   if(state=="success"){
      var json=JSON.parse(result);
      if(json[0].msg=="exito"){
       if(json[1].result!="No se encontraron registros."){
-          userLogged=json[0];
+          userLogged=json[1];
           var tipoU="";
+          console.log(userLogged.tipo);
           if(userLogged.tipo==2){tipoU="usuarioAcad";}
-          if(userLogged.tipo==2){tipoU="usuarioAdmin";}          
+          if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
           var list = document.getElementsByClassName(tipoU);
-          for (item in list){
+          //console.log(list);
+          for(var i=0; i < list.length; i++) {                   
+            var item=list[i];
+            //console.log(item);
             item.style.visibility = "visible";
           }
           document.getElementById("linkLogin").innerHTML='<a href="javascript:logout()" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>';
