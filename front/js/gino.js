@@ -130,10 +130,7 @@ function postPeticionesList(result,state){
         cantidadI= cantidad;
         if(json[0].msg=="exito"){
            for(var i=1; i < Object.keys(json).length; i++) {
-
-               //----------------- Para una tabla -----------------------
-
-
+						 //----------------- Para una tabla -----------------------
                str="<tr><td>"+i+"</td><td>"+json[i].nombre+"</td><td id="+json[i].id+"></td></tr>";
                document.getElementById("peticionesList").innerHTML+=str;
                document.getElementById("cantidadI").value= cantidad
@@ -166,6 +163,10 @@ function postPeticionesCant(result,state){
 function cargarVistaAprobar(id){
     idIndicador=id;
     cargaContenido('remp','front/views/aprobarArchivos.html');
+		var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+		str+='<li class="breadcrumb-item"><a href="javascript:prePeticionesList()">Lista de peticiones</a></li>';
+		str+='<li class="breadcrumb-item">Aprobar archivos</li>';;
+		document.getElementById("breadc").innerHTML=str;
     formData={'id':id};
     enviar(formData,'back/controller/archivo/ArchivoListIn.php',postAprobarList);
 }
