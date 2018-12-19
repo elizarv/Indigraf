@@ -12,7 +12,7 @@ include_once realpath('../../facade/PeriodoFacade.php');
 $list=IndicadorFacade::listAll();
 $rta="";
 foreach ($list as $obj => $Indicador) {
-	$periodos=PeriodoFacade::listByIndicador($Indicador);
+	$periodos=PeriodoFacade::listByIndicador($Indicador->getId());
 	$periodo=$periodos[count($periodos)-1];
 
 	$color="red";

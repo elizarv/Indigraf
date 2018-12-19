@@ -26,6 +26,7 @@ function graficar(idIndicador){
 }
 
 function postGraficar(result,state){
+	alert(result);
     if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
