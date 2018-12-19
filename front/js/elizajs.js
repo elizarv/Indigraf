@@ -108,7 +108,6 @@ function eliminarIndicador(id){
   buttons: true,
   dangerMode: true,
 }).then((willDelete) => {
-	alert("aaa");
     formData={'id':id};
 		enviar(formData,'back/controller/indicador/IndicadorDelete.php',exitoEliminarIndicador);
 });
@@ -140,7 +139,6 @@ function preCargarDetalles(id){
 }
 
 function postCargarDetalles(result,state){
-	alert(result);
 	if(state=="success"){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){

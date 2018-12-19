@@ -26,7 +26,6 @@ function graficar(idIndicador){
 }
 
 function postGraficar(result,state){
-	alert(result);
     if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
@@ -48,7 +47,6 @@ function postGraficar(result,state){
                 //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
             }
          }else{
-            alert(json[0].msg);
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
@@ -148,7 +146,6 @@ function postListarIndicadores(result,state){
                 //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
             }
          }else{
-            alert(json[0].msg);
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
@@ -174,7 +171,6 @@ function postListarRelaciones(result,state){
             }
             createDiagram(indicadoresParaElMapa,relacionesParaElMapa);
          }else{
-            alert(json[0].msg);
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
