@@ -35,7 +35,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
 </head>
-  <body>
+  <body onload="getLoggedDesdeElMapa()">    
     <div class="page home-page">
       <!-- Main Navbar-->
       <header class="header">
@@ -59,7 +59,7 @@
 
 
                 <!-- Logout    -->
-                <li class="nav-item"><a href="login.html" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a></li>
+                <li class="nav-item" id="linkLogin"><a href="javascript:logout()" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a></li>
               </ul>
             </div>
           </div>

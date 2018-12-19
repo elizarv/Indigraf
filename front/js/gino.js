@@ -325,3 +325,6 @@ function postgetLogged(result,state){
      alert("Hubo un errror interno ( u.u)\n"+result);
   }
 }
+function getLoggedDesdeElMapa() {
+  enviar('','back/controller/usuario/UsuarioGetLogged.php',postgetLogged);
+}
