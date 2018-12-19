@@ -83,7 +83,9 @@ class IndicadorFacade {
       $indicador = self::select($id);
       $indicador->setNombre($nombre);
       $indicador->setDescripcion($descripcion);
-      $indicador->setImagen($imagen);
+      if($imagen!=""){
+        $indicador->setImagen($imagen);
+      }
       $indicador->setUnidadMedida($unidadMedida);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
@@ -92,6 +94,14 @@ class IndicadorFacade {
      $indicadorDao->close();
   }
 
+public static function updateEsPadre($id){
+  $indicador=self::select($id);
+  $indicador->setId($id);
+  $FactoryDao=new FactoryDao(self::getGestorDefault());
+  $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
+  $indicadorDao->updateEsPadre($indicador);
+  $indicadorDao->close();
+}
   /**
    * Elimina un objeto Indicador de la base de datos a partir de su(s) llave(s) primaria(s).
    * Puede recibir NullPointerException desde los métodos del Dao
