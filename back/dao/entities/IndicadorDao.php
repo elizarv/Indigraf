@@ -37,7 +37,6 @@ if($padre!=null){
   $padre=$padre->getId();
 }
 $esPadre=$indicador->getEsPadre();
-
 $unidadMedida = $indicador->getUnidadMedida();
       try {
           $sql= "INSERT INTO `indicador`(`nombre`, `descripcion`, `imagen`, `padre`,`esPadre`,`unidadMedida`)"
@@ -93,7 +92,7 @@ $unidadMedida = $indicador->getUnidadMedida();
       $imagen=$indicador->getImagen();
       $padre=$indicador->getPadre()->getId();
       $esPadre=$indicador->getEsPadre();
-
+      $unidadMedida=$indicador->getUnidadMedida();
       try {
           $sql= "UPDATE `indicador` SET`id`='$id' ,`nombre`='$nombre' ,`descripcion`='$descripcion' ,`imagen`='$imagen' ,`unidadMedida`='$unidadMedida' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);

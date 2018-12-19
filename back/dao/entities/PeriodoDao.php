@@ -80,7 +80,6 @@ $cantidad=$periodo->getCantidad();
 
   public function select($periodo){
       $id=$periodo->getId();
-
       try {
           $sql= "SELECT `fecha_ini`, `fecha_fin`, `verde`, `amarillo`, `rojo`, `indicador`, `id`, `cantidad`"
           ."FROM `periodo`"
@@ -117,12 +116,11 @@ $fecha_fin=$periodo->getFecha_fin();
 $verde=$periodo->getVerde();
 $amarillo=$periodo->getAmarillo();
 $rojo=$periodo->getRojo();
-$indicador=$periodo->getIndicador()->getId();
 $id=$periodo->getId();
 $cantidad=$periodo->getCantidad();
 
       try {
-          $sql= "UPDATE `periodo` SET`fecha_ini`='$fecha_ini' ,`fecha_fin`='$fecha_fin' ,`verde`=$verde, `amarillo`=$amarillo, `rojo`=$rojo, ,`indicador`='$indicador' ,`id`='$id' ,`cantidad`='$cantidad' WHERE `id`='$id' ";
+          $sql= "UPDATE `periodo` SET`fecha_ini`='$fecha_ini' ,`fecha_fin`='$fecha_fin' ,`verde`=$verde, `amarillo`=$amarillo, `rojo`=$rojo ,`cantidad`='$cantidad' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

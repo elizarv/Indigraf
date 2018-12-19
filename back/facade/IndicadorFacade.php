@@ -45,7 +45,7 @@ class IndicadorFacade {
       $indicador->setImagen($imagen);
       $indicador->setPadre($padre);
       $indicador->setEsPadre(0);
-      $indicador->getUnidadMedida($unidadMedida);
+      $indicador->SetUnidadMedida($unidadMedida);
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
      $rtn = $indicadorDao->insert($indicador);

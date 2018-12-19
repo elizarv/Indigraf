@@ -39,7 +39,6 @@ $amarillo=$_POST['idMeta'];
 $rojo=$_POST['idRojo'];
 $cantidad=$_POST['idCantidad'];
 $id=$_POST['idPadre'];
-
 IndicadorFacade::update($id,$nombre, $descripcion, $imagen, $unidadMedida);
 $rta="{
     \"id\":\"{$id}\",
@@ -50,7 +49,6 @@ $rta="{
     \"cantidad\":\"{$cantidad}\",
     \"amarillo\":\"{$amarillo}\"
 }";
-
 
 $msg="{\"msg\":\"exito\"}";
 $tipo="{\"tipo\":\"update\"}";

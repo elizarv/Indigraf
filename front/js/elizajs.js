@@ -197,10 +197,11 @@ function cargarFormIndicador(padre,nombre){
 }
 
 function preIndicadorInsert(idForm, tipo){
-		document.getElementById("idPadre").value=papa;
+
 		var rutaIndi;
 		var rutaPer;
 		if(tipo=='insert'){
+			document.getElementById("idPadre").value=papa;
 			rutaIndi='back/controller/indicador/IndicadorInsert.php';
 			rutaPer='back/controller/periodo/PeriodoInsert.php';
 		}else{
@@ -224,7 +225,9 @@ function preIndicadorInsert(idForm, tipo){
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo
 															 if(json[2].tipo=="insert")enviar(json[1],rutaPer,postIndicadorInsert);
-															 else enviar(json[1],rutaPer,postIndicadorUpdate);
+															 else{
+																 enviar(json[1],rutaPer,postIndicadorUpdate);
+															 }
 													}else{
 														 alert("Hubo un errror en la inserción ( u.u)\n");
 													}
@@ -286,6 +289,7 @@ function llenarDatosIndicador(result,state){
 	if(state=="success"){
 			var json=JSON.parse(result);
 							if(json[0].msg=="exito"){
+								 document.getElementById('idPadre').value=json[1].id;
 								 document.getElementById('idDescripcion').value = json[1].descripcion;
 								 document.getElementById('idNombre').value = json[1].nombre;
 								 document.getElementById('UMedida').value= json[1].unidadMedida;
@@ -307,8 +311,20 @@ function llenarDatosPeriodo(result,state){
 				document.getElementById("idMeta").value=Periodo.amarillo;
 				document.getElementById("idRojo").value=Periodo.rojo;
 				document.getElementById("idVerde").value=Periodo.verde;
-				document.getElementById("idInicioP").value=Periodo.fecha_ini;
-				document.getElementById("idFinalP").value=Periodo.fecha_fin;
+				datos= Periodo.fecha_ini.split(" ");
+				datos= datos[0].split("-");
+				day=datos[2];
+				month=datos[1];
+				year=datos[0];
+				today=year+"-"+month+"-"+day
+				document.getElementById("idInicioP").value=today;
+				datos= Periodo.fecha_fin.split(" ");
+				datos= datos[0].split("-");
+				day=datos[2];
+				month=datos[1];
+				year=datos[0];
+				today=year+"-"+month+"-"+day
+				document.getElementById("idFinalP").value=today;
 			}
  	}
 }
