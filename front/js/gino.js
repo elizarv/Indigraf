@@ -291,7 +291,7 @@ function personalizar (idForm){
             }
 						cargarInicio();
 
-        }zz
+        }
     }else{
         alert("Hubo un errror interno ( u.u)\n"+result);
     }
@@ -312,7 +312,7 @@ function postgetLogged(result,state){
           for(var i=0; i < list.length; i++) {
             var item=list[i];
             console.log(item);
-            item.style.visibility = "visible";
+            item.style.display = "initial";
           }
           document.getElementById("linkLogin").innerHTML='<a href="javascript:logout()" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>';
         }else{
