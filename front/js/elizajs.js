@@ -164,8 +164,17 @@ function buscarPeriodo(result,state){
 			if(json[0].msg=="exito"){
 		 	 	var Periodo = json[1];
 				formData={'periodo':Periodo.id};
-
 				enviar(formData,'back/controller/archivo/ArchivoListByPeriodo.php',postCargarArchivos);
+			}
+ 	}
+}
+
+function llenarDatosPeriodo(result,state){
+	if(state=="success"){
+			var json=JSON.parse(result);
+			if(json[0].msg=="exito"){
+				var Periodo = json[1];
+				document
 			}
  	}
 }
@@ -280,7 +289,7 @@ function editarIndicador(id){
 	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Editar Indicador</li>';
 	formData={'id':id};
 	enviar(formData,'back/controller/indicador/IndicadorSelect.php',llenarDatosIndicador);
-	enviar(formData,'back/controller/indicador/PediodoSelect.php',llenarDatosPeriodo);
+	enviar(formData,'back/controller/periodo/PeriodoFirst.php',llenarDatosPeriodo);
 }
 
 function llenarDatosIndicador(result,state){
@@ -296,9 +305,4 @@ function llenarDatosIndicador(result,state){
  }else{
 			alert("Hubo un errror interno ( u.u)\n"+result);
 			}
-}
-
-
-function llenarDatosPeriodo(result,state){
-
 }

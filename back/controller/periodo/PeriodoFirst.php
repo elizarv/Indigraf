@@ -12,7 +12,13 @@ $id=$_POST['id'];
 $periodo=PeriodoFacade::selectFirst($id);
 $rta="";
 	$rta="{
-	    \"id\":\"{$periodo->getid()}\"
+	    \"id\":\"{$periodo->getid()}\",
+			\"amarillo\":\"{$periodo->getamarillo()}\",
+			\"verde\":\"{$periodo->getverde()}\",
+			\"rojo\":\"{$periodo->getrojo()}\",
+			\"fecha_ini\":\"{$periodo->getfecha_ini()}\",
+			\"fecha_fin\":\"{$periodo->getfecha_fin()}\",
+			\"cantidad\":\"{$periodo->getcantidad()}\"
 	},";
 
 

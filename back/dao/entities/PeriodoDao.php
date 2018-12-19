@@ -56,12 +56,18 @@ $cantidad=$periodo->getCantidad();
      public function selectFirst($periodo){
        $p=$periodo->getIndicador();
          try {
-             $sql= "SELECT `indicador`, `id`"
+             $sql= "SELECT `indicador`, `id`,`amarillo`,`verde`,`rojo`,`fecha_ini`,`fecha_fin`,`cantidad`"
              ."FROM `periodo`"
              ."WHERE `indicador`='$p' ORDER BY id DESC";
              $data = $this->ejecutarConsulta($sql);
              for ($i=0; $i < count($data) ; $i++) {
              $periodo->setId($data[$i]['id']);
+             $periodo->setAmarillo($data[$i]['amarillo']);
+             $periodo->setVerde($data[$i]['verde']);
+             $periodo->setRojo($data[$i]['rojo']);
+             $periodo->setFecha_ini($data[$i]['fecha_ini']);
+             $periodo->setFecha_fin($data[$i]['fecha_fin']);
+             $periodo->setCantidad($data[$i]['cantidad']);
              }
          return $periodo;
        } catch (SQLException $e) {
