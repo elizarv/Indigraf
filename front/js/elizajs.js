@@ -169,16 +169,6 @@ function buscarPeriodo(result,state){
  	}
 }
 
-function llenarDatosPeriodo(result,state){
-	if(state=="success"){
-			var json=JSON.parse(result);
-			if(json[0].msg=="exito"){
-				var Periodo = json[1];
-				document
-			}
- 	}
-}
-
 function postCargarArchivos(result,state){
 	if(state=="success"){
 			var json=JSON.parse(result);
@@ -305,4 +295,20 @@ function llenarDatosIndicador(result,state){
  }else{
 			alert("Hubo un errror interno ( u.u)\n"+result);
 			}
+}
+
+
+function llenarDatosPeriodo(result,state){
+	if(state=="success"){
+			var json=JSON.parse(result);
+			if(json[0].msg=="exito"){
+				var Periodo = json[1];
+				document.getElementById("idCantidad").value=Periodo.cantidad;
+				document.getElementById("idMeta").value=Periodo.amarillo;
+				document.getElementById("idRojo").value=Periodo.rojo;
+				document.getElementById("idVerde").value=Periodo.verde;
+				document.getElementById("idInicioP").value=Periodo.fecha_ini;
+				document.getElementById("idFinalP").value=Periodo.fecha_fin;
+			}
+ 	}
 }
