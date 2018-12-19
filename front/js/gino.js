@@ -304,12 +304,12 @@ function postgetLogged(result,state){
       if(json[1].result!="No se encontraron registros."){
           userLogged=json[1];
           var tipoU="";
-          console.log(userLogged.tipo);
           if(userLogged.tipo==2){tipoU="usuarioAcad";}          
           if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
           var list = document.getElementsByClassName(tipoU);
           console.log(list);
           for(var i=0; i < list.length; i++) {
+            console.log("holi" + tipoU);
             var item=list[i];
             console.log(item);
             item.style.display = "initial";

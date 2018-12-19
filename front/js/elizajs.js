@@ -168,6 +168,7 @@ function buscarPeriodo(result,state){
 }
 
 function postCargarArchivos(result,state){
+	console.log(result);
 	if(state=="success"){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){
