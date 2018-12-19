@@ -58,7 +58,7 @@ $unidadMedida = $indicador->getUnidadMedida();
       $id=$indicador->getId();
 
       try {
-          $sql= "SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`,`esPadre`,"
+          $sql= "SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`,`esPadre`,`unidadMedida`"
           ."FROM `indicador`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
@@ -71,7 +71,7 @@ $unidadMedida = $indicador->getUnidadMedida();
            $padre->setId($data[$i]['padre']);
            $indicador->setPadre($padre);
            $indicador->setEsPadre($data[$i]['esPadre']);
-           $indicador->setUnidadMedida($data[$i]['']);
+           $indicador->setUnidadMedida($data[$i]['unidadMedida']);
           }
       return $indicador;
     } catch (SQLException $e) {

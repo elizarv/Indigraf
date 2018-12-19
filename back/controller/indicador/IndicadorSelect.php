@@ -11,6 +11,7 @@ $rta="";
 	    \"descripcion\":\"{$Indicador->getdescripcion()}\",
 	    \"imagen\":\"{$Indicador->getimagen()}\",
 	    \"padre_id\":\"{$Indicador->getpadre()->getid()}\",
+	    \"unidadMedida\":\"{$Indicador->getUnidadMedida()}\",
 			\"esPadre\":\"{$Indicador->getEsPadre()}\"
 	},";
 

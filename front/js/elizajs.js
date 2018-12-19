@@ -240,6 +240,7 @@ function editarIndicador(id){
 	cargaContenido('remp','front/views/actualizarIndicador.html');
 	idPadre=id;
 	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Editar Indicador</li>';
+	formData={'id':id};
 	enviar(formData,'back/controller/indicador/IndicadorSelect.php',llenarDatosIndicador);
 	enviar(formData,'back/controller/indicador/PediodoSelect.php',llenarDatosPeriodo);
 }
@@ -250,13 +251,16 @@ function llenarDatosIndicador(result,state){
 							if(json[0].msg=="exito"){
 								 document.getElementById('idDescripcion').value = json[1].descripcion;
 								 document.getElementById('idNombre').value = json[1].nombre;
-								 tipo = json[1].tipo;
-								 $("#tipo").val(tipo);
+								 document.getElementById('UMedida').value= json[1].unidadMedida;
 							}else{
 								 alert("Hubo un errror en la busqueda ( u.u)\n"+result);
 							}
-
  }else{
 			alert("Hubo un errror interno ( u.u)\n"+result);
 			}
+}
+
+
+function llenarDatosPeriodo(result,state){
+
 }
