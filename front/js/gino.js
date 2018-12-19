@@ -308,11 +308,9 @@ function postgetLogged(result,state){
           console.log(userLogged.tipo);
           if(userLogged.tipo==2){tipoU="usuarioAcad";}
           if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
-          var list = document.getElementsByClassName(tipoU);
-          //console.log(list);
+          var list = document.getElementsByClassName(tipoU);          
           for(var i=0; i < list.length; i++) {                   
-            var item=list[i];
-            //console.log(item);
+            var item=list[i];          
             item.style.visibility = "visible";
           }
           document.getElementById("linkLogin").innerHTML='<a href="javascript:logout()" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>';
