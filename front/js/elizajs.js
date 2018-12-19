@@ -164,7 +164,6 @@ function cargarFormIndicador(padre,nombre){
 
 function preIndicadorInsert(idForm, tipo){
 		document.getElementById("idPadre").value=papa;
-		alert(papa);
 		var rutaIndi;
 		var rutaPer;
 		if(tipo=='insert'){
@@ -188,14 +187,11 @@ function preIndicadorInsert(idForm, tipo){
                     cache: false,
                     success: function (data) {
 											var json=JSON.parse(data);
-											alert(json[0].msg);
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo
-															 alert(json[1]);
 															 if(json[2].tipo=="insert")enviar(json[1],rutaPer,postIndicadorInsert);
 															 else enviar(json[1],rutaPer,postIndicadorUpdate);
 													}else{
-														alert("que putas");
 														 alert("Hubo un errror en la inserción ( u.u)\n");
 													}
                     },

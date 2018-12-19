@@ -130,10 +130,7 @@ function postPeticionesList(result,state){
         cantidadI= cantidad;
         if(json[0].msg=="exito"){
            for(var i=1; i < Object.keys(json).length; i++) {
-
-               //----------------- Para una tabla -----------------------
-
-
+						 //----------------- Para una tabla -----------------------
                str="<tr><td>"+i+"</td><td>"+json[i].nombre+"</td><td id="+json[i].id+"></td></tr>";
                document.getElementById("peticionesList").innerHTML+=str;
                document.getElementById("cantidadI").value= cantidad
@@ -166,6 +163,10 @@ function postPeticionesCant(result,state){
 function cargarVistaAprobar(id){
     idIndicador=id;
     cargaContenido('remp','front/views/aprobarArchivos.html');
+		var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+		str+='<li class="breadcrumb-item"><a href="javascript:prePeticionesList()">Lista de peticiones</a></li>';
+		str+='<li class="breadcrumb-item">Aprobar archivos</li>';;
+		document.getElementById("breadc").innerHTML=str;
     formData={'id':id};
     enviar(formData,'back/controller/archivo/ArchivoListIn.php',postAprobarList);
 }
@@ -178,7 +179,7 @@ function postAprobarList(result,state){
         if(json[0].msg=="exito"){
             for(var i=1; i < Object.keys(json).length; i++) {
 
-                str="<tr><td>"+i+"</td><td>"+json[i].subidoPor_username+"</td><td><a href='"+json[i].url+"'>Ver mas</a></td><td><button onclick='aprobarArchivo("+json[i].id+")' class='btn btn-warning btn-sm' data-toggle='tooltip' data-placement='top' title='Aprobar' id='aprobarArchivo'><i class='material-icons'>thumb_up_alt</i></button> <button  onclick='eliminarArchivo("+json[i].id+")' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='top' title='Eliminar' id='eliminarArchivo'><i class='material-icons'>delete_sweep</i></button></td></tr>";
+                str="<tr><td>"+i+"</td><td>"+json[i].subidoPor_username+"</td><td><a target='_blank' href='"+json[i].url+"'>Ver mas</a></td><td><button onclick='aprobarArchivo("+json[i].id+")' class='btn btn-warning btn-sm' data-toggle='tooltip' data-placement='top' title='Aprobar' id='aprobarArchivo'><i class='material-icons'>thumb_up_alt</i></button> <button  onclick='eliminarArchivo("+json[i].id+")' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='top' title='Eliminar' id='eliminarArchivo'><i class='material-icons'>delete_sweep</i></button></td></tr>";
                 document.getElementById("archivos").innerHTML+=str;
             }
         }
@@ -288,6 +289,7 @@ function personalizar (idForm){
                 csss.insertRule(".material-icons {color:"+colorS+"}", 0);
                 csss.insertRule(".logotipo { width:50px; height:50px; display: inline-block; position: relative; background:url('../../../"+logo+"');}", 0);
             }
+						cargarInicio();
 
         }
     }else{

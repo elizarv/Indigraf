@@ -128,7 +128,7 @@ $unidadMedida = $indicador->getUnidadMedida();
       try {
           $sql ="SELECT `id`, `nombre`, `descripcion`, `imagen`, `padre`, `esPadre`,`unidadMedida`"
           ."FROM `indicador`"
-          ."WHERE 1";
+          ."WHERE 1 AND id<>0";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $indicador= new Indicador();
