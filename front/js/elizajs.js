@@ -109,7 +109,7 @@ function pintarMenus(nombres,ids){
 
 function eliminarIndicador(id){
     swal({
-  title: "Esta seguro?",
+  title: "¿Está seguro?",
   text: "se eliminará éste indicador",
   icon: "warning",
   buttons: true,
@@ -157,6 +157,7 @@ function postCargarDetalles(result,state){
 				}
 				$("#descripcion").append(agg);
 			}
+			mostrarMergasOcultas();
  	}
 }
 

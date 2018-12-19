@@ -25,8 +25,17 @@
 
                         <div class="card-header  text-center" id="titulito" name="titulito">
                             <h3 class="h4  form-control-label">Archivos
-                            <a class="btn usuarioAdmin usuarioAcad" data-toggle="tooltip" href="javascript:preSubirArchivo()" data-placement="top" title="Agregar"><i class="material-icons">note_add</i></a>
                             </h3>
+                            <div  class="usuarioAdmin usuarioAcad" >
+                                <div id="divSubirArchivos" style="display: none">
+                                    <form class="form-horizontal" enctype="multipart/form-data" id="subirArchivo" action="javascript:preIndicadorInsert('subirArchivo','insert')" method="post">
+                                        <input type="file" id="idImagen" name="idImagen" accept=".pdf,image/*" >                                     
+                                        <input type="submit" value="Guardar" class="btn">
+                                    </form>
+                                </div>
+                                <a class="btn " data-toggle="tooltip" href="javascript:mostrarSubirArchivos()" data-placement="top" title="Agregar"><i class="material-icons">note_add</i></a>
+                            </div>                            
+
 
                         </div>
 

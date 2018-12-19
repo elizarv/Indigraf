@@ -202,3 +202,47 @@ function logout(){
 function postLogout(){
     window.location="login.html";
 }
+
+function mostrarSubirArchivos(){
+  document.getElementById("divSubirArchivos").style.display = "initial";
+}
+
+function preSubirArchivo(idForm){
+ var rutaIndi;
+    var rutaPer;    
+      document.getElementById("idPadre").value=papa;
+      rutaIndi='back/controller/indicador/IndicadorInsert.php';
+      rutaPer='back/controller/periodo/PeriodoInsert.php';    
+    //Haga aquí las validaciones necesarias antes de enviar el formulario.
+   if(validarForm(idForm)){
+     var form = $("#"+idForm)[0];
+     var formData=new FormData(form);
+    $.ajax({
+                    type: "POST",
+                    url: rutaIndi,
+                    data: formData,
+                    enctype: 'multipart/form-data',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                      console.log(data);
+                      var json=JSON.parse(data);
+                        if (json[0].msg== "exito") {
+                               //insertar periodo
+                               if(json[2].tipo=="insert")enviar(json[1],rutaPer,postIndicadorInsert);
+                               else{
+                                 enviar(json[1],rutaPer,postIndicadorUpdate);
+                               }
+                          }else{
+                             alert("Hubo un errror en la inserción ( u.u)\n");
+                          }
+                    },
+                    error: function (data) {
+                        alert("Hubo un errror interno ( u.u)\n");
+                    }
+});
+    }else{
+        alert("Debe llenar los campos requeridos");
+    } 
+}
