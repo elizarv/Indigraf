@@ -179,7 +179,7 @@ function postAprobarList(result,state){
         if(json[0].msg=="exito"){
             for(var i=1; i < Object.keys(json).length; i++) {
 
-                str="<tr><td>"+i+"</td><td>"+json[i].subidoPor_username+"</td><td><a href='"+json[i].url+"'>Ver mas</a></td><td><button onclick='aprobarArchivo("+json[i].id+")' class='btn btn-warning btn-sm' data-toggle='tooltip' data-placement='top' title='Aprobar' id='aprobarArchivo'><i class='material-icons'>thumb_up_alt</i></button> <button  onclick='eliminarArchivo("+json[i].id+")' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='top' title='Eliminar' id='eliminarArchivo'><i class='material-icons'>delete_sweep</i></button></td></tr>";
+                str="<tr><td>"+i+"</td><td>"+json[i].subidoPor_username+"</td><td><a target='_blank' href='"+json[i].url+"'>Ver mas</a></td><td><button onclick='aprobarArchivo("+json[i].id+")' class='btn btn-warning btn-sm' data-toggle='tooltip' data-placement='top' title='Aprobar' id='aprobarArchivo'><i class='material-icons'>thumb_up_alt</i></button> <button  onclick='eliminarArchivo("+json[i].id+")' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='top' title='Eliminar' id='eliminarArchivo'><i class='material-icons'>delete_sweep</i></button></td></tr>";
                 document.getElementById("archivos").innerHTML+=str;
             }
         }
