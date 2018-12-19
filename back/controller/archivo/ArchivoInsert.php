@@ -17,7 +17,7 @@ $name = $_FILES['idImagen']["name"];
 # Con explode() segmentamos la cadena de acuerdo al separador que definamos. En este caso punto (.)
 $array=explode('.',$name);
 # Capturamos el último elemento del array anterior que vendría a ser la extensión
-$ext= end($name);
+$ext= end($array);
 //Creamos una nueva ruta (nuevo path)
 //Así guardaremos nuestra idImagen en la carpeta "images"
 if($ext=='pdf'){
@@ -34,8 +34,8 @@ if($ext=='pdf'){
 # $nuevo_path: la nueva ruta que creamos
 //$tmp_name=$tmp_name."/".$name;
 move_uploaded_file($tmp_name,$nuevo_path);
-
-$usuario= $_SESSION['usuario'];
+session_start();
+$usuario=unserialize($_SESSION["usuario"]);
 $fechaSubida = date("d-m-Y");
 $Periodo_id = $_POST['periodo'];
 $periodo= new Periodo();

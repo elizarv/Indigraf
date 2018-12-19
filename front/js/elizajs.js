@@ -382,8 +382,10 @@ function preArchivoInsert(idForm){
 										 alert(data);
 										 var json=JSON.parse(data);
 											 if (json[0].msg== "exito") {
-															//insertar periodo
-															alert("si");
+												 swal("Archivo subido exitosamente", {
+													 icon: "success",
+												 });
+												 preIndicadorListPadre(0,'Indicadores');//modificar luego, dependiendo de la rama en la que se este
 												 }else{
 														alert("Hubo un errror en la inserción ( u.u)\n");
 												 }

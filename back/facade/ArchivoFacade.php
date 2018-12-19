@@ -46,7 +46,7 @@ class ArchivoFacade {
       $archivo->setSubidoPor($subidoPor);
       $archivo->setFechaSubida($fechaSubida);
       $archivo->setPeriodo($periodo);
-      $extension->setExtension($extension);
+      $archivo->setExtension($extension);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());

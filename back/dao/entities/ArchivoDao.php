@@ -34,12 +34,17 @@ $url=$archivo->getUrl();
 $subidoPor=$archivo->getSubidoPor()->getUsername();
 $fechaSubida=$archivo->getFechaSubida();
 $periodo=$archivo->getPeriodo()->getId();
-$estado=$archivo->getEstado();
 $extension=$archivo->getExtension();
+$usuario=unserialize($_SESSION['usuario']);
+if($usuario->getTipo()==1){
+  $estado=0;
+}else{
+  $estado=1;
+}
 
       try {
           $sql= "INSERT INTO `archivo`( `url`, `subidoPor`, `fechaSubida`, `periodo`, `estado`,`extension`)"
-          ."VALUES ($url','$subidoPor','$fechaSubida','$periodo','$estado','$extension')";
+          ."VALUES ('$url','$subidoPor','$fechaSubida','$periodo','$estado','$extension')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
