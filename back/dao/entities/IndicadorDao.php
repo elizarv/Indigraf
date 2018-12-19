@@ -101,6 +101,16 @@ $unidadMedida = $indicador->getUnidadMedida();
       }
   }
 
+  public function updateEsPadre($indicador){
+    $id=$indicador->getId();
+    try {
+        $sql= "UPDATE `indicador` SET`esPadre`='1' WHERE `id`='$id' ";
+       return $this->insertarConsulta($sql);
+    } catch (SQLException $e) {
+        throw new Exception('Primary key is null');
+    }
+  }
+
     /**
      * Elimina un objeto Indicador en la base de datos.
      * @param indicador objeto con la(s) llave(s) primaria(s) para consultar

@@ -15,6 +15,7 @@ $id = $_POST['idPadre'];
 
 //capturar imagen cargada
 //capturamos los datos del fichero subido
+
 $type=$_FILES['idImagen']['type'];
 $tmp_name = $_FILES['idImagen']["tmp_name"];
 $name = $_FILES['idImagen']["name"];
@@ -39,6 +40,7 @@ $amarillo=$_POST['idMeta'];
 $rojo=$_POST['idRojo'];
 $cantidad=$_POST['idCantidad'];
 $id=$_POST['idPadre'];
+if($tmp_name=="")$imagen="";
 IndicadorFacade::update($id,$nombre, $descripcion, $imagen, $unidadMedida);
 $rta="{
     \"id\":\"{$id}\",
