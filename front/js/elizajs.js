@@ -120,11 +120,6 @@ function exitoEliminarIndicador(){
     preIndicadorListPadre(0,'Indicadores');//modificar luego, dependiendo de la rama en la que se este
   }
 
-
-function cargarMapa(){
-	cargaContenido('remp','front/views/mapa.html');
-}
-
 function cargarPersonalizar(){
 	cargaContenido('remp','front/views/personalizar.html');
 	var str='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
