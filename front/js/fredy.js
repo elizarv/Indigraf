@@ -176,6 +176,7 @@ function postListarRelaciones(result,state){
          alert("Hubo un errror interno ( u.u)\n"+result);
      }
 }
+
 function saludar(name){
     alert("Hola "+name);
 }
@@ -187,9 +188,10 @@ function chismosearMapa(){
 }
 
 function postChismosearMapa(result,state){
-    console.log(result);
     if(state=="success"){
-            alert("Cambios registrados con éxito");
+			swal("Cambios registrados con éxito", {
+				icon: "success",
+			});
             setTimeout(function(){ cargarMapa(); }, 1000);
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
@@ -209,10 +211,10 @@ function mostrarSubirArchivos(){
 
 function preSubirArchivo(idForm){
  var rutaIndi;
-    var rutaPer;    
+    var rutaPer;
       document.getElementById("idPadre").value=papa;
       rutaIndi='back/controller/indicador/IndicadorInsert.php';
-      rutaPer='back/controller/periodo/PeriodoInsert.php';    
+      rutaPer='back/controller/periodo/PeriodoInsert.php';
     //Haga aquí las validaciones necesarias antes de enviar el formulario.
    if(validarForm(idForm)){
      var form = $("#"+idForm)[0];
@@ -226,7 +228,6 @@ function preSubirArchivo(idForm){
                     processData: false,
                     cache: false,
                     success: function (data) {
-                      console.log(data);
                       var json=JSON.parse(data);
                         if (json[0].msg== "exito") {
                                //insertar periodo
@@ -244,5 +245,5 @@ function preSubirArchivo(idForm){
 });
     }else{
         alert("Debe llenar los campos requeridos");
-    } 
+    }
 }
