@@ -295,7 +295,7 @@ function llenarDatosIndicador(result,state){
 			var json=JSON.parse(result);
 							if(json[0].msg=="exito"){
 								 document.getElementById('idPadre').value=json[1].id;
-
+								 document.getElementById('registroPeriodo').value='<a class="btn" data-toggle="tooltip" href="javascript:preRegistrarPeriodo(\''+json[1].id+'\')" data-placement="top" title="Agregar" id="actualizarUsuario"><i class="material-icons">library_add</i></a>';
 				 				document.getElementById('idDescripcion').value=json[1].descripcion;
 								 document.getElementById('idNombre').value = json[1].nombre;
 								 document.getElementById('UMedida').value= json[1].unidadMedida;
@@ -317,7 +317,7 @@ function llenarDatosPeriodo(result,state){
 				document.getElementById("idMeta").value=Periodo.amarillo;
 				document.getElementById("idRojo").value=Periodo.rojo;
 				document.getElementById("idVerde").value=Periodo.verde;
-				datos= Periodo.fecha_ini.split(" ");
+				/*datos= Periodo.fecha_ini.split(" ");
 				datos= datos[0].split("-");
 				day=datos[2];
 				month=datos[1];
@@ -330,7 +330,12 @@ function llenarDatosPeriodo(result,state){
 				month=datos[1];
 				year=datos[0];
 				today=year+"-"+month+"-"+day
-				document.getElementById("idFinalP").value=today;
+				document.getElementById("idFinalP").value=today;*/
 			}
  	}
+}
+
+
+function preRegistrarPeriodo(){
+
 }
