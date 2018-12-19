@@ -34,6 +34,8 @@ $array=explode('.',$nuevo_path);
 # Capturamos el último elemento del array anterior que vendría a ser la extensión
 $ext= end($array);
 $imagen="back/images/".$name;
+
+
 $fecha_ini=$_POST['idInicioP'];
 $fecha_fin=$_POST['idFinalP'];
 $verde=$_POST['idVerde'];

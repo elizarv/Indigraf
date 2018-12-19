@@ -245,14 +245,12 @@ function personalizar (idForm){
             processData: false,
             cache: false,
             success: function (data) {
-                console.log(data);
                 swal("La aplicación se personalizó con exito!!", {
                     icon: "success",
                   });
                   enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
             },
             error: function (data) {
-                console.log(data);
             }
 });
         }else{

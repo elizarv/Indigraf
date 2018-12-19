@@ -28,13 +28,14 @@
                             </h3>
                             <div  class="usuarioAdmin usuarioAcad" >
                                 <div id="divSubirArchivos" style="display: none">
-                                    <form class="form-horizontal" enctype="multipart/form-data" id="subirArchivo" action="javascript:preIndicadorInsert('subirArchivo','insert')" method="post">
-                                        <input type="file" id="idImagen" name="idImagen" accept=".pdf,image/*" >                                     
+                                    <form class="form-horizontal" enctype="multipart/form-data" id="subirArchivo" action="javascript:preArchivoInsert('subirArchivo')" method="post">
+                                      <input type="hidden" id="periodo" name="periodo" value="">
+                                        <input type="file" id="idImagen" name="idImagen" accept=".pdf,image/*" >
                                         <input type="submit" value="Guardar" class="btn">
                                     </form>
                                 </div>
                                 <a class="btn " data-toggle="tooltip" href="javascript:mostrarSubirArchivos()" data-placement="top" title="Agregar"><i class="material-icons">note_add</i></a>
-                            </div>                            
+                            </div>
 
 
                         </div>

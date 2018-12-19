@@ -40,13 +40,11 @@ class ArchivoFacade {
    * @param descripcion
    * @param periodo
    */
-  public static function insert( $id,  $url,  $subidoPor,  $fechaSubida,  $descripcion,  $periodo, $extension){
+  public static function insert( $url,  $subidoPor,  $fechaSubida,  $periodo, $extension){
       $archivo = new Archivo();
-      $archivo->setId($id);
       $archivo->setUrl($url);
       $archivo->setSubidoPor($subidoPor);
       $archivo->setFechaSubida($fechaSubida);
-      $archivo->setDescripcion($descripcion);
       $archivo->setPeriodo($periodo);
       $extension->setExtension($extension);
 

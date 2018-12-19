@@ -167,6 +167,7 @@ function buscarPeriodo(result,state){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){
 		 	 	var Periodo = json[1];
+				document.getElementById('periodo').value=Periodo.id;
 				formData={'periodo':Periodo.id};
 				enviar(formData,'back/controller/archivo/ArchivoListByPeriodo.php',postCargarArchivos);
 			}
@@ -174,7 +175,6 @@ function buscarPeriodo(result,state){
 }
 
 function postCargarArchivos(result,state){
-	console.log(result);
 	if(state=="success"){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){
@@ -226,7 +226,6 @@ function preIndicadorInsert(idForm, tipo){
                     processData: false,
                     cache: false,
                     success: function (data) {
-                    	console.log(data);
 											var json=JSON.parse(data);
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo
@@ -358,6 +357,41 @@ function periodoInsert(idForm){
 		document.getElementById("id").value=idPadre;
 	 var formData=$('#'+idForm).serialize();
 	 enviar(formData,'back/controller/periodo/PeriodoInsert.php',postPeriodoInsert);
+	 }else{
+			 alert("Debe llenar los campos requeridos");
+	 }
+
+}
+
+
+
+
+function preArchivoInsert(idForm){
+	if(validarForm(idForm)){
+		var form = $("#"+idForm)[0];
+		var formData=new FormData(form);
+	 $.ajax({
+									 type: "POST",
+									 url: 'back/controller/archivo/ArchivoInsert.php',
+									 data: formData,
+									 enctype: 'multipart/form-data',
+									 contentType: false,
+									 processData: false,
+									 cache: false,
+									 success: function (data) {
+										 alert(data);
+										 var json=JSON.parse(data);
+											 if (json[0].msg== "exito") {
+															//insertar periodo
+															alert("si");
+												 }else{
+														alert("Hubo un errror en la inserción ( u.u)\n");
+												 }
+									 },
+									 error: function (data) {
+											 alert("Hubo un errror interno ( u.u)\n");
+									 }
+});
 	 }else{
 			 alert("Debe llenar los campos requeridos");
 	 }
