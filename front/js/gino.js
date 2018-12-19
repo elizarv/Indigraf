@@ -263,7 +263,7 @@ function personalizar (idForm){
 
 
 
-  function window_onload(){
+  function window_onload(){    
     enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
   }
 
@@ -303,17 +303,7 @@ function postgetLogged(result,state){
      if(json[0].msg=="exito"){
       if(json[1].result!="No se encontraron registros."){
           userLogged=json[1];
-          var tipoU="";
-          console.log(userLogged.tipo);
-          if(userLogged.tipo==2){tipoU="usuarioAcad";}
-          if(userLogged.tipo==1){tipoU="usuarioAdmin";}
-          var list = document.getElementsByClassName(tipoU);
-          console.log(list);
-          for(var i=0; i < list.length; i++) {
-            var item=list[i];
-            console.log(item);
-            item.style.display = "initial";
-          }
+          mostrarMergasOcultas();         
           document.getElementById("linkLogin").innerHTML='<a href="javascript:logout()" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>';
         }else{
           document.getElementById("linkLogin").innerHTML='<a href="login.html" class="nav-link login">Iniciar Sesión<i class="fa fa-sign-in"></i></a>';
@@ -326,4 +316,20 @@ function postgetLogged(result,state){
 }
 function getLoggedDesdeElMapa() {
   enviar('','back/controller/usuario/UsuarioGetLogged.php',postgetLogged);
+}
+
+function mostrarMergasOcultas(){
+  var tipoU="";
+  if(userLogged.tipo==2){tipoU="usuarioAcad";}          
+  if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
+  //console.log(userLogged.tipo);
+  var list = document.getElementsByClassName(tipoU);
+  //console.log(list);
+  for(var i=0; i < list.length; i++) {
+    //console.log("holi" + tipoU);
+    var item=list[i];
+    //console.log(item);
+    //item.style.display = "initial";
+    item.style.visibility = "visible";
+  }
 }
