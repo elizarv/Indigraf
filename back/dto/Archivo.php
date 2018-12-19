@@ -17,6 +17,7 @@ class Archivo {
   private $descripcion;
   private $periodo;
   private $estado;
+  private $extension;//1:pdf   2:imagen(jpg,jpeg,png)
 
     /**
      * Constructor de Archivo
@@ -127,6 +128,22 @@ public function getEstado(){
    */
 public function setEstado($estado){
     $this->estado = $estado;
+}
+
+/**
+ * Devuelve el valor correspondiente a Extension
+ * @return Extension
+ */
+public function getExtension(){
+  return $this->extension;
+}
+
+/**
+ * Modifica el valor correspondiente a Extension
+ * @param Extension
+ */
+public function setExtension($extension){
+  $this->extension = $extension;
 }
 
 

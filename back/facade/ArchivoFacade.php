@@ -40,14 +40,15 @@ class ArchivoFacade {
    * @param descripcion
    * @param periodo
    */
-  public static function insert( $id,  $url,  $subidoPor,  $fechaSubida,  $descripcion,  $periodo){
+  public static function insert( $id,  $url,  $subidoPor,  $fechaSubida,  $descripcion,  $periodo, $extension){
       $archivo = new Archivo();
-      $archivo->setId($id); 
-      $archivo->setUrl($url); 
-      $archivo->setSubidoPor($subidoPor); 
-      $archivo->setFechaSubida($fechaSubida); 
-      $archivo->setDescripcion($descripcion); 
-      $archivo->setPeriodo($periodo); 
+      $archivo->setId($id);
+      $archivo->setUrl($url);
+      $archivo->setSubidoPor($subidoPor);
+      $archivo->setFechaSubida($fechaSubida);
+      $archivo->setDescripcion($descripcion);
+      $archivo->setPeriodo($periodo);
+      $extension->setExtension($extension);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
@@ -64,7 +65,7 @@ class ArchivoFacade {
    */
   public static function select($id){
       $archivo = new Archivo();
-      $archivo->setId($id); 
+      $archivo->setId($id);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
@@ -83,13 +84,14 @@ class ArchivoFacade {
    * @param descripcion
    * @param periodo
    */
-  public static function update($id, $url, $subidoPor, $fechaSubida, $descripcion, $periodo){
+  public static function update($id, $url, $subidoPor, $fechaSubida, $descripcion, $periodo, $extension){
       $archivo = self::select($id);
-      $archivo->setUrl($url); 
-      $archivo->setSubidoPor($subidoPor); 
-      $archivo->setFechaSubida($fechaSubida); 
-      $archivo->setDescripcion($descripcion); 
-      $archivo->setPeriodo($periodo); 
+      $archivo->setUrl($url);
+      $archivo->setSubidoPor($subidoPor);
+      $archivo->setFechaSubida($fechaSubida);
+      $archivo->setDescripcion($descripcion);
+      $archivo->setPeriodo($periodo);
+      $archivo->setExtension($extension);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
@@ -104,7 +106,7 @@ class ArchivoFacade {
    */
   public static function delete($id){
       $archivo = new Archivo();
-      $archivo->setId($id); 
+      $archivo->setId($id);
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
@@ -125,6 +127,16 @@ class ArchivoFacade {
      return $result;
   }
 
+  public static function listByPeriodo($id){
+    $archivo = new Archivo();
+    $archivo->setPeriodo($id);
+    $FactoryDao=new FactoryDao(self::getGestorDefault());
+    $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
+    $result = $archivoDao->listByPeriodo($archivo);
+    $archivoDao->close();
+    return $result;
+  }
+
   public static function listByIn(){
     $FactoryDao=new FactoryDao(self::getGestorDefault());
     $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
@@ -143,7 +155,7 @@ class ArchivoFacade {
 
   public static function aprove($id){
     $archivo = new Archivo();
-    $archivo->setId($id); 
+    $archivo->setId($id);
 
    $FactoryDao=new FactoryDao(self::getGestorDefault());
    $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());

@@ -138,6 +138,7 @@ function preCargarDetalles(id){
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
 	formData={'id':id};
 	enviar(formData,'back/controller/indicador/Indicadorselect.php',postCargarDetalles);
+	enviar(formData,'back/controller/periodo/PeriodoFirst.php',buscarPeriodo);
 }
 
 function postCargarDetalles(result,state){
@@ -155,6 +156,40 @@ function postCargarDetalles(result,state){
 			}
  	}
 }
+
+
+function buscarPeriodo(result,state){
+	if(state=="success"){
+			var json=JSON.parse(result);
+			if(json[0].msg=="exito"){
+		 	 	var Periodo = json[1];
+				formData={'periodo':Periodo.id};
+
+				enviar(formData,'back/controller/archivo/ArchivoListByPeriodo.php',postCargarArchivos);
+			}
+ 	}
+}
+
+function postCargarArchivos(result,state){
+	if(state=="success"){
+			var json=JSON.parse(result);
+			if(json[0].msg=="exito"){
+				var str="";
+				var str2="";
+				for(var i=1; i < Object.keys(json).length; i++) {
+				var Archivo = json[i];
+				if(Archivo.extension=='1'){
+					str+='<a target="_blank" href="'+Archivo.url+'"><img width="60" height="60" src="front/public/img/pdf.png"></a>';
+				}else{
+					str2+='<a target="_blank" href="'+Archivo.url+'"><img width="60" height="60" src="front/public/img/imagen.png"></a>'
+				}
+			}
+			document.getElementById("archivosPdf").innerHTML=str;
+			document.getElementById("archivosPng").innerHTML=str2;
+			}
+ 	}
+}
+
 
 
 function cargarFormIndicador(padre,nombre){

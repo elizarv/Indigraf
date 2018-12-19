@@ -37,10 +37,11 @@ $fechaSubida=$archivo->getFechaSubida();
 $descripcion=$archivo->getDescripcion();
 $periodo=$archivo->getPeriodo()->getId();
 $estado=$archivo->getEstado();
+$extension=$archivo->getExtension();
 
       try {
-          $sql= "INSERT INTO `archivo`( `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`)"
-          ."VALUES ('$id','$url','$subidoPor','$fechaSubida','$descripcion','$periodo','$estado')";
+          $sql= "INSERT INTO `archivo`( `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`,`extension`)"
+          ."VALUES ('$id','$url','$subidoPor','$fechaSubida','$descripcion','$periodo','$estado','$extension')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -57,7 +58,7 @@ $estado=$archivo->getEstado();
       $id=$archivo->getId();
 
       try {
-          $sql= "SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`"
+          $sql= "SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`,`extension`"
           ."FROM `archivo`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
@@ -73,6 +74,7 @@ $estado=$archivo->getEstado();
            $periodo->setId($data[$i]['periodo']);
            $archivo->setPeriodo($periodo);
            $archivo->setEstado($data[$i]['estado']);
+           $archivo->setExtension($data[$i]['extension']);
 
           }
       return $archivo;      } catch (SQLException $e) {
@@ -95,9 +97,10 @@ $fechaSubida=$archivo->getFechaSubida();
 $descripcion=$archivo->getDescripcion();
 $periodo=$archivo->getPeriodo()->getId();
 $estado=$archivo->getEstado();
+$extension=$archivo->getExtension();
 
       try {
-          $sql= "UPDATE `archivo` SET`id`='$id' ,`url`='$url' ,`subidoPor`='$subidoPor' ,`fechaSubida`='$fechaSubida' ,`descripcion`='$descripcion' ,`periodo`='$periodo',`estado`='$estado' WHERE `id`='$id' ";
+          $sql= "UPDATE `archivo` SET`id`='$id' ,`url`='$url' ,`subidoPor`='$subidoPor' ,`fechaSubida`='$fechaSubida' ,`descripcion`='$descripcion' ,`periodo`='$periodo',`estado`='$estado',`extension`='$extension' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -129,7 +132,7 @@ $estado=$archivo->getEstado();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`"
+          $sql ="SELECT `id`, `url`, `subidoPor`, `fechaSubida`, `descripcion`, `periodo`, `estado`, `extension`"
           ."FROM `archivo`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -146,7 +149,7 @@ $estado=$archivo->getEstado();
            $periodo->setId($data[$i]['periodo']);
            $archivo->setPeriodo($periodo);
            $archivo->setEstado($data[$id]['estado']);
-
+           $archivo->setExtension($data[$i]['extension']);
           array_push($lista,$archivo);
           }
       return $lista;
@@ -154,6 +157,30 @@ $estado=$archivo->getEstado();
           throw new Exception('Primary key is null');
       return null;
       }
+  }
+
+  public function listByPeriodo($archivo){
+    $ext=$archivo->getExtension();
+    $periodo=$archivo->getPeriodo();
+    $lista = array();
+    try {
+        $sql ="SELECT `id`, `url`,`extension`,`periodo`"
+        ."FROM `archivo`"
+        ."WHERE `periodo`='$periodo' AND `estado`='0'";
+        $data = $this->ejecutarConsulta($sql);
+        for ($i=0; $i < count($data) ; $i++) {
+            $archivo= new Archivo();
+        $archivo->setId($data[$i]['id']);
+        $archivo->setUrl($data[$i]['url']);
+        $archivo->setExtension($data[$i]['extension']);
+        $archivo->setPeriodo($data[$i]['periodo']);
+        array_push($lista,$archivo);
+        }
+    return $lista;
+    } catch (SQLException $e) {
+        throw new Exception('Primary key is null');
+    return null;
+    }
   }
 
   public function listByIn(){
@@ -169,7 +196,7 @@ $estado=$archivo->getEstado();
             unset($indicadores);
             $indicadores = array();
         }
-        
+
         return $lista;
     } catch (SQLException $e) {
         throw new Exception('Primary key is null');

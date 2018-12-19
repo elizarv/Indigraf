@@ -53,6 +53,25 @@ $cantidad=$periodo->getCantidad();
      * @return El objeto consultado o null
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
+     public function selectFirst($periodo){
+       $p=$periodo->getIndicador();
+         try {
+             $sql= "SELECT `indicador`, `id`"
+             ."FROM `periodo`"
+             ."WHERE `indicador`='$p' ORDER BY id DESC";
+             $data = $this->ejecutarConsulta($sql);
+             for ($i=0; $i < count($data) ; $i++) {
+             $periodo->setId($data[$i]['id']);
+             }
+         return $periodo;
+       } catch (SQLException $e) {
+             throw new Exception('Primary key is null');
+         return null;
+         }
+     }
+
+
+
   public function select($periodo){
       $id=$periodo->getId();
 

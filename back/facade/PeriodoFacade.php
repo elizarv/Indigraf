@@ -62,6 +62,17 @@ class PeriodoFacade {
    * @param id
    * @return El objeto en base de datos o Null
    */
+   public static function selectFirst($id){
+       $periodo = new Periodo();
+       $periodo->setIndicador($id);
+      $FactoryDao=new FactoryDao(self::getGestorDefault());
+      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
+      $result = $periodoDao->selectFirst($periodo);
+      $periodoDao->close();
+      return $result;
+   }
+
+
   public static function select($id){
       $periodo = new Periodo();
       $periodo->setId($id);
