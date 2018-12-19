@@ -114,6 +114,19 @@ class ArchivoFacade {
      $archivoDao->close();
   }
 
+
+  public static function deleteByIn($id){
+      $archivo = new Archivo();
+      $periodo = new Periodo();
+      $periodo->setId($id);
+      $archivo->setPeriodo($periodo);
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $archivoDao =$FactoryDao->getarchivoDao(self::getDataBaseDefault());
+     $archivoDao->deleteByIn($archivo);
+     $archivoDao->close();
+  }
+
   /**
    * Lista todos los objetos Archivo de la base de datos.
    * Puede recibir NullPointerException desde los métodos del Dao

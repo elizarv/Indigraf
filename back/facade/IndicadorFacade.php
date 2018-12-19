@@ -110,7 +110,6 @@ public static function updateEsPadre($id){
   public static function delete($id){
       $indicador = new Indicador();
       $indicador->setId($id);
-
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $indicadorDao =$FactoryDao->getindicadorDao(self::getDataBaseDefault());
      $indicadorDao->delete($indicador);

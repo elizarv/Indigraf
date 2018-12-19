@@ -124,6 +124,17 @@ $extension=$archivo->getExtension();
       }
   }
 
+  public function deleteById($archivo){
+      $id=$archivo->getPeriodo()->getId();
+
+      try {
+          $sql ="DELETE FROM `archivo` WHERE `periodo`='$id'";
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
+
     /**
      * Busca un objeto Archivo en la base de datos.
      * @return ArrayList<Archivo> Puede contener los objetos consultados o estar vacío

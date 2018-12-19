@@ -11,9 +11,9 @@ include_once realpath('../../facade/PeriodoFacade.php');
 $id=$_POST['id'];
 $indicador = new Indicador();
 $indicador->setId($id);
-$list=PeriodoFacade::listByIndicador($indicador);
+$list=PeriodoFacade::listByIndicador($id);
 $rta="";
-foreach ($list as $obj => $Periodo) {		
+foreach ($list as $obj => $Periodo) {
 	$rta.="{
  	    \"ini\":\"{$Periodo->getfecha_ini()}\",
 	    \"fin\":\"{$Periodo->getfecha_fin()}\",
@@ -32,7 +32,7 @@ if($rta!=""){
 }else{
 	$msg="{\"msg\":\"exito\"}";
 	//$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
-	$rta="{\"result\":\"No se encontraron registros.\"}";	
+	$rta="{\"result\":\"No se encontraron registros.\"}";
 }
 echo "[{$msg},{$rta}]";
 
