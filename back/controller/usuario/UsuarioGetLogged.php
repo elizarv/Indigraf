@@ -9,14 +9,21 @@
 include_once realpath('../../facade/UsuarioFacade.php');
 
 session_start();    
-$Usuario=unserialize($_SESSION["usuario"]);
 $rta = "";
-$rta.="{
-    \"username\":\"{$Usuario->getusername()}\",
-   \"password\":\"{$Usuario->getpassword()}\",
-   \"nombre\":\"{$Usuario->getnombre()}\",
-   \"tipo\":\"{$Usuario->gettipo()}\"
-},";
+
+if (array_key_exists("usuario", $_SESSION)) {
+$Usuario=unserialize($_SESSION["usuario"]);
+
+  if($Usuario!=null){
+  $rta.="{
+      \"username\":\"{$Usuario->getusername()}\",
+     \"password\":\"{$Usuario->getpassword()}\",
+     \"nombre\":\"{$Usuario->getnombre()}\",
+     \"tipo\":\"{$Usuario->gettipo()}\"
+  },";
+  }
+}
+
 if($rta!=""){
 	$rta = substr($rta, 0, -1);
 	$msg="{\"msg\":\"exito\"}";

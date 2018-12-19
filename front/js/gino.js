@@ -264,7 +264,7 @@ function personalizar (idForm){
 
 
   function window_onload(){
-    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
+    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);    
     enviar("",'back/controller/usuario/UsuarioGetLogged.php',postgetLogged);//No me lo toque ( ¬.¬)
   }
 
@@ -296,4 +296,30 @@ function personalizar (idForm){
     }else{
         alert("Hubo un errror interno ( u.u)\n"+result);
     }
+}
+
+function postgetLogged(result,state){
+  console.log(result);
+  if(state=="success"){
+     var json=JSON.parse(result);
+     if(json[0].msg=="exito"){
+      if(json[1].result!="No se encontraron registros."){
+          userLogged=json[0];
+          var tipoU="";
+          if(userLogged.tipo==2){tipoU="usuarioAcad";}
+          if(userLogged.tipo==2){tipoU="usuarioAdmin";}          
+          var list = document.getElementsByClassName(tipoU);
+          for (item in list){
+            item.style.visibility = "visible";
+          }
+          document.getElementById("linkLogin").innerHTML='<a href="javascript:logout()" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>';
+        }else{
+          document.getElementById("linkLogin").innerHTML='<a href="login.html" class="nav-link login">Iniciar Sesión<i class="fa fa-sign-in"></i></a>';
+        }
+     }else{
+        alert(json[0].msg);
+     }
+  }else{
+     alert("Hubo un errror interno ( u.u)\n"+result);
+  }
 }
