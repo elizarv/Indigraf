@@ -264,8 +264,7 @@ function personalizar (idForm){
 
 
   function window_onload(){
-    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
-    enviar("",'back/controller/usuario/UsuarioGetLogged.php',postgetLogged);//No me lo toque ( ¬.¬)
+    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);    
   }
 
   function postCarga(result,state){
@@ -292,7 +291,7 @@ function personalizar (idForm){
             }
 						cargarInicio();
 
-        }
+        }zz
     }else{
         alert("Hubo un errror interno ( u.u)\n"+result);
     }
@@ -312,7 +311,7 @@ function postgetLogged(result,state){
           //console.log(list);
           for(var i=0; i < list.length; i++) {
             var item=list[i];
-            //console.log(item);
+            console.log(item);
             item.style.visibility = "visible";
           }
           document.getElementById("linkLogin").innerHTML='<a href="javascript:logout()" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>';

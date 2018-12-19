@@ -13,6 +13,7 @@ function cargarInicio(){
 	papa=0;
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><i class="material-icons">home</i></li>';
 	document.getElementById("seccname").innerHTML='<h2 class="no-margin-bottom">Inicio</h2>';
+	enviar("",'back/controller/usuario/UsuarioGetLogged.php',postgetLogged);//No me lo toque ( ¬.¬)
 }
 
 function preIndicadorListPadre(padre,nombre){
