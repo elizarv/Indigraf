@@ -264,7 +264,7 @@ function personalizar (idForm){
 
 
   function window_onload(){
-    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);    
+    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
   }
 
   function postCarga(result,state){
@@ -305,8 +305,8 @@ function postgetLogged(result,state){
           userLogged=json[1];
           var tipoU="";
           console.log(userLogged.tipo);
-          if(userLogged.tipo==2){tipoU="usuarioAcad";}          
-          if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
+          if(userLogged.tipo==2){tipoU="usuarioAcad";}
+          if(userLogged.tipo==1){tipoU="usuarioAdmin";}
           var list = document.getElementsByClassName(tipoU);
           console.log(list);
           for(var i=0; i < list.length; i++) {
@@ -319,7 +319,6 @@ function postgetLogged(result,state){
           document.getElementById("linkLogin").innerHTML='<a href="login.html" class="nav-link login">Iniciar Sesión<i class="fa fa-sign-in"></i></a>';
         }
      }else{
-        alert(json[0].msg);
      }
   }else{
      alert("Hubo un errror interno ( u.u)\n"+result);
