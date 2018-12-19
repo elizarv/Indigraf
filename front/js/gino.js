@@ -265,7 +265,7 @@ function personalizar (idForm){
 
   function window_onload(){
     enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
-    enviar("",'back/controller/usuario/UsuarioGetLogged.php',postgetLogget);//No me lo toque ( ¬.¬)
+    enviar("",'back/controller/usuario/UsuarioGetLogged.php',postgetLogged);//No me lo toque ( ¬.¬)
   }
 
   function postCarga(result,state){

@@ -14,6 +14,8 @@ function include(file_path){
       console.log(j);
     }
 */
+var userLogged;
+
 
 var periodos_Array;
 var periodoSeleccionado;
@@ -202,4 +204,30 @@ function logout(){
 }
 function postLogout(){
     window.location="login.html";
+}
+
+
+
+function postgetLogged(result,state){
+  if(state=="success"){
+     var json=JSON.parse(result);
+     if(json[0].msg=="exito"){
+      if(json[1].result!="No se encontraron registros."){
+          userLogged=json[0];
+          var tipoU="";
+          if(userLogged.tipo==2){tipoU="usuarioAcad";}
+          if(userLogged.tipo==2){tipoU="usuarioAdmin";}          
+          var list = document.getElementsByClassName(tipoU);
+          for each (var item in list){
+            item.style.visibility = "visible";
+          }
+        }else{
+            //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
+        }
+     }else{
+        alert(json[0].msg);
+     }
+  }else{
+     alert("Hubo un errror interno ( u.u)\n"+result);
+  }
 }
