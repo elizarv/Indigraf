@@ -196,3 +196,10 @@ function postChismosearMapa(result,state){
          alert("Hubo un errror interno ( u.u)\n"+result);
      } 
 }
+
+function logout(){
+    enviar("",'back/controller/usuario/logout.php',postLogout);    
+}
+function postLogout(){
+    window.location="login.html";
+}

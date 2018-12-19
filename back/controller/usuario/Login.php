@@ -15,9 +15,9 @@ if($usuario!=null){
     session_start();
     $_SESSION["usuario"]=serialize($usuario);
     //$usuario=unserialize($_SESSION["usuario"]);
-    echo '<script language="javascript">window.location="../../../front/Main.html"</script>';
-}else{
     echo '<script language="javascript">window.location="../../../index.html"</script>';
+}else{
+    echo '<script language="javascript">window.location="../../../login.html"</script>';
 }
 
 //That´s all folks!
