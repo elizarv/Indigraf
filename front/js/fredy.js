@@ -120,21 +120,25 @@ function drawChartArea() {
     chart.draw(data, options);
 }
 
+function cargarMapa(){    
+    enviar("",'back/controller/indicador/IndicadorList.php',postListarIndicadores);
+}
+
 var indicadoresParaElMapa=[];
 var relacionesParaElMapa=[];
-function postListarIndicadores(result,state){
-    if(state=="success"){
+function postListarIndicadores(result,state){    
+    if(state=="success"){        
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
             if(json[1].result!="No se encontraron registros."){                                
                 //indicadoresParaElMapa=json;
                 for(var i=1; i < Object.keys(json).length; i++) {
                     var ind = json[i];
-                    if(ind.id!=0){
+                    if(ind.id!=0){                        
                         indicadoresParaElMapa.push(ind);
                     }
                     if(ind.padre_id!=0 && ind.padre_id != null && ind.padre_id!=""){
-                        relacionesParaElMapa.push({"predecesor_id":ind.padre_id,"sucesor_id":ind.id});                    
+                        relacionesParaElMapa.push({"predecesor_id":ind.padre_id,"sucesor_id":ind.id});
                     }
                 }
             }else{
@@ -178,31 +182,16 @@ function saludar(name){
 }
 
 function chismosearMapa(){
-    var diagram = $("#diagram").data("kendoDiagram");
-    //console.log(diagram.dataSource.getChanges());
+    var diagram = $("#diagram").data("kendoDiagram");    
     var relaciones=diagram.connectionsDataSource.getChanges();
-    enviar(relaciones,'back/controller/relacion/superController.php',postChismosearMapa);
-    //console.log(relaciones);    
-    for (var i = 0; i < relaciones["created"].length; i++) {
-        console.log(relaciones["created"][i]);
-    }
-    for (var i = 0; i < relaciones["deleted"].length; i++) {
-        console.log(relaciones["deleted"][i]);
-    }
-    for (var i = 0; i < relaciones["updated"].length; i++) {
-        console.log(relaciones["updated"][i]);
-    }
+    enviar(relaciones,'back/controller/relacion/superController.php',postChismosearMapa);    
 }
 
-function postChismosearMapa(result,state){
-    //console.log(result);
-    if(state=="success"){
-         var json=JSON.parse(result);
-         if(json[0].msg=="exito"){
+function postChismosearMapa(result,state){    
+    console.log(result);
+    if(state=="success"){         
             alert("Cambios registrados con éxito");
-         }else{
-            alert(json[0].msg);
-         }
+            setTimeout(function(){ cargarMapa(); }, 1000);
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
      } 

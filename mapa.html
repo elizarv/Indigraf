@@ -74,8 +74,7 @@
             <div class="container-fluid" id="seccname" name="seccname">
               <h2 class="no-margin-bottom">Mapa Estratégico</h2>
             </div>
-          </header>
-          <button type="button" class="k-button" onclick="chismosearMapa()">Chismosear</button>
+          </header>          
           <!-- Breadcrumb-->
           <div class="breadcrumb-holder container-fluid">
             <ul class="breadcrumb" id="breadc" name="breadc">
@@ -95,6 +94,7 @@
                   </div>
                   <div id="changes">
                     <button type="button" class="k-button" data-bind="click:showChanges">Ver cambios</button>
+                    <button type="button" class="k-button" onclick="chismosearMapa()">Guardar cambios</button>
                     <div data-bind="visible:visible">
                       <hr /> Relaciones borradas:
                       <div data-bind="source: connections.deleted" data-template="connectionItemTemplate">

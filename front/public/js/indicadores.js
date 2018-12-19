@@ -65,7 +65,7 @@ function localDataSource(options) {
     var arrayInd=[];
     for(var i=0; i < Object.keys(indicadores).length; i++) {
       var indicador = indicadores[i];
-      arrayInd.push({"Id":indicador.id,"Indicador": indicador.nombre});
+      arrayInd.push({"Id":indicador.id,"Indicador": indicador.nombre,"Color":indicador.color});
     }
     var shapesDataSource = localDataSource({
       data:arrayInd,
@@ -165,7 +165,7 @@ function localDataSource(options) {
   }
   
   $(document).ready(function(){
-    enviar("",'back/controller/indicador/IndicadorList.php',postListarIndicadores);
+    cargarMapa();
   });  
 
   function visualTemplate(options) {

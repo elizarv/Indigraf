@@ -101,11 +101,12 @@ $sucesor=$relacion->getSucesor()->getId();
 $sucesor=$relacion->getSucesor()->getId();
 
       try {
-          $sql ="DELETE FROM `relacion` WHERE `predecesor`='$predecesor' AND`sucesor`='$sucesor'";
+          $sql ="DELETE FROM `relacion` WHERE `predecesor`='$predecesor' AND`sucesor`='$sucesor'";          
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
+
   }
 
     /**
