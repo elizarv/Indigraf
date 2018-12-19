@@ -24,7 +24,6 @@ function preUsuarioInsert(idForm){
     //Haga aquí las validaciones necesarias antes de enviar el formulario.
    if(validarForm(idForm)){
     var formData=$('#'+idForm).serialize();
-    console.log(formData);
     enviar(formData,'back/controller/usuario/UsuarioInsert.php',postUsuarioInsert);
     }else{
         alert("Debe llenar los campos requeridos");
@@ -263,7 +262,7 @@ function personalizar (idForm){
 
 
 
-  function window_onload(){    
+  function window_onload(){
     enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
   }
 
@@ -303,7 +302,7 @@ function postgetLogged(result,state){
      if(json[0].msg=="exito"){
       if(json[1].result!="No se encontraron registros."){
           userLogged=json[1];
-          mostrarMergasOcultas();         
+          mostrarMergasOcultas();
           document.getElementById("linkLogin").innerHTML='<a href="javascript:logout()" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>';
         }else{
           document.getElementById("linkLogin").innerHTML='<a href="login.html" class="nav-link login">Iniciar Sesión<i class="fa fa-sign-in"></i></a>';
@@ -320,8 +319,8 @@ function getLoggedDesdeElMapa() {
 
 function mostrarMergasOcultas(){
   var tipoU="";
-  if(userLogged.tipo==2){tipoU="usuarioAcad";}          
-  if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
+  if(userLogged.tipo==2){tipoU="usuarioAcad";}
+  if(userLogged.tipo==1){tipoU="usuarioAdmin";}
   //console.log(userLogged.tipo);
   var list = document.getElementsByClassName(tipoU);
   //console.log(list);

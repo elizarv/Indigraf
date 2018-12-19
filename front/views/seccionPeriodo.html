@@ -9,60 +9,29 @@
                  <div class="card">
 
                    <div class="card-header d-flex align-items-center">
-                     <h3 class="h4">Editar Indicador</h3>
+                     <h3 class="h4">Agregar Periodo</h3>
                    </div>
                    <div class="card-body">
 
-                     <form class="form-horizontal" enctype="multipart/form-data" id="registrarIndicador" action="javascript:preIndicadorInsert('registrarIndicador','update')" method="post">
-
-                       <div class="form-group row">
-                         <label class="col-sm-3 form-control-label">Nombre</label>
-                         <div class="col-sm-9">
-                           <input type="hidden" name="idPadre" id="idPadre" value="">
-                           <input id="idNombre" name="idNombre" type="text" placeholder="Nombre" class="form-control form-control-success" >
-                         </div>
-                       </div>
-
-                       <div class="form-group row">
-                         <label class="col-sm-3 form-control-label">Descripcion</label>
-                         <div class="col-sm-9">
-                           <textarea id="idDescripcion" name="idDescripcion" rows="5"class="form-control form-control-success" placeholder="Descripcion"></textarea>
-                         </div>
-                       </div>
-
-                       <div class="form-group row">
-                         <label class="col-sm-3 form-control-label">Imagen</label>
-                         <div class="col-sm-9">
-                           <input type="file" class="form-control" id="idImagen" name="idImagen" accept="image/*" >
-                         </div>
-                       </div>
-
-                       <div class="line"></div>
-
-                       <div class="form-group row">
-                           <label class="col-sm-3 form-control-label">Unidad de Medida</label>
-                           <div class="col-sm-9">
-                             <input id="UMedida" name="UMedida" type="text" placeholder="Unidad de Medida" class="form-control form-control-success" >
-                           </div>
-                         </div>
-
+                     <form class="form-horizontal" enctype="multipart/form-data" id="registrarPeriodo" action="javascript:periodoInsert('registrarPeriodo')" method="post">
+                       <input type="hidden" id="id" name="id">
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Meta</label>
                          <div class="col-sm-9">
-                           <input id="idMeta" name="idMeta" type="number" step="any" placeholder="Meta" class="form-control form-control-success" >
+                           <input id="amarillo" name="amarillo" type="number" step="any" placeholder="Meta" class="form-control form-control-success" >
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Valor Aceptable</label>
                          <div class="col-sm-9">
-                           <input id="idRojo" name="idRojo" type="number" step="any" placeholder="0" class="form-control form-control-success" >
+                           <input id="rojo" name="rojo" type="number" step="any" placeholder="0" class="form-control form-control-success" >
                          </div>
                       </div>
                       <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Valor Máximo</label>
                          <div class="col-sm-9">
-                           <input id="idVerde" name="idVerde" type="number" step="any" placeholder="0" class="form-control form-control-success" >
+                           <input id="verde" name="verde" type="number" step="any" placeholder="0" class="form-control form-control-success" >
                          </div>
 
                        </div>
@@ -70,14 +39,14 @@
                        <div class="form-group row">
                          <label for="example-date-input" class="col-4 col-form-label">Inicio de Periodo*</label>
                          <div class="col-6">
-                           <input class="form-control" type="date" id="idInicioP" name="idInicioP" >
+                           <input class="form-control" type="date" id="fecha_ini" name="fecha_ini" >
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label for="example-date-input" class="col-4 col-form-label">Final de Periodo*</label>
                          <div class="col-6">
-                           <input class="form-control" type="date" id="idFinalP" name="idFinalP" >
+                           <input class="form-control" type="date" id="fecha_fin" name="fecha_fin" >
                          </div>
                        </div>
 
@@ -87,7 +56,7 @@
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Cantidad</label>
                          <div class="col-sm-9">
-                           <input id="idCantidad" name="idCantidad" type="number" step="any" placeholder="0" class="form-control form-control-success" >
+                           <input id="cantidad" name="cantidad" type="number" step="any" placeholder="0" class="form-control form-control-success" >
                          </div>
                        </div>
 

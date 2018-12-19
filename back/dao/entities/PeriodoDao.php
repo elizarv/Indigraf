@@ -58,7 +58,7 @@ $cantidad=$periodo->getCantidad();
          try {
              $sql= "SELECT `indicador`, `id`,`amarillo`,`verde`,`rojo`,`fecha_ini`,`fecha_fin`,`cantidad`"
              ."FROM `periodo`"
-             ."WHERE `indicador`='$p' ORDER BY id DESC";
+             ."WHERE `indicador`='$p' ORDER BY id ASC";
              $data = $this->ejecutarConsulta($sql);
              for ($i=0; $i < count($data) ; $i++) {
              $periodo->setId($data[$i]['id']);

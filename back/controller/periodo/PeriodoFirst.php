@@ -13,6 +13,7 @@ $periodo=PeriodoFacade::selectFirst($id);
 $rta="";
 	$rta="{
 	    \"id\":\"{$periodo->getid()}\",
+			\"indicador\":\"{$periodo->getindicador()}\",
 			\"amarillo\":\"{$periodo->getamarillo()}\",
 			\"verde\":\"{$periodo->getverde()}\",
 			\"rojo\":\"{$periodo->getrojo()}\",

@@ -296,7 +296,6 @@ function llenarDatosIndicador(result,state){
 			var json=JSON.parse(result);
 							if(json[0].msg=="exito"){
 								 document.getElementById('idPadre').value=json[1].id;
-								 document.getElementById('registroPeriodo').value='<a class="btn" data-toggle="tooltip" href="javascript:preRegistrarPeriodo(\''+json[1].id+'\')" data-placement="top" title="Agregar" id="actualizarUsuario"><i class="material-icons">library_add</i></a>';
 				 				document.getElementById('idDescripcion').value=json[1].descripcion;
 								 document.getElementById('idNombre').value = json[1].nombre;
 								 document.getElementById('UMedida').value= json[1].unidadMedida;
@@ -318,25 +317,49 @@ function llenarDatosPeriodo(result,state){
 				document.getElementById("idMeta").value=Periodo.amarillo;
 				document.getElementById("idRojo").value=Periodo.rojo;
 				document.getElementById("idVerde").value=Periodo.verde;
-				/*datos= Periodo.fecha_ini.split(" ");
-				datos= datos[0].split("-");
-				day=datos[2];
-				month=datos[1];
-				year=datos[0];
-				today=year+"-"+month+"-"+day
-				document.getElementById("idInicioP").value=today;
+				//get current date
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+				var yyyy = today.getFullYear();
+				if(dd<10) {
+				    dd = '0'+dd
+				}
+
+				if(mm<10) {
+				    mm = '0'+mm
+				}
+				today = yyyy + '-' + mm + '-' + dd;//fecha actual
+				//get final period date
 				datos= Periodo.fecha_fin.split(" ");
 				datos= datos[0].split("-");
 				day=datos[2];
 				month=datos[1];
 				year=datos[0];
-				today=year+"-"+month+"-"+day
-				document.getElementById("idFinalP").value=today;*/
+				final=year+"-"+month+"-"+day;//fecha final
+				if(final<=today){
+					document.getElementById('registroPeriodo').innerHTML='<a class="btn" data-toggle="tooltip" href="javascript:preRegistrarPeriodo(\''+Periodo.indicador+'\')" data-placement="top" title="Agregar nuevo periodo" id="actualizarUsuario"><i class="material-icons">library_add</i></a>';
+				}
 			}
  	}
 }
 
 
-function preRegistrarPeriodo(){
+function preRegistrarPeriodo(id){
+	cargaContenido('remp','front/views/seccionPeriodo.html');
+	idPadre=id;
+	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+
+}
+
+
+function periodoInsert(idForm){
+	if(validarForm(idForm)){
+		document.getElementById("id").value=idPadre;
+	 var formData=$('#'+idForm).serialize();
+	 enviar(formData,'back/controller/periodo/PeriodoInsert.php',postPeriodoInsert);
+	 }else{
+			 alert("Debe llenar los campos requeridos");
+	 }
 
 }
