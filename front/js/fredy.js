@@ -162,9 +162,7 @@ function postListarRelaciones(result,state){
                     }else{
                         relacionesParaElMapa.push({"predecesor_id":rel.predecesor_id,"sucesor_id":rel.sucesor_id});                    
                     }
-                }          
-                //console.log(indicadoresParaElMapa);
-                //console.log(relacionesParaElMapa);                
+                }                          
             }else{                
             }
             createDiagram(indicadoresParaElMapa,relacionesParaElMapa);
@@ -177,4 +175,35 @@ function postListarRelaciones(result,state){
 }
 function saludar(name){
     alert("Hola "+name);
+}
+
+function chismosearMapa(){
+    var diagram = $("#diagram").data("kendoDiagram");
+    //console.log(diagram.dataSource.getChanges());
+    var relaciones=diagram.connectionsDataSource.getChanges();
+    enviar(relaciones,'back/controller/relacion/superController.php',postChismosearMapa);
+    //console.log(relaciones);    
+    for (var i = 0; i < relaciones["created"].length; i++) {
+        console.log(relaciones["created"][i]);
+    }
+    for (var i = 0; i < relaciones["deleted"].length; i++) {
+        console.log(relaciones["deleted"][i]);
+    }
+    for (var i = 0; i < relaciones["updated"].length; i++) {
+        console.log(relaciones["updated"][i]);
+    }
+}
+
+function postChismosearMapa(result,state){
+    //console.log(result);
+    if(state=="success"){
+         var json=JSON.parse(result);
+         if(json[0].msg=="exito"){
+            alert("Cambios registrados con éxito");
+         }else{
+            alert(json[0].msg);
+         }
+     }else{
+         alert("Hubo un errror interno ( u.u)\n"+result);
+     } 
 }
