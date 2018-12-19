@@ -120,21 +120,25 @@ function drawChartArea() {
     chart.draw(data, options);
 }
 
+function cargarMapa(){    
+    enviar("",'back/controller/indicador/IndicadorList.php',postListarIndicadores);
+}
+
 var indicadoresParaElMapa=[];
 var relacionesParaElMapa=[];
-function postListarIndicadores(result,state){
-    if(state=="success"){
+function postListarIndicadores(result,state){    
+    if(state=="success"){        
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
             if(json[1].result!="No se encontraron registros."){                                
                 //indicadoresParaElMapa=json;
                 for(var i=1; i < Object.keys(json).length; i++) {
                     var ind = json[i];
-                    if(ind.id!=0){
+                    if(ind.id!=0){                        
                         indicadoresParaElMapa.push(ind);
                     }
                     if(ind.padre_id!=0 && ind.padre_id != null && ind.padre_id!=""){
-                        relacionesParaElMapa.push({"predecesor_id":ind.padre_id,"sucesor_id":ind.id});                    
+                        relacionesParaElMapa.push({"predecesor_id":ind.padre_id,"sucesor_id":ind.id});
                     }
                 }
             }else{
@@ -162,9 +166,7 @@ function postListarRelaciones(result,state){
                     }else{
                         relacionesParaElMapa.push({"predecesor_id":rel.predecesor_id,"sucesor_id":rel.sucesor_id});                    
                     }
-                }          
-                //console.log(indicadoresParaElMapa);
-                //console.log(relacionesParaElMapa);                
+                }                          
             }else{                
             }
             createDiagram(indicadoresParaElMapa,relacionesParaElMapa);
@@ -177,4 +179,27 @@ function postListarRelaciones(result,state){
 }
 function saludar(name){
     alert("Hola "+name);
+}
+
+function chismosearMapa(){
+    var diagram = $("#diagram").data("kendoDiagram");    
+    var relaciones=diagram.connectionsDataSource.getChanges();
+    enviar(relaciones,'back/controller/relacion/superController.php',postChismosearMapa);    
+}
+
+function postChismosearMapa(result,state){    
+    console.log(result);
+    if(state=="success"){         
+            alert("Cambios registrados con éxito");
+            setTimeout(function(){ cargarMapa(); }, 1000);
+     }else{
+         alert("Hubo un errror interno ( u.u)\n"+result);
+     } 
+}
+
+function logout(){
+    enviar("",'back/controller/usuario/logout.php',postLogout);    
+}
+function postLogout(){
+    window.location="login.html";
 }

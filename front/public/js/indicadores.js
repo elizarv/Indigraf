@@ -65,25 +65,10 @@ function localDataSource(options) {
     var arrayInd=[];
     for(var i=0; i < Object.keys(indicadores).length; i++) {
       var indicador = indicadores[i];
-      arrayInd.push({"Id":indicador.id,"Indicador": indicador.nombre});
+      arrayInd.push({"Id":indicador.id,"Indicador": indicador.nombre,"Color":indicador.color});
     }
     var shapesDataSource = localDataSource({
-      data:/* [{
-        "Id": 1,
-        "Indicador": "Indicador"
-      }, {
-        "Id": 2,
-        "Indicador": "Sub indicador 1",
-        "Color": "#3399cc"
-      }, {
-        "Id": 3,
-        "Indicador": "Sub indicador 2",
-        "Color": "#3399cc"
-      }, {
-        "Id": 4,
-        "Indicador": "Sub indicador 3",
-        "Color": "#3399cc"
-      }]*/ arrayInd,
+      data:arrayInd,
       schema: {
         model: {
           id: "Id",
@@ -108,19 +93,7 @@ function localDataSource(options) {
       arrayRel.push({"FromShapeId":relacion.predecesor_id,"ToShapeId":relacion.sucesor_id});
     }
     var connectionsDataSource = localDataSource({
-      data: /*[{
-        "Id": 1,
-        "FromShapeId": 1,
-        "ToShapeId": 2
-      }, {
-        "Id": 2,
-        "FromShapeId": 1,
-        "ToShapeId": 3
-      }, {
-        "Id": 3,
-        "FromShapeId": 1,
-        "ToShapeId": 4
-      }]*/ arrayRel,
+      data: arrayRel,
       schema: {
         model: {
           id: "Id",
@@ -192,7 +165,7 @@ function localDataSource(options) {
   }
   
   $(document).ready(function(){
-    enviar("",'back/controller/indicador/IndicadorList.php',postListarIndicadores);
+    cargarMapa();
   });  
 
   function visualTemplate(options) {
