@@ -306,9 +306,9 @@ function postgetLogged(result,state){
           var tipoU="";
           console.log(userLogged.tipo);
           if(userLogged.tipo==2){tipoU="usuarioAcad";}          
-          if(userLogged.tipo==1){tipoU="usuarioAdmin";}
+          if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
           var list = document.getElementsByClassName(tipoU);
-          //console.log(list);
+          console.log(list);
           for(var i=0; i < list.length; i++) {
             var item=list[i];
             console.log(item);

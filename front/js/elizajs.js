@@ -84,8 +84,8 @@ function pintarMenus(nombres,ids){
                 str+='<div class="containerJ">';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:editarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
-								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:graficar(\''+Indicador.id+'\')" data-placement="top" title="Graficar"><i class="material-icons">assessment</i></a>';
-								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:eliminarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Eliminar"><i class="material-icons">delete</i></a>';
+								str+='<a class="btn btn-primaryJ usuarioAdmin" data-toggle="tooltip" href="javascript:graficar(\''+Indicador.id+'\')" data-placement="top" title="Graficar"><i class="material-icons">assessment</i></a>';
+								str+='<a class="btn btn-primaryJ usuarioAdmin" data-toggle="tooltip" href="javascript:eliminarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Eliminar"><i class="material-icons">delete</i></a>';
 
                 document.getElementById("IndicadorList").innerHTML+=str;
                 //-------- Para otras opciones ver htmlBuilder.js ---------

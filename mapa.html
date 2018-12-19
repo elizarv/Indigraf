@@ -33,7 +33,7 @@
 <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
+<link rel="stylesheet" href="front/css/estilo.css">
 </head>
   <body onload="getLoggedDesdeElMapa()">    
     <div class="page home-page">
@@ -92,9 +92,9 @@
                   <div class="responsive">
                 <div id="diagram" style="overflow-x:auto;"></div>
                   </div>
-                  <div id="changes">
+                  <div id="changes" class="usuarioAdmin">
                     <button type="button" class="k-button" data-bind="click:showChanges">Ver cambios</button>
-                    <button type="button" class="k-button usuarioAdmin" onclick="chismosearMapa()">Guardar cambios</button>
+                    <button type="button" class=" k-button " onclick="chismosearMapa()">Guardar cambios</button>
                     <div data-bind="visible:visible">
                       <hr /> Relaciones borradas:
                       <div data-bind="source: connections.deleted" data-template="connectionItemTemplate">
@@ -145,7 +145,7 @@
     <!-- Javascript files-->
     <script src="front/js/fredy.js"></script>
     <script src="front/js/Ajax.js"></script>
-        <script src="front/js/gino.js"></script>
+    <script src="front/js/gino.js"></script>
     <script src="front/public/js/indicadores.js"></script>
     <script src="front/public/vendor/popper.js/umd/popper.min.js"> </script>
     <script src="front/public/vendor/bootstrap/js/bootstrap.min.js"></script>
