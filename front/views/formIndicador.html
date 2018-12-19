@@ -19,21 +19,21 @@
                          <label class="col-sm-3 form-control-label">Nombre</label>
                          <div class="col-sm-9">
                            <input type="hidden" name="idPadre" id="idPadre" value="">
-                           <input id="idNombre" name="idNombre" type="text" placeholder="Nombre" class="form-control form-control-success" >
+                           <input id="idNombre" name="idNombre" type="text" placeholder="Nombre" class="form-control form-control-success" required>
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Descripcion</label>
                          <div class="col-sm-9">
-                           <textarea id="idDescripcion" name="idDescripcion" rows="5"class="form-control form-control-success" placeholder="Descripcion"></textarea>
+                           <textarea id="idDescripcion" name="idDescripcion" rows="5"class="form-control form-control-success" placeholder="Descripcion" required></textarea>
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Imagen</label>
                          <div class="col-sm-9">
-                           <input type="file" class="form-control" id="idImagen" name="idImagen" accept="image/*" >
+                           <input type="file" class="form-control" id="idImagen" name="idImagen" accept="image/*" required>
                          </div>
                        </div>
 
@@ -42,27 +42,27 @@
                        <div class="form-group row">
                            <label class="col-sm-3 form-control-label">Unidad de Medida</label>
                            <div class="col-sm-9">
-                             <input id="UMedida" name="UMedida" type="text" placeholder="Unidad de Medida" class="form-control form-control-success" >
+                             <input id="UMedida" name="UMedida" type="text" placeholder="Unidad de Medida" class="form-control form-control-success" required>
                            </div>
                          </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Meta</label>
                          <div class="col-sm-9">
-                           <input id="idMeta" name="idMeta" type="number" step="any" placeholder="Meta" class="form-control form-control-success" >
+                           <input id="idMeta" name="idMeta" type="number" step="any" placeholder="Meta" class="form-control form-control-success" required>
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Valor Aceptable</label>
                          <div class="col-sm-9">
-                           <input id="idRojo" name="idRojo" type="number" step="any" placeholder="0" class="form-control form-control-success" >
+                           <input id="idRojo" name="idRojo" type="number" step="any" placeholder="0" class="form-control form-control-success" required>
                          </div>
                       </div>
                       <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Valor Límite</label>
                          <div class="col-sm-9">
-                           <input id="idVerde" name="idVerde" type="number" step="any" placeholder="0" class="form-control form-control-success" >
+                           <input id="idVerde" name="idVerde" type="number" step="any" placeholder="0" class="form-control form-control-success" required>
                          </div>
 
                        </div>
@@ -70,14 +70,14 @@
                        <div class="form-group row">
                          <label for="example-date-input" class="col-4 col-form-label">Inicio de Periodo*</label>
                          <div class="col-6">
-                           <input class="form-control" type="date" id="idInicioP" name="idInicioP" >
+                           <input class="form-control" type="date" id="idInicioP" name="idInicioP" required>
                          </div>
                        </div>
 
                        <div class="form-group row">
                          <label for="example-date-input" class="col-4 col-form-label">Final de Periodo*</label>
                          <div class="col-6">
-                           <input class="form-control" type="date" id="idFinalP" name="idFinalP" >
+                           <input class="form-control" type="date" id="idFinalP" name="idFinalP" required>
                          </div>
                        </div>
 
@@ -87,7 +87,7 @@
                        <div class="form-group row">
                          <label class="col-sm-3 form-control-label">Cantidad</label>
                          <div class="col-sm-9">
-                           <input id="idCantidad" name="idCantidad" type="number" step="any" placeholder="0" class="form-control form-control-success" >
+                           <input id="idCantidad" name="idCantidad" type="number" step="any" placeholder="0" class="form-control form-control-success" required>
                          </div>
                        </div>
 
