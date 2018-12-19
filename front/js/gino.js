@@ -289,6 +289,7 @@ function personalizar (idForm){
                 csss.insertRule(".material-icons {color:"+colorS+"}", 0);
                 csss.insertRule(".logotipo { width:50px; height:50px; display: inline-block; position: relative; background:url('../../../"+logo+"');}", 0);
             }
+						cargarInicio();
 
         }
     }else{
