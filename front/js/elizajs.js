@@ -107,17 +107,19 @@ function eliminarIndicador(id){
   buttons: true,
   dangerMode: true,
 }).then((willDelete) => {
+	alert("aaa");
     formData={'id':id};
-    enviar(formData,'back/controller/indicador/IndicadorDelete.php',exitoEliminarIndicador);
+		enviar(formData,'back/controller/indicador/IndicadorDelete.php',exitoEliminarIndicador);
 });
 }
 
-
-function exitoEliminarIndicador(){
-    swal("El indicador se ha eliminado con exito!!", {
-      icon: "success",
-    });
-    preIndicadorListPadre(0,'Indicadores');//modificar luego, dependiendo de la rama en la que se este
+function exitoEliminarIndicador(result,status){
+	if(state=="success"){
+			swal("El indicador se ha eliminado con exito!!", {
+				icon: "success",
+			});
+			preIndicadorListPadre(0,'Indicadores');//modificar luego, dependiendo de la rama en la que se este
+ 	}
   }
 
 function cargarPersonalizar(){
@@ -137,11 +139,11 @@ function preCargarDetalles(id){
 }
 
 function postCargarDetalles(result,state){
+	alert(result);
 	if(state=="success"){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){
 		 	 	var Indicador = json[1];
-				document.getElementById("descripcion").value=Indicador.descripcion;
 				var str = Indicador.descripcion.split("\n");
 				agg="";
       	for (var i = 0; i < str.length; i++) {
@@ -285,7 +287,8 @@ function llenarDatosIndicador(result,state){
 			var json=JSON.parse(result);
 							if(json[0].msg=="exito"){
 								 document.getElementById('idPadre').value=json[1].id;
-								 document.getElementById('idDescripcion').value = json[1].descripcion;
+
+				 				document.getElementById('idDescripcion').value=json[1].descripcion;
 								 document.getElementById('idNombre').value = json[1].nombre;
 								 document.getElementById('UMedida').value= json[1].unidadMedida;
 							}else{

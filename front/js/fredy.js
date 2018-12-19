@@ -10,7 +10,7 @@ function include(file_path){
       j.type = "text/javascript";
       j.src = file_path;
       j.id="ElJoputaScript";
-      document.body.appendChild(j);      
+      document.body.appendChild(j);
       console.log(j);
     }
 */
@@ -25,7 +25,7 @@ function graficar(idIndicador){
  	enviar(formData,'back/controller/periodo/PeriodoListByIndicador.php',postGraficar);
 }
 
-function postGraficar(result,state){    
+function postGraficar(result,state){
     if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
@@ -41,7 +41,7 @@ function postGraficar(result,state){
                     var fecha = ini[0]+" - "+fin[0];
                     mySelect.appendChild(createOPTION(p.id,fecha));
                 }
-             	var length=Object.keys(json).length;            
+             	var length=Object.keys(json).length;
                 periodoSeleccionado=json[length-1];
             }else{
                 //Manejar el vacío .-. No debería haber un indicador sin periodos \( n.n)/
@@ -51,15 +51,15 @@ function postGraficar(result,state){
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
-     }	
+     }
 }
 
 function cambiarGraficaPeriodo(){
-    var idPeriodo= document.getElementById("selectGraficaPeriodos").value;        
-    for (var i = 1; i < periodos_Array.length; i++) {        
-        var periodo=periodos_Array[i];        
+    var idPeriodo= document.getElementById("selectGraficaPeriodos").value;
+    for (var i = 1; i < periodos_Array.length; i++) {
+        var periodo=periodos_Array[i];
 		if(periodo.id==idPeriodo){
-			periodoSeleccionado=periodo;            
+			periodoSeleccionado=periodo;
             drawChartReloj();
 			return;
 		}
@@ -92,7 +92,7 @@ function drawChartReloj() {
     };
 
     var chart = new google.visualization.Gauge(document.getElementById('chart_div_reloj'));
-    chart.draw(data, options);        
+    chart.draw(data, options);
 }
 
 function drawChartArea() {
@@ -109,7 +109,7 @@ function drawChartArea() {
         array.push([fecha,cant,meta]);
     }
     var data = google.visualization.arrayToDataTable(
-        array        
+        array
     );
 
     var options = {
@@ -122,21 +122,21 @@ function drawChartArea() {
     chart.draw(data, options);
 }
 
-function cargarMapa(){    
+function cargarMapa(){
     enviar("",'back/controller/indicador/IndicadorList.php',postListarIndicadores);
 }
 
 var indicadoresParaElMapa=[];
 var relacionesParaElMapa=[];
-function postListarIndicadores(result,state){    
-    if(state=="success"){        
+function postListarIndicadores(result,state){
+    if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
-            if(json[1].result!="No se encontraron registros."){                                
+            if(json[1].result!="No se encontraron registros."){
                 //indicadoresParaElMapa=json;
                 for(var i=1; i < Object.keys(json).length; i++) {
                     var ind = json[i];
-                    if(ind.id!=0){                        
+                    if(ind.id!=0){
                         indicadoresParaElMapa.push(ind);
                     }
                     if(ind.padre_id!=0 && ind.padre_id != null && ind.padre_id!=""){
@@ -151,7 +151,7 @@ function postListarIndicadores(result,state){
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
-     }     
+     }
     enviar("",'back/controller/relacion/RelacionList.php',postListarRelaciones);
 }
 
@@ -159,17 +159,17 @@ function postListarRelaciones(result,state){
     if(state=="success"){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
-            if(json[1].result!="No se encontraron registros."){                                
+            if(json[1].result!="No se encontraron registros."){
 //                relaciones=json;
                 for(var i=1; i < Object.keys(json).length; i++) {
                     var rel = json[i];
                     if(rel.predecesor_id==0 || rel.sucesor_id==0){
                         //Do Nothing
                     }else{
-                        relacionesParaElMapa.push({"predecesor_id":rel.predecesor_id,"sucesor_id":rel.sucesor_id});                    
+                        relacionesParaElMapa.push({"predecesor_id":rel.predecesor_id,"sucesor_id":rel.sucesor_id});
                     }
-                }                          
-            }else{                
+                }
+            }else{
             }
             createDiagram(indicadoresParaElMapa,relacionesParaElMapa);
          }else{
@@ -177,32 +177,31 @@ function postListarRelaciones(result,state){
          }
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
-     }    
+     }
 }
 function saludar(name){
     alert("Hola "+name);
 }
 
 function chismosearMapa(){
-    var diagram = $("#diagram").data("kendoDiagram");    
+    var diagram = $("#diagram").data("kendoDiagram");
     var relaciones=diagram.connectionsDataSource.getChanges();
-    enviar(relaciones,'back/controller/relacion/superController.php',postChismosearMapa);    
+    enviar(relaciones,'back/controller/relacion/superController.php',postChismosearMapa);
 }
 
-function postChismosearMapa(result,state){    
+function postChismosearMapa(result,state){
     console.log(result);
-    if(state=="success"){         
+    if(state=="success"){
             alert("Cambios registrados con éxito");
             setTimeout(function(){ cargarMapa(); }, 1000);
      }else{
          alert("Hubo un errror interno ( u.u)\n"+result);
-     } 
+     }
 }
 
 function logout(){
-    enviar("",'back/controller/usuario/logout.php',postLogout);    
+    enviar("",'back/controller/usuario/logout.php',postLogout);
 }
 function postLogout(){
     window.location="login.html";
 }
-

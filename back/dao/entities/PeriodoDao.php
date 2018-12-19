@@ -135,7 +135,6 @@ $cantidad=$periodo->getCantidad();
      */
   public function delete($periodo){
       $id=$periodo->getId();
-
       try {
           $sql ="DELETE FROM `periodo` WHERE `id`='$id'";
           return $this->insertarConsulta($sql);

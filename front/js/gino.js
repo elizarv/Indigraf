@@ -264,7 +264,7 @@ function personalizar (idForm){
 
 
   function window_onload(){
-    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);    
+    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
     enviar("",'back/controller/usuario/UsuarioGetLogged.php',postgetLogged);//No me lo toque ( ¬.¬)
   }
 
@@ -298,7 +298,7 @@ function personalizar (idForm){
     }
 }
 
-function postgetLogged(result,state){  
+function postgetLogged(result,state){
   if(state=="success"){
      var json=JSON.parse(result);
      if(json[0].msg=="exito"){
@@ -307,10 +307,10 @@ function postgetLogged(result,state){
           var tipoU="";
           console.log(userLogged.tipo);
           if(userLogged.tipo==2){tipoU="usuarioAcad";}
-          if(userLogged.tipo==1){tipoU="usuarioAdmin";}          
+          if(userLogged.tipo==1){tipoU="usuarioAdmin";}
           var list = document.getElementsByClassName(tipoU);
           //console.log(list);
-          for(var i=0; i < list.length; i++) {                   
+          for(var i=0; i < list.length; i++) {
             var item=list[i];
             //console.log(item);
             item.style.visibility = "visible";

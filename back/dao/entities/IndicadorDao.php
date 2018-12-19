@@ -120,7 +120,7 @@ $unidadMedida = $indicador->getUnidadMedida();
   public function delete($indicador){
       $id=$indicador->getId();
       try {
-          $sql ="DELETE FROM `indicador` WHERE `id`='$id'";
+        $sql="DELETE FROM indicador WHERE id='$id'";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

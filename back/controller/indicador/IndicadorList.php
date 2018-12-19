@@ -11,10 +11,11 @@ include_once realpath('../../facade/PeriodoFacade.php');
 
 $list=IndicadorFacade::listAll();
 $rta="";
-foreach ($list as $obj => $Indicador) {	
+foreach ($list as $obj => $Indicador) {
 	$periodos=PeriodoFacade::listByIndicador($Indicador);
 	$periodo=$periodos[count($periodos)-1];
-	$color="red";	
+
+	$color="red";
     if($periodo->getCantidad()>$periodo->getRojo()){ //recuerde que el amarillo es la meta
         $color="yellow";
     }
@@ -36,7 +37,7 @@ if($rta!=""){
 	$msg="{\"msg\":\"exito\"}";
 }else{
 	$msg="{\"msg\":\"MANEJO DE EXCEPCIONES AQUÍ\"}";
-	$rta="{\"result\":\"No se encontraron registros.\"}";	
+	$rta="{\"result\":\"No se encontraron registros.\"}";
 }
 echo "[{$msg},{$rta}]";
 

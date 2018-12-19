@@ -40,7 +40,8 @@ $verde=$_POST['idVerde'];
 $amarillo=$_POST['idMeta'];
 $rojo=$_POST['idRojo'];
 $cantidad=$_POST['idCantidad'];
-//IndicadorFacade::udateEsPadre($indicador);
+
+IndicadorFacade::updateEsPadre($padre);
 
 $result= IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador,$unidadMedida);
 $rta="{

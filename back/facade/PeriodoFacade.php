@@ -117,7 +117,6 @@ class PeriodoFacade {
   public static function delete($id){
       $periodo = new Periodo();
       $periodo->setId($id);
-
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
      $periodoDao->delete($periodo);
@@ -127,7 +126,7 @@ class PeriodoFacade {
   /**
    * Lista todos los objetos Periodo de la base de datos.
    * Puede recibir NullPointerException desde los métodos del Dao
-   * @return $result Array con los objetos Periodo en base de datos o Null
+   * @return $result Array con los objetos Periodo en base de datos
    */
   public static function listAll(){
      $FactoryDao=new FactoryDao(self::getGestorDefault());
@@ -138,9 +137,11 @@ class PeriodoFacade {
   }
 
   public static function listByIndicador($indicador){
+    $indi = new Indicador();
+    $indi->setId($indicador);
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $periodoDao =$FactoryDao->getperiodoDao(self::getDataBaseDefault());
-     $result = $periodoDao->listByIndicador($indicador);
+     $result = $periodoDao->listByIndicador($indi);
      $periodoDao->close();
      return $result;
   }
