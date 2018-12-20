@@ -164,7 +164,7 @@ function preCargarDetalles(id,nombre,tipo){
 }
 formData={'id':id};
 	idPadre=id;
-	enviar(formData,'back/controller/indicador/Indicadorselect.php',postCargarDetalles);
+	enviar(formData,'back/controller/indicador/IndicadorSelect.php',postCargarDetalles);
 	enviar(formData,'back/controller/periodo/PeriodoFirst.php',buscarPeriodo);
 }
 
