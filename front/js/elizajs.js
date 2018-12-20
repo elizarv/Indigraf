@@ -98,6 +98,7 @@ function pintarMenus(nombres,ids){
 										str+='<a title="Ver más" href="javascript:preIndicadorListPadre(\''+Indicador.id+'\',\''+Indicador.nombre+'\')"><img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6"></a>';
 								}
 							}
+						}
 
                 str+='<div class="containerJ">';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\',\''+Indicador.nombre+'\',\'insert\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
