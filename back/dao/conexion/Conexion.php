@@ -30,11 +30,11 @@ class Conexion implements IConexion{
              default:
                $this->gestor="NULL_GESTOR";
                break;
-           }           
+           }
     }
-    /**     
+    /**
      * Crea una conexión si no se ha establecido antes; en caso contrario, devuelve la ya existente
-     * Toma los parámetros de conexión de la clase Properties y usa el driver mysql.jdbc para establecer una conexión. 
+     * Toma los parámetros de conexión de la clase Properties y usa el driver mysql.jdbc para establecer una conexión.
      * @return Conexión a base de datos mySql
      * @param dbName Nombre de la base de datos que se desea conectar
      */
