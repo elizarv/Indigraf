@@ -109,24 +109,27 @@ function pintarMenus(nombres,ids){
 
 function eliminarIndicador(id){
     swal({
-  title: "¿Está seguro?",
-  text: "se eliminará éste indicador",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
+			title: "Esta seguro?",
+		  text: "se eliminara éste indicador",
+		  icon: "warning",
+			buttons: true,
+		  dangerMode: true,
+			confirmButtonTetx: "OK",
 }).then((willDelete) => {
-    formData={'id':id};
+	alert(willDelete);
+	if(willDelete){
+		formData={'id':id};
 		enviar(formData,'back/controller/indicador/IndicadorDelete.php',exitoEliminarIndicador);
+	}
 });
 }
 
 function exitoEliminarIndicador(result,status){
-	if(state=="success"){
 			swal("El indicador se ha eliminado con exito!!", {
 				icon: "success",
 			});
 			preIndicadorListPadre(0,'Indicadores');//modificar luego, dependiendo de la rama en la que se este
- 	}
+
   }
 
 function cargarPersonalizar(){
@@ -254,7 +257,7 @@ function postIndicadorInsert(result, state){
 								swal("El indicador se ha agregado exitosamente", {
 										icon: "success",
 									});
-									//preIndicadorListPadre(idPadre,ultimoNombre);
+									preIndicadorListPadre(papa,ultimoNombre);
 							}else{
 								 alert("Hubo un errror en la inserción ( u.u)\n"+result);
 							}
