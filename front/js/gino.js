@@ -52,7 +52,6 @@ function postUsuarioInsert(result,state){
 function preUsuarioSelect(id){
     //Haga aquí las validaciones necesarias antes de enviar el formulario.
     formData={'id':id};
-    console.log(formData);
     cargarActualzacionUsuarios();
     enviar(formData,'back/controller/usuario/UsuarioSelect.php',postUsuarioSelect);
 }
@@ -83,8 +82,7 @@ function preUsuarioUpdate(idForm){
     //Haga aquí las validaciones necesarias antes de enviar el formulario.
    if(validarForm(idForm)){
        document.getElementById('username').disabled = false;
-    var formData=$('#'+idForm).serialize();
-    console.log(formData);
+    var formData=$('#'+idForm).serialize();    
     enviar(formData,'back/controller/usuario/UsuarioUpdate.php',postUsuarioUpdate);
     }else{
         alert("Debe llenar los campos requeridos");
@@ -145,8 +143,7 @@ function postPeticionesList(result,state){
 
 function postPeticionesCant(result,state){
     //Maneje aquí la respuesta del servidor.
-    if(state=="success"){
-        console.log(result);
+    if(state=="success"){        
         var json=JSON.parse(result);
         if(json[0].msg=="exito"){
             for(var i=1; i < Object.keys(json).length; i++) {
@@ -172,8 +169,7 @@ function cargarVistaAprobar(id){
 
 function postAprobarList(result,state){
     //Maneje aquí la respuesta del servidor.
-    if(state=="success"){
-        console.log(result);
+    if(state=="success"){        
         var json=JSON.parse(result);
         if(json[0].msg=="exito"){
             for(var i=1; i < Object.keys(json).length; i++) {
@@ -259,14 +255,18 @@ function personalizar (idForm){
 }
 
 
-
-  function window_onload(){
+var isIndex;
+  function index_onload(){    
+    isIndex=true;
+    enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
+  }
+  function mapa_onload(){    
+    isIndex=false;
     enviar("",'back/controller/administracion/AdministracionList.php',postCarga);
   }
 
   function postCarga(result,state){
-    //Maneje aquí la respuesta del servidor.
-    console.log(result);
+    //Maneje aquí la respuesta del servidor.        
     if(state=="success"){
         var json=JSON.parse(result);
         if(json[0].msg=="exito"){
@@ -287,8 +287,11 @@ function personalizar (idForm){
                 csss.insertRule(".material-icons {color:"+colorS+"}", 0);
                 csss.insertRule(".logotipo { width:50px; height:50px; display: inline-block; position: relative; background:url('../../../"+logo+"');}", 0);
             }
-						cargarInicio();
-
+            if(isIndex){
+						  cargarInicio();
+            }else{
+              getLoggedDesdeElMapa();
+            }
         }
     }else{
         alert("Hubo un errror interno ( u.u)\n"+result);
@@ -318,16 +321,14 @@ function getLoggedDesdeElMapa() {
 
 function mostrarMergasOcultas(){
   var tipoU="";
-  if(userLogged.tipo==2){tipoU="usuarioAcad";}
-  if(userLogged.tipo==1){tipoU="usuarioAdmin";}
-  //console.log(userLogged.tipo);
-  var list = document.getElementsByClassName(tipoU);
-  //console.log(list);
-  for(var i=0; i < list.length; i++) {
-    //console.log("holi" + tipoU);
-    var item=list[i];
-    //console.log(item);
-    //item.style.display = "initial";
-    item.style.visibility = "visible";
+  if(userLogged!=null){
+    if(userLogged.tipo==2){tipoU="usuarioAcad";}
+    if(userLogged.tipo==1){tipoU="usuarioAdmin";}    
+    var list = document.getElementsByClassName(tipoU);
+    for(var i=0; i < list.length; i++) {
+      var item=list[i];
+      //item.style.display = "initial";
+      item.style.visibility = "visible";
+    }
   }
 }
