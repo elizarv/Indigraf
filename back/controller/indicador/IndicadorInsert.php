@@ -22,7 +22,7 @@ $tmp_name = $_FILES['idImagen']["tmp_name"];
 $name = $_FILES['idImagen']["name"];
 //Creamos una nueva ruta (nuevo path)
 //Así guardaremos nuestra idImagen en la carpeta "images"
-$nuevo_path="/back/images/".$name;
+$nuevo_path="/../../images/".$name;
 //Movemos el archivo desde su ubicación temporal hacia la nueva ruta
 # $tmp_name: la ruta temporal del fichero
 # $nuevo_path: la nueva ruta que creamos
@@ -45,7 +45,7 @@ $cantidad=$_POST['idCantidad'];
 
 IndicadorFacade::updateEsPadre($padre);
 
-$result= IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador,$unidadMedida);
+$result= IndicadorFacade::insert($nombre, $descripcion, $nuevo, $indicador,$unidadMedida);
 $rta="{
     \"id\":\"{$result}\",
     \"fecha_ini\":\"{$fecha_ini}\",
