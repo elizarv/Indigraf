@@ -379,7 +379,6 @@ function preArchivoInsert(idForm){
 									 processData: false,
 									 cache: false,
 									 success: function (data) {
-										 alert(data);
 										 var json=JSON.parse(data);
 											 if (json[0].msg== "exito") {
 												 swal("Archivo subido exitosamente", {
