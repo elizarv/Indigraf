@@ -368,7 +368,12 @@ function periodoInsert(idForm){
 
 }
 
-
+function postPeriodoInsert(){
+	swal("Nuevo periodo agregado exitosamente", {
+		icon: "success",
+	});
+	preIndicadorListPadre(0,'Indicadores');//modificar luego, dependiendo de la rama en la que se este//modificar luego, dependiendo de la rama en la que se este
+}
 
 
 function preArchivoInsert(idForm){
