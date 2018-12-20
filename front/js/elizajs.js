@@ -260,6 +260,7 @@ $("#idDescripcion").val(string);
                     cache: false,
                     success: function (data) {
 											var json=JSON.parse(data);
+
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo
 															 if(json[2].tipo=="insert")enviar(json[1],rutaPer,postIndicadorInsert);

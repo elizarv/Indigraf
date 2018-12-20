@@ -43,6 +43,8 @@ $periodo->setId($Periodo_id);
 ArchivoFacade::insert($url, $usuario, $fechaSubida, $periodo,$extension);
 $msg="{\"msg\":\"exito\"}";
 
+//echo $tmp_name."-".$nuevo_path;
+
 echo "[{$msg}]";
 
 //That´s all folks!
