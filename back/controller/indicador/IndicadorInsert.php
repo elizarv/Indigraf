@@ -45,7 +45,7 @@ $cantidad=$_POST['idCantidad'];
 
 IndicadorFacade::updateEsPadre($padre);
 
-$result= IndicadorFacade::insert($nombre, $descripcion, $nuevo, $indicador,$unidadMedida);
+$result= IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador,$unidadMedida);
 $rta="{
     \"id\":\"{$result}\",
     \"fecha_ini\":\"{$fecha_ini}\",
