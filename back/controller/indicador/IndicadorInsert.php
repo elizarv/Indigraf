@@ -19,7 +19,7 @@ $indicador->setId($padre);
 //capturamos los datos del fichero subido
 $type=$_FILES['idImagen']['type'];
 $tmp_name = $_FILES['idImagen']["tmp_name"];
-$name = basename($_FILES['idImagen']["name"]);
+$name = $_FILES['idImagen']["name"];
 //Creamos una nueva ruta (nuevo path)
 //Así guardaremos nuestra idImagen en la carpeta "images"
 $nuevo_path="../../images/.$name";
