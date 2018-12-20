@@ -81,6 +81,7 @@ function pintarMenus(nombres,ids){
          var json=JSON.parse(result);
          if(json[0].msg=="exito"){
             for(var i=1; i < Object.keys(json).length; i++) {
+							alert(userLogged.tipo);
                 var Indicador = json[i];
                 //----------------- Para una tabla -----------------------
                 str='<div class="col-sm-6"><div class="card"><div class="card-bodyJ">';
