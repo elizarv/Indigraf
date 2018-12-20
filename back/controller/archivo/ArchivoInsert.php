@@ -41,6 +41,8 @@ $Periodo_id = $_POST['periodo'];
 $periodo= new Periodo();
 $periodo->setId($Periodo_id);
 ArchivoFacade::insert($url, $usuario, $fechaSubida, $periodo,$extension);
-echo "true";
+$msg="{\"msg\":\"exito\"}";
+
+echo "[{$msg}]";
 
 //That´s all folks!

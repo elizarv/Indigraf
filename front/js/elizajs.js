@@ -144,6 +144,7 @@ function preCargarDetalles(id){
 	cargaContenido('remp','front/views/infoIndicador.html');
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
 	formData={'id':id};
+	idPadre=id;
 	enviar(formData,'back/controller/indicador/Indicadorselect.php',postCargarDetalles);
 	enviar(formData,'back/controller/periodo/PeriodoFirst.php',buscarPeriodo);
 }
@@ -388,7 +389,7 @@ function preArchivoInsert(idForm){
 												 swal("Archivo subido exitosamente", {
 													 icon: "success",
 												 });
-												 preIndicadorListPadre(0,'Indicadores');//modificar luego, dependiendo de la rama en la que se este
+												 preCargarDetalles(idPadre);//modificar luego, dependiendo de la rama en la que se este
 												 }else{
 														alert("Hubo un errror en la inserción ( u.u)\n");
 												 }
