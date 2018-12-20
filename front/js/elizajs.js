@@ -77,6 +77,7 @@ function pintarMenus(nombres,ids){
                 //----------------- Para una tabla -----------------------
                 str='<div class="col-sm-6"><div class="card"><div class="card-bodyJ">';
                 str+='<h4 class="card-title">'+Indicador.nombre+'</h4><div class="row "><div class="col-sm-6">';
+							if(userLogged!=null){
 								if(userLogged.tipo==1){
 										str+='<a title="Ver más" href="javascript:preIndicadorListPadre(\''+Indicador.id+'\',\''+Indicador.nombre+'\')"><img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6"></a>';
 								}else{
@@ -86,6 +87,9 @@ function pintarMenus(nombres,ids){
 										str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
 									}
 								}
+							}else{
+								str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
+							}
 
                 str+='<div class="containerJ">';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
@@ -154,12 +158,13 @@ function postCargarDetalles(result,state){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){
 		 	 	var Indicador = json[1];
-				var str = Indicador.descripcion.split("\n");
+		 	 	var str=Indicador.descripcion.replace(/SALTODELINEA/g,"\n");		 	 	
+				/*var str = Indicador.descripcion.split("\n");
 				agg="";
       	for (var i = 0; i < str.length; i++) {
 					agg += "<p>" + str[i] + "</p>";
-				}
-				$("#descripcion").append(agg);
+				}*/
+				$("#descripcion").append(str);
 			}
 			mostrarMergasOcultas();
  	}
@@ -208,6 +213,10 @@ function cargarFormIndicador(padre,nombre){
 
 function preIndicadorInsert(idForm, tipo){
 
+var string=$("#idDescripcion").val();
+string=string.replace(/\n/g,"SALTODELINEA");
+$("#idDescripcion").val(string);
+
 		var rutaIndi;
 		var rutaPer;
 		if(tipo=='insert'){
@@ -231,6 +240,7 @@ function preIndicadorInsert(idForm, tipo){
                     processData: false,
                     cache: false,
                     success: function (data) {
+											console.log(data);
 											var json=JSON.parse(data);
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo
@@ -269,7 +279,7 @@ function postIndicadorInsert(result, state){
 
 }
 
-function postIndicadorUpdate(result, state){
+function postIndicadorUpdate(result, state){	
 	if(state=="success"){
 							if(result=="true"){
 								swal("El indicador se ha actualizado exitosamente", {
@@ -300,7 +310,8 @@ function llenarDatosIndicador(result,state){
 			var json=JSON.parse(result);
 							if(json[0].msg=="exito"){
 								 document.getElementById('idPadre').value=json[1].id;
-				 				document.getElementById('idDescripcion').value=json[1].descripcion;
+								 var str=json[1].descripcion.replace(/SALTODELINEA/g,"\n");
+				 				document.getElementById('idDescripcion').value=str;
 								 document.getElementById('idNombre').value = json[1].nombre;
 								 document.getElementById('UMedida').value= json[1].unidadMedida;
 							}else{
