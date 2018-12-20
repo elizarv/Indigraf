@@ -19,8 +19,15 @@ var userLogged;
 
 var periodos_Array;
 var periodoSeleccionado;
-function graficar(idIndicador){
+function graficar(idIndicador,nombre){
 	cargaContenido('remp','front/views/graficas.html');
+	ultimoNombre="Grafica";
+	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+	cargarMenus();
+	document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>Gráficas "+nombre+"</li>");
+	cuenta=arrayNombres.length;
+	arrayNombres[cuenta]="Grafica";
+	arrayIds[cuenta]=idPadre;
 	formData={"id":idIndicador};
  	enviar(formData,'back/controller/periodo/PeriodoListByIndicador.php',postGraficar);
 }

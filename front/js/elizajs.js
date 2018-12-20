@@ -19,18 +19,24 @@ function cargarInicio(){
 
 function preIndicadorListPadre(padre,nombre){
      //Solicite información del servidor
+		 idPadre=padre;
+		 ultimoNombre=nombre;
      formData={'padre':padre};
      cargaContenido('remp','front/views/indicadores.html');
 		 document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
-		 cargarMenus(padre,cuenta);
-		 if(padre==0 || padre>papa || papa==10000){
+		 cargarMenus();
+		 /*if(padre==0 || padre>papa || papa==10000){
 			 document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>"+nombre+"</li>");
 			 if(papa!=10000){
 				 arrayNombres[cuenta]=nombre;
 				 arrayIds[cuenta]=padre;
 				 cuenta+=1;
 		 	}
-		 }
+		}*/
+		document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>"+nombre+"</li>");
+		cuenta=arrayNombres.length;
+		arrayNombres[cuenta]=nombre;
+		arrayIds[cuenta]=padre;
 		 papa=padre;
  		var str='<h2 class="no-margin-bottom">'+nombre+'</h2>';
 		nombreIndicador=nombre;
@@ -39,19 +45,21 @@ function preIndicadorListPadre(padre,nombre){
 
 }
 
-function cargarMenus(padre,c){
-	var nombres=[];
-	var ids=[];
-		for (var i = 0; i < c; i++) {
-			nombre=arrayNombres[i];
-			id=arrayIds[i];
-			nombres.push(nombre);
-			ids.push(id);
-			if(id==padre){
-				pintarMenus(nombres,ids);
+function cargarMenus(){
+	var nombres=arrayNombres;
+	var ids=arrayIds;
+	arrayNombres=[];
+	arrayIds=[];
+		for (var i = 0; i < nombres.length; i++) {
+			nombre=nombres[i];
+			id=ids[i];
+			if(id==idPadre && nombre==ultimoNombre){
 				break;
+			}else{
+				arrayNombres[i]=nombre;
+				arrayIds[i]=id;
+				document.getElementById("breadc").innerHTML+=('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre('+id+',\''+nombre+'\')">'+nombre+'</a></li>');
 			}
-			document.getElementById("breadc").innerHTML+=('<li class="breadcrumb-item"><a href="javascript:preIndicadorListPadre('+id+',\''+nombre+'\')">'+nombre+'</a></li>');
 		}
 }
 
@@ -92,9 +100,9 @@ function pintarMenus(nombres,ids){
 							}
 
                 str+='<div class="containerJ">';
-								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
-								str+='<a class="btn btn-primaryJ usuarioAdmin" data-toggle="tooltip" href="javascript:editarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
-								str+='<a class="btn btn-primaryJ " data-toggle="tooltip" href="javascript:graficar(\''+Indicador.id+'\')" data-placement="top" title="Graficar"><i class="material-icons">assessment</i></a>';
+								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\',\''+Indicador.nombre+'\',\'insert\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
+								str+='<a class="btn btn-primaryJ usuarioAdmin" data-toggle="tooltip" href="javascript:editarIndicador(\''+Indicador.id+'\',\''+Indicador.nombre+'\')" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
+								str+='<a class="btn btn-primaryJ " data-toggle="tooltip" href="javascript:graficar(\''+Indicador.id+'\',\''+Indicador.nombre+'\')" data-placement="top" title="Graficar"><i class="material-icons">assessment</i></a>';
 								str+='<a class="btn btn-primaryJ usuarioAdmin" data-toggle="tooltip" href="javascript:eliminarIndicador(\''+Indicador.id+'\')" data-placement="top" title="Eliminar"><i class="material-icons">delete</i></a>';
 
                 document.getElementById("IndicadorList").innerHTML+=str;
@@ -143,10 +151,18 @@ function cargarPersonalizar(){
 }
 
 
-function preCargarDetalles(id){
+function preCargarDetalles(id,nombre,tipo){
 	cargaContenido('remp','front/views/infoIndicador.html');
+	if(tipo!='recarga'){
+	ultimoNombre="Detalles";
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
-	formData={'id':id};
+	cargarMenus();
+	document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>Detalles "+nombre+"</li>");
+	cuenta=arrayNombres.length;
+	arrayNombres[cuenta]="Detalles";
+	arrayIds[cuenta]=idPadre;
+}
+formData={'id':id};
 	idPadre=id;
 	enviar(formData,'back/controller/indicador/Indicadorselect.php',postCargarDetalles);
 	enviar(formData,'back/controller/periodo/PeriodoFirst.php',buscarPeriodo);
@@ -207,15 +223,19 @@ function postCargarArchivos(result,state){
 
 function cargarFormIndicador(padre,nombre){
 	cargaContenido('remp','front/views/formIndicador.html');
-	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Agregar Indicador</li>';
+	ultimoNombre="Agregar";
+	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+	cargarMenus();
+	document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>Agregar Indicador</li>");
+	cuenta=arrayNombres.length;
+	arrayNombres[cuenta]="Agregar";
+	arrayIds[cuenta]=idPadre;
 }
 
 function preIndicadorInsert(idForm, tipo){
-
 var string=$("#idDescripcion").val();
 string=string.replace(/\n/g,"SALTODELINEA");
 $("#idDescripcion").val(string);
-
 		var rutaIndi;
 		var rutaPer;
 		if(tipo=='insert'){
@@ -266,7 +286,7 @@ function postIndicadorInsert(result, state){
 								swal("El indicador se ha agregado exitosamente", {
 										icon: "success",
 									});
-									preIndicadorListPadre(papa,ultimoNombre);
+									preIndicadorListPadre(idPadre,arrayNombres[arrayNombres.length-2]);
 							}else{
 								 alert("Hubo un errror en la inserción ( u.u)\n"+result);
 							}
@@ -283,7 +303,7 @@ function postIndicadorUpdate(result, state){
 								swal("El indicador se ha actualizado exitosamente", {
 										icon: "success",
 									});
-									preIndicadorListPadre(papa,ultimoNombre);
+									preIndicadorListPadre(idPadre,arrayNombres[arrayNombres.length-2]);
 							}else{
 								 alert("Hubo un errror en la inserción ( u.u)\n"+result);
 							}
@@ -295,9 +315,15 @@ function postIndicadorUpdate(result, state){
 }
 
 
-function editarIndicador(id){
+function editarIndicador(id,nombre){
 	cargaContenido('remp','front/views/actualizarIndicador.html');
-	document.getElementById("breadc").innerHTML+='<li class="breadcrumb-item">Editar Indicador</li>';
+	ultimoNombre='Editar';
+	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+	cargarMenus();
+	document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>Editar "+nombre+"</li>");
+	cuenta=arrayNombres.length;
+	arrayNombres[cuenta]=nombre;
+	arrayIds[cuenta]=id;
 	formData={'id':id};
 	enviar(formData,'back/controller/indicador/IndicadorSelect.php',llenarDatosIndicador);
 	enviar(formData,'back/controller/periodo/PeriodoFirst.php',llenarDatosPeriodo);
@@ -360,8 +386,14 @@ function llenarDatosPeriodo(result,state){
 
 function preRegistrarPeriodo(id){
 	cargaContenido('remp','front/views/seccionPeriodo.html');
-	idPadre=id;
+	ultimoNombre="Periodo";
 	document.getElementById("breadc").innerHTML='<li class="breadcrumb-item"><a href="javascript:cargarInicio()"><i class="material-icons">home</i></a></li>';
+	cargarMenus();
+	document.getElementById("breadc").innerHTML+=("<li class='breadcrumb-item'>Agregar Periodo</li>");
+	cuenta=arrayNombres.length;
+	arrayNombres[cuenta]="Periodo";
+	arrayIds[cuenta]=idPadre;
+	idPadre=id;
 
 }
 
@@ -403,7 +435,7 @@ function preArchivoInsert(idForm){
 												 swal("Archivo subido exitosamente", {
 													 icon: "success",
 												 });
-												 preCargarDetalles(idPadre);//modificar luego, dependiendo de la rama en la que se este
+												 preCargarDetalles(idPadre, ultimoNombre,'recarga');//modificar luego, dependiendo de la rama en la que se este
 												 }else{
 														alert("Hubo un errror en la inserción ( u.u)\n");
 												 }
