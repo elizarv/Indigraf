@@ -182,10 +182,11 @@ function postCargarArchivos(result,state){
 				var str2="";
 				for(var i=1; i < Object.keys(json).length; i++) {
 				var Archivo = json[i];
+				var nombrecito=Archivo.url.split("/")[3];
 				if(Archivo.extension=='1'){
-					str+='<a target="_blank" href="'+Archivo.url+'"><img width="60" height="60" src="front/public/img/pdf.png"></a>';
+					str+='<div><a target="_blank" href="'+Archivo.url+'"><img width="60" height="60" src="front/public/img/pdf.png"></a><br>'+nombrecito+'</div>';
 				}else{
-					str2+='<a target="_blank" href="'+Archivo.url+'"><img width="60" height="60" src="front/public/img/imagen.png"></a>'
+					str2+='<div><a target="_blank" href="'+Archivo.url+'"><img width="60" height="60" src="front/public/img/imagen.png"></a></div>';
 				}
 			}
 			document.getElementById("archivosPdf").innerHTML=str;

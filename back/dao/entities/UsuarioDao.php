@@ -24,7 +24,7 @@ private $cn;
     /**
      * Guarda un objeto Usuario en la base de datos.
      * @param usuario objeto a guardar
-     * @return  Valor asignado a la llave primaria 
+     * @return  Valor asignado a la llave primaria
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($usuario){
@@ -72,7 +72,7 @@ $tipo=$usuario->getTipo();
     /**
      * Modifica un objeto Usuario en la base de datos.
      * @param usuario objeto con la información a modificar
-     * @return  Valor de la llave primaria 
+     * @return  Valor de la llave primaria
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function update($usuario){
@@ -116,7 +116,7 @@ $tipo=$usuario->getTipo();
       try {
           $sql ="SELECT `username`, `password`, `nombre`, `tipo`"
           ."FROM `usuario`"
-          ."WHERE 1";
+          ."WHERE username<>'admin'";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $usuario= new Usuario();
@@ -167,14 +167,14 @@ $password=$usuario->getPassword();
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
-          $sentencia->execute(); 
+          $sentencia->execute();
           $sentencia = null;
           return $this->cn->lastInsertId();
     }
       public function ejecutarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
-          $sentencia->execute(); 
+          $sentencia->execute();
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
