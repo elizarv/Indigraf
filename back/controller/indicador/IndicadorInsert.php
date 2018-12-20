@@ -23,7 +23,7 @@ $name = $_FILES['idImagen']["name"];
 //Creamos una nueva ruta (nuevo path)
 //Así guardaremos nuestra idImagen en la carpeta "images"
 $nuevo_path="../../images/".$name;
-vardump($nuevo_path);
+echo($nuevo_path);
 //Movemos el archivo desde su ubicación temporal hacia la nueva ruta
 # $tmp_name: la ruta temporal del fichero
 # $nuevo_path: la nueva ruta que creamos
