@@ -22,7 +22,7 @@ $tmp_name = $_FILES['idImagen']["tmp_name"];
 $name = $_FILES['idImagen']["name"];
 //Creamos una nueva ruta (nuevo path)
 //Así guardaremos nuestra idImagen en la carpeta "images"
-$nuevo_path="../../images/.$name";
+$nuevo_path="../../images/".$name;
 //Movemos el archivo desde su ubicación temporal hacia la nueva ruta
 # $tmp_name: la ruta temporal del fichero
 # $nuevo_path: la nueva ruta que creamos
@@ -33,7 +33,7 @@ move_uploaded_file($tmp_name,$nuevo_path);
 $array=explode('.',$nuevo_path);
 # Capturamos el último elemento del array anterior que vendría a ser la extensión
 $ext= end($array);
-$imagen="back/images/".$name;
+$imagen='back/images/'.$name;
 
 
 $fecha_ini=$_POST['idInicioP'];
@@ -48,7 +48,6 @@ IndicadorFacade::updateEsPadre($padre);
 $result= IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador,$unidadMedida);
 $rta="{
     \"id\":\"{$result}\",
-    \"imagen\":\"{$imagen}\",
     \"fecha_ini\":\"{$fecha_ini}\",
     \"fecha_fin\":\"{$fecha_fin}\",
     \"verde\":\"{$verde}\",
