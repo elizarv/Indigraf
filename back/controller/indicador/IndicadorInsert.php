@@ -27,7 +27,7 @@ $nuevo_path="..\..\images\.$name";
 # $tmp_name: la ruta temporal del fichero
 # $nuevo_path: la nueva ruta que creamos
 //$tmp_name=$tmp_name."/".$name;
-$
+
 move_uploaded_file($tmp_name,$nuevo_path);
 //Extraer la extensión del archivo. P.e: jpg
 # Con explode() segmentamos la cadena de acuerdo al separador que definamos. En este caso punto (.)
