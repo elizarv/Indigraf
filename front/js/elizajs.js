@@ -95,9 +95,10 @@ function pintarMenus(nombres,ids){
 										str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
 									}
 								}
-							}
-
-
+							}else{
+								str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
+							}						
+				
                 str+='<div class="containerJ">';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\',\''+Indicador.nombre+'\',\'insert\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
 								str+='<a class="btn btn-primaryJ usuarioAdmin" data-toggle="tooltip" href="javascript:editarIndicador(\''+Indicador.id+'\',\''+Indicador.nombre+'\')" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
@@ -163,7 +164,7 @@ function preCargarDetalles(id,nombre,tipo){
 }
 formData={'id':id};
 	idPadre=id;
-	enviar(formData,'back/controller/indicador/Indicadorselect.php',postCargarDetalles);
+	enviar(formData,'back/controller/indicador/IndicadorSelect.php',postCargarDetalles);
 	enviar(formData,'back/controller/periodo/PeriodoFirst.php',buscarPeriodo);
 }
 
