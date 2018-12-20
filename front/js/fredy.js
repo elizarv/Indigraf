@@ -206,7 +206,7 @@ function postChismosearMapa(result,state){
 }
 
 function logout(){
-    enviar("",'back/controller/usuario/logout.php',postLogout);
+    enviar("",'back/controller/usuario/Logout.php',postLogout);
 }
 function postLogout(){
     window.location="login.html";
