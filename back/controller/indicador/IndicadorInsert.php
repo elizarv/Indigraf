@@ -48,6 +48,7 @@ IndicadorFacade::updateEsPadre($padre);
 $result= IndicadorFacade::insert($nombre, $descripcion, $imagen, $indicador,$unidadMedida);
 $rta="{
     \"id\":\"{$result}\",
+    \"imagen\":\"{$imagen}\",
     \"fecha_ini\":\"{$fecha_ini}\",
     \"fecha_fin\":\"{$fecha_fin}\",
     \"verde\":\"{$verde}\",
