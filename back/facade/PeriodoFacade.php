@@ -94,10 +94,8 @@ class PeriodoFacade {
    * @param id
    * @param cantidad
    */
-  public static function update($id, $fecha_ini,  $fecha_fin,  $verde, $cantidad, $amarillo, $rojo){
+  public static function update($id, $verde, $cantidad, $amarillo, $rojo){
       $periodo = self::select($id);
-      $periodo->setFecha_ini($fecha_ini);
-      $periodo->setFecha_fin($fecha_fin);
       $periodo->setVerde($verde);
       $periodo->setCantidad($cantidad);
       $periodo->setAmarillo($amarillo);

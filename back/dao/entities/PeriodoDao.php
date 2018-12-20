@@ -111,8 +111,6 @@ $cantidad=$periodo->getCantidad();
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function update($periodo){
-      $fecha_ini=$periodo->getFecha_ini();
-$fecha_fin=$periodo->getFecha_fin();
 $verde=$periodo->getVerde();
 $amarillo=$periodo->getAmarillo();
 $rojo=$periodo->getRojo();
@@ -120,7 +118,7 @@ $id=$periodo->getId();
 $cantidad=$periodo->getCantidad();
 
       try {
-          $sql= "UPDATE `periodo` SET`fecha_ini`='$fecha_ini' ,`fecha_fin`='$fecha_fin' ,`verde`=$verde, `amarillo`=$amarillo, `rojo`=$rojo ,`cantidad`='$cantidad' WHERE `id`='$id' ";
+          $sql= "UPDATE `periodo` SET `verde`=$verde, `amarillo`=$amarillo, `rojo`=$rojo ,`cantidad`='$cantidad' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

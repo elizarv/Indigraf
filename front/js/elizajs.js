@@ -120,7 +120,6 @@ function eliminarIndicador(id){
 		  dangerMode: true,
 			confirmButtonTetx: "OK",
 }).then((willDelete) => {
-	alert(willDelete);
 	if(willDelete){
 		formData={'id':id};
 		enviar(formData,'back/controller/indicador/IndicadorDelete.php',exitoEliminarIndicador);
@@ -158,12 +157,12 @@ function postCargarDetalles(result,state){
 			var json=JSON.parse(result);
 			if(json[0].msg=="exito"){
 		 	 	var Indicador = json[1];
-		 	 	var str=Indicador.descripcion.replace(/SALTODELINEA/g,"\n");		 	 	
-				/*var str = Indicador.descripcion.split("\n");
+		 	 	var str=Indicador.descripcion.replace(/SALTODELINEA/g,"\n");
+				var str = Indicador.descripcion.split("\n");
 				agg="";
       	for (var i = 0; i < str.length; i++) {
 					agg += "<p>" + str[i] + "</p>";
-				}*/
+				}
 				$("#descripcion").append(str);
 			}
 			mostrarMergasOcultas();
@@ -240,7 +239,6 @@ $("#idDescripcion").val(string);
                     processData: false,
                     cache: false,
                     success: function (data) {
-											console.log(data);
 											var json=JSON.parse(data);
                         if (json[0].msg== "exito") {
 														 	 //insertar periodo
@@ -279,13 +277,13 @@ function postIndicadorInsert(result, state){
 
 }
 
-function postIndicadorUpdate(result, state){	
+function postIndicadorUpdate(result, state){
 	if(state=="success"){
 							if(result=="true"){
 								swal("El indicador se ha actualizado exitosamente", {
 										icon: "success",
 									});
-									//preIndicadorListPadre(idPadre,ultimoNombre);
+									preIndicadorListPadre(papa,ultimoNombre);
 							}else{
 								 alert("Hubo un errror en la inserción ( u.u)\n"+result);
 							}

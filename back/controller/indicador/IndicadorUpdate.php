@@ -33,8 +33,6 @@ $array=explode('.',$nuevo_path);
 # Capturamos el último elemento del array anterior que vendría a ser la extensión
 $ext= end($array);
 $imagen="back/images/".$name;
-$fecha_ini=$_POST['idInicioP'];
-$fecha_fin=$_POST['idFinalP'];
 $verde=$_POST['idVerde'];
 $amarillo=$_POST['idMeta'];
 $rojo=$_POST['idRojo'];
@@ -44,8 +42,6 @@ if($tmp_name=="")$imagen="";
 IndicadorFacade::update($id,$nombre, $descripcion, $imagen, $unidadMedida);
 $rta="{
     \"id\":\"{$id}\",
-    \"fecha_ini\":\"{$fecha_ini}\",
-    \"fecha_fin\":\"{$fecha_fin}\",
     \"verde\":\"{$verde}\",
     \"rojo\":\"{$rojo}\",
     \"cantidad\":\"{$cantidad}\",
