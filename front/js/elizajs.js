@@ -95,15 +95,10 @@ function pintarMenus(nombres,ids){
 										str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
 									}
 								}
-<<<<<<< HEAD
 							}else{
 								str+='<img class="card-img" src="'+Indicador.imagen+'" alt="Card image"></div><div class="col-sm-6">';
 							}						
-=======
-							}
-
->>>>>>> 0a121f518cdeaed66e3055d9aa14a0a54818765f
-
+				
                 str+='<div class="containerJ">';
 								str+='<a class="btn btn-primaryJ" data-toggle="tooltip" href="javascript:preCargarDetalles(\''+Indicador.id+'\',\''+Indicador.nombre+'\',\'insert\')" data-placement="top" title="Detalles"><i class="material-icons">event_note</i></a>';
 								str+='<a class="btn btn-primaryJ usuarioAdmin" data-toggle="tooltip" href="javascript:editarIndicador(\''+Indicador.id+'\',\''+Indicador.nombre+'\')" data-placement="top" title="Editar"><i class="material-icons">create</i></a>';
